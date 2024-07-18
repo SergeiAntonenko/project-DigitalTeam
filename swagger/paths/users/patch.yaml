@@ -25,14 +25,6 @@ requestBody:
             description: "User's name"
             type: string
             example: 'Joe Biden'
-          phoneNumber:
-            description: "User's phone"
-            type: string
-            example: '123456789'
-          isFavourite:
-            description: "User's isFavourite"
-            type: boolean
-            example: true
           gender:
             description: "User's userType"
             type: string

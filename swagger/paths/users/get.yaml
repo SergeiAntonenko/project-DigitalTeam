@@ -16,10 +16,6 @@ parameters:
     schema:
       type: integer
       example: 10
-  - in: query
-    name: isFavourite
-    schema:
-      type: boolean
 responses:
   '200':
     description: Successful operation
