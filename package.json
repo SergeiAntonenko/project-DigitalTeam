@@ -12,6 +12,7 @@
     "preview-docs": "redocly preview-docs"
   },
   "dependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
     "cloudinary": "^2.3.0",
     "express": "^4.19.2",
     "google-auth-library": "^9.11.0",
