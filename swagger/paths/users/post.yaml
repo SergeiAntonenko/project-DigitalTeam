@@ -1,0 +1,57 @@
+tags:
+  - Users
+summary: Create user
+operationId: createUser
+description: 'Create a user with payload'
+security:
+  - bearerAuth: []
+requestBody:
+  required: true
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        required:
+          - name
+          - email
+          - gender
+        properties:
+          name:
+            description: "User's name"
+            type: string
+            example: 'Joe Biden'
+          email:
+            description: "User's email"
+            type: string
+            example: 'example@example.com'
+          gender:
+            description: "User's gender identity"
+            type: string
+            enum:
+              - man
+              - woman
+            example: man
+responses:
+  '201':
+    description: 'Creates a user'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: Successfully created a user!
+            data:
+              $ref: ../../components/schemas/user.yaml
+  '401':
+    $ref: '../../components/responses/401.yaml'
+  '404':
+    $ref: '../../components/responses/404.yaml'
