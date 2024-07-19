@@ -1,3 +1,10 @@
+import ModalAddWater from './components/Modals/ModalAddWater';
+
+
 export const App = () => {
-  return <div>React Node Project</div>;
+  return <div>
+
+    <ModalAddWater/>
+    React Node Project
+  </div>;
 };
