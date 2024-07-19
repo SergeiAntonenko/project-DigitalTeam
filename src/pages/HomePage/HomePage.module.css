@@ -1,0 +1,58 @@
+.container {
+}
+
+.welcomeSection {
+  background-color: #f0eff4;
+  border-radius: 30px;
+  height: 411px;
+  text-align: left;
+  padding: 16px 0 16px 16px;
+  margin: 0 auto;
+  width: 343px;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.11111;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: #323f47;
+  margin-bottom: 62px;
+}
+
+.descr {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: 0.06em;
+  color: #2f2f2f;
+}
+
+.water {
+  font-weight: 700;
+  font-size: 38px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: #323f47;
+}
+
+.tryTracker {
+  font-weight: 700;
+  font-size: 14px;
+  background-color: #9be1a0;
+  padding: 14px 29px;
+  border-radius: 30px;
+  color: #323f47;
+}
+
+.signIn {
+  border-radius: 30px;
+  padding: 14px 28px;
+  border: 1px solid #323f47;
+  margin-left: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.28571;
+  color: #323f47;
+}
