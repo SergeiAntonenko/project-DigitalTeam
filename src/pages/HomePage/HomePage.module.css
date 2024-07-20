@@ -55,7 +55,7 @@
   padding: 4px;
 }
 
-.happyCustomers {
+.Customers {
   border-radius: 30px;
   padding: 10px 14px;
   width: 160px;
@@ -202,7 +202,7 @@ span {
     height: 446px;
   }
 
-  .happyCustomers {
+  .Customers {
     top: 283px;
     left: 32px;
     bottom: 96px;
@@ -300,7 +300,7 @@ span {
     left: 398px;
   }
 
-  .happyCustomers {
+  .Customers {
     top: 537px;
     bottom: 132px;
     left: 32px;
