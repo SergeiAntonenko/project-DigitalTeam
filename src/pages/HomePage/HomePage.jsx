@@ -1,5 +1,5 @@
-import Navigation from "../../components/Navigation/Navigation";
-import css from "./HomePage.module.css";
+import Navigation from '../../components/Navigation/Navigation';
+import css from './HomePage.module.css';
 
 const HomePage = () => {
   return (
@@ -15,22 +15,21 @@ const HomePage = () => {
       <div className={css.advantages}>
         <div>
           <p className={css.happyCustomers}>
-            Our <span>happy</span> customers
+            <span className={css.happySpan}></span>Our <span>happy</span> customers
           </p>
         </div>
         <div className={css.benefits}>
           <div className={css.habitWrapper}>
-            <p className={css.habitDrive}>Habit drive</p>
+            <p className={css.habitDrive}>
+              <span className={css.habbitSpan}></span>Habit drive
+            </p>
             <p className={css.statistics}>View statistics</p>
           </div>
-          <div>
-            <p className={css.rate}>Personal rate setting</p>
-          </div>
+          <p className={css.rate}>Personal rate setting</p>
         </div>
       </div>
     </div>
   );
-
 };
 
 export default HomePage;

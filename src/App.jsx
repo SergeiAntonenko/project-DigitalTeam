@@ -1,4 +1,3 @@
-
 import { Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
 import Layout from './components/Layout/Layout.jsx';
@@ -17,6 +16,7 @@ export const App = () => {
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />
+
           <Route
             path="/signup"
             element={<RestrictedRoute redirectTo="/" component={<SignUpPage />} />}
