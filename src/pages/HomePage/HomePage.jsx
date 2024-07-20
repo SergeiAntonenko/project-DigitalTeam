@@ -1,3 +1,4 @@
+import Navigation from "../../components/Navigation/Navigation";
 import css from "./HomePage.module.css";
 
 const HomePage = () => {
@@ -8,23 +9,22 @@ const HomePage = () => {
         <div>
           <p className={css.descr}>Record daily water intake and track</p>
           <h1 className={css.water}>Water consumption tracker</h1>
-          <button className={css.tryTracker}>Try tracker</button>
-          <button className={css.signIn}>Sign In</button>
+          <Navigation />
         </div>
       </div>
-      <div>
+      <div className={css.advantages}>
         <div>
-          <p>Our happy customers</p>
+          <p className={css.happyCustomers}>
+            Our <span>happy</span> customers
+          </p>
         </div>
-        <div>
-          <div>
-            <p>Habit drive</p>
+        <div className={css.benefits}>
+          <div className={css.habitWrapper}>
+            <p className={css.habitDrive}>Habit drive</p>
+            <p className={css.statistics}>View statistics</p>
           </div>
           <div>
-            <p>View statistics</p>
-          </div>
-          <div>
-            <p>Personal rate setting</p>
+            <p className={css.rate}>Personal rate setting</p>
           </div>
         </div>
       </div>

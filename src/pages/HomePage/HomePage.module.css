@@ -1,14 +1,5 @@
 .container {
-}
-
-.welcomeSection {
-  background-color: #f0eff4;
-  border-radius: 30px;
-  height: 411px;
-  text-align: left;
-  padding: 16px 0 16px 16px;
-  margin: 0 auto;
-  width: 343px;
+  font-family: sans-serif;
 }
 
 .logo {
@@ -21,12 +12,24 @@
   margin-bottom: 62px;
 }
 
+.welcomeSection {
+  background-color: #f0eff4;
+  border-radius: 30px;
+  height: 411px;
+  text-align: left;
+  padding: 24px 16px 16px 16px;
+  margin: 0 auto;
+  width: 343px;
+  margin-bottom: 16px;
+}
+
 .descr {
   font-weight: 400;
   font-size: 14px;
   line-height: 1.28571;
   letter-spacing: 0.06em;
   color: #2f2f2f;
+  margin-bottom: 16px;
 }
 
 .water {
@@ -35,24 +38,86 @@
   line-height: 1;
   letter-spacing: -0.01em;
   color: #323f47;
+  margin-bottom: 32px;
 }
 
-.tryTracker {
-  font-weight: 700;
-  font-size: 14px;
-  background-color: #9be1a0;
-  padding: 14px 29px;
+.advantages {
   border-radius: 30px;
-  color: #323f47;
+  width: 343px;
+  height: 353px;
+  background-image: url("../../photos/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  margin: 0 auto;
+  border: 1px solid black;
 }
 
-.signIn {
+.happyCustomers {
   border-radius: 30px;
-  padding: 14px 28px;
-  border: 1px solid #323f47;
-  margin-left: 10px;
+  padding: 10px 14px;
+  width: 160px;
+  height: 48px;
+  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  text-align: end;
+}
+
+span {
+  color: #9be1a0;
+}
+
+.benefits {
+  position: absolute;
+  top: 65%;
+  left: 56%;
+}
+
+.habitWrapper {
+  display: flex;
+}
+
+.habitDrive {
+  border-radius: 30px;
+  padding: 9px 12px;
+  height: 26px;
+  background: #323f47;
   font-weight: 700;
-  font-size: 14px;
-  line-height: 1.28571;
+  font-size: 8px;
+  color: #fff;
+  text-align: center;
+  text-wrap: nowrap;
+}
+
+.statistics {
+  border-radius: 30px;
+  padding: 9px 12px;
+  width: 83px;
+  height: 26px;
+  background: #9be1a0;
+  font-weight: 700;
+  font-size: 8px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-align: center;
   color: #323f47;
+  margin-left: 4px;
+}
+
+.rate {
+  border-radius: 30px;
+  padding: 9px 12px;
+  width: 108px;
+  height: 26px;
+  font-weight: 700;
+  font-size: 8px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #323f47;
+  background-color: antiquewhite;
 }
