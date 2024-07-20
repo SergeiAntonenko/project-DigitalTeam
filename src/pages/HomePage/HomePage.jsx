@@ -1,12 +1,14 @@
+import { DocumentTitle } from '../../components/DocumentTitle';
 import Navigation from '../../components/Navigation/Navigation';
 import css from './HomePage.module.css';
 
 const HomePage = () => {
   return (
     <div className={css.container}>
+      <DocumentTitle>Home Page</DocumentTitle>
       <div className={css.welcomeSection}>
         <h3 className={css.logo}>AquaTrack</h3>
-        <div>
+        <div className={css.tabletWrapper}>
           <p className={css.descr}>Record daily water intake and track</p>
           <h1 className={css.water}>Water consumption tracker</h1>
           <Navigation />
