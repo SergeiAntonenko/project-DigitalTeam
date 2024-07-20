@@ -52,6 +52,7 @@
   position: relative;
   margin: 0 auto;
   border: 1px solid black;
+  padding: 4px;
 }
 
 .happyCustomers {
@@ -125,6 +126,7 @@ span {
   color: #fff;
   text-align: center;
   position: relative;
+  margin-bottom: 4px;
 }
 
 .statistics {
@@ -231,6 +233,7 @@ span {
     padding: 11px 16px;
     width: 111px;
     height: 34px;
+    margin-bottom: 10px;
   }
 
   .habbitSpan {
@@ -244,6 +247,7 @@ span {
     padding: 11px 16px;
     width: 121px;
     height: 34px;
+    margin-left: 10px;
   }
 
   .rate {
