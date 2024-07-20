@@ -19,6 +19,9 @@
     "react-helmet": "^6.1.0",
     "react-helmet-async": "^2.0.5",
     "react-router-dom": "^6.25.1",
+    "redux": "^5.0.1",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-persist": "^6.0.0",
     "yup": "^1.4.0"
   },
   "devDependencies": {
