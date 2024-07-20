@@ -1,3 +1,7 @@
+.container {
+  padding: 16px;
+}
+
 .logo {
   font-weight: 700;
   font-size: 18px;
@@ -39,8 +43,8 @@
 
 .advantages {
   border-radius: 30px;
-  width: 343px;
   height: 353px;
+  width: 343px;
   background-image: url('../../photos/background.jpg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -63,7 +67,6 @@
   text-align: center;
   line-height: 1.16667;
   font-size: 12px;
-  white-space: normal;
   position: relative;
   margin-left: 5px;
 }
@@ -152,4 +155,154 @@ span {
   text-align: center;
   color: #323f47;
   background-color: antiquewhite;
+}
+
+@media (min-width: 768px) and (max-width: 1439px) {
+  .container {
+    padding: 32px;
+  }
+
+  .welcomeSection {
+    width: 704px;
+    height: 498px;
+  }
+
+  .tabletWrapper {
+    max-width: 547px;
+    max-height: 342px;
+    margin-left: 64px;
+  }
+
+  .water {
+    font-size: 64px;
+    line-height: 1.09375;
+    letter-spacing: -0.01em;
+  }
+
+  .descr {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.06em;
+    color: #2f2f2f;
+  }
+
+  .logo {
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    margin-bottom: 50px;
+    margin-left: 32px;
+  }
+
+  .advantages {
+    width: 704px;
+    height: 446px;
+  }
+
+  .happyCustomers {
+    top: 283px;
+    left: 32px;
+    bottom: 96px;
+    font-size: 15px;
+    line-height: 1.49333;
+    padding: 10px 20px;
+    width: 237px;
+    height: 67px;
+  }
+
+  .happySpan {
+    height: 15px;
+    width: 15px;
+  }
+
+  .benefits {
+    position: absolute;
+    top: 336px;
+    left: 430px;
+    right: 32px;
+    bottom: 32px;
+  }
+
+  .habitDrive {
+    font-size: 12px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    padding: 11px 16px;
+    width: 111px;
+    height: 34px;
+  }
+
+  .habbitSpan {
+    margin-right: 3px;
+  }
+
+  .statistics {
+    font-size: 12px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    padding: 11px 16px;
+    width: 121px;
+    height: 34px;
+  }
+
+  .rate {
+    font-size: 12px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    padding: 11px 16px;
+    width: 158px;
+    height: 34px;
+  }
+}
+@media (min-width: 1440px) {
+  .container {
+    display: flex;
+    padding: 32px;
+  }
+
+  .water {
+    font-size: 80px;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+  }
+
+  .logo {
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    margin-bottom: 132px;
+  }
+
+  .welcomeSection {
+    width: 736px;
+    height: 672px;
+  }
+
+  .tabletWrapper {
+    margin-left: 64px;
+  }
+
+  .advantages {
+    width: 672px;
+    height: 736px;
+    margin-left: 32px;
+  }
+
+  .benefits {
+    top: 594px;
+    bottom: 64px;
+    right: 32px;
+    left: 398px;
+  }
+
+  .happyCustomers {
+    top: 537px;
+    bottom: 132px;
+    left: 32px;
+  }
+
+  .habitDrive {
+    text-wrap: nowrap;
+  }
 }
