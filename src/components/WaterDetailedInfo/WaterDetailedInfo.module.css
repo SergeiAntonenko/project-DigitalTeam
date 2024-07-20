@@ -1,0 +1,19 @@
+.waterDetailedInfo {
+  background-color: #f0eff4;
+  border-radius: 30px;
+  padding: 40px 20px;
+  overflow: hidden;
+}
+
+@media screen and (min-width: 768px) {
+  .waterDetailedInfo {
+    padding: 32px;
+    width: 704px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .waterDetailedInfo {
+    width: 672px;
+  }
+}
