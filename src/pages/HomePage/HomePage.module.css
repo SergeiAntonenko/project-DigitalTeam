@@ -1,0 +1,155 @@
+.logo {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.11111;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: #323f47;
+  margin-bottom: 62px;
+}
+
+.welcomeSection {
+  background-color: #f0eff4;
+  border-radius: 30px;
+  height: 411px;
+  text-align: left;
+  padding: 24px 16px 16px 16px;
+  margin: 0 auto;
+  width: 343px;
+  margin-bottom: 16px;
+}
+
+.descr {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: 0.06em;
+  color: #2f2f2f;
+  margin-bottom: 16px;
+}
+
+.water {
+  font-weight: 700;
+  font-size: 38px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: #323f47;
+  margin-bottom: 32px;
+}
+
+.advantages {
+  border-radius: 30px;
+  width: 343px;
+  height: 353px;
+  background-image: url('../../photos/background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  margin: 0 auto;
+  border: 1px solid black;
+}
+
+.happyCustomers {
+  border-radius: 30px;
+  padding: 10px 14px;
+  width: 160px;
+  height: 48px;
+  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  position: absolute;
+  top: 209px;
+  left: 16px;
+  text-align: center;
+  line-height: 1.16667;
+  font-size: 12px;
+  white-space: normal;
+  position: relative;
+  margin-left: 5px;
+}
+
+.happySpan {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 400%;
+  position: relative;
+  display: inline-block;
+  margin: 5%;
+  background-color: #9be1a0;
+  border: 2px solid #2f2f2f;
+}
+
+.habbitSpan {
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 400%;
+  position: relative;
+  display: inline-block;
+  background-color: #9be1a0;
+  margin: 1px;
+}
+
+span {
+  color: #9be1a0;
+}
+
+.benefits {
+  position: absolute;
+  top: 265px;
+  left: 169px;
+  right: 16px;
+  bottom: 32px;
+}
+
+.habitWrapper {
+  display: flex;
+}
+
+.habitDrive {
+  border-radius: 30px;
+  padding: 5px 7px 12px 9px;
+  height: 26px;
+  width: 81px;
+  background-color: #323f47;
+  font-weight: 700;
+  font-size: 8px;
+  color: #fff;
+  text-align: center;
+  position: relative;
+}
+
+.statistics {
+  border-radius: 30px;
+  padding: 9px 12px;
+  width: 83px;
+  height: 26px;
+  background: #9be1a0;
+  font-weight: 700;
+  font-size: 8px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #323f47;
+  margin-left: 4px;
+  text-wrap: nowrap;
+}
+
+.rate {
+  border-radius: 30px;
+  padding: 9px 12px;
+  width: 108px;
+  height: 26px;
+  font-weight: 700;
+  font-size: 8px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #323f47;
+  background-color: antiquewhite;
+}
