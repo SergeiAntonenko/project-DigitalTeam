@@ -1,10 +1,9 @@
-
 import { Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
 import Layout from './components/Layout/Layout.jsx';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import RestrictedRoute from './components/RestrictedRoute/RestrictedRoute';
-import ModalAddWater from './components/Modals/ModalAddWater';
+// import ModalAddWater from './components/Modals/ModalAddWater';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage.jsx'));
 const SignInPage = lazy(() => import('./pages/SignInPage/SignInPage.jsx'));
@@ -16,7 +15,8 @@ export const App = () => {
     <div>
       <Layout>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<RestrictedRoute redirectTo="/" component={<HomePage />} />} />
+
           <Route
             path="/signup"
             element={<RestrictedRoute redirectTo="/" component={<SignUpPage />} />}
