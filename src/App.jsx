@@ -13,20 +13,22 @@ const TrackerPage = lazy(() => import('./pages/TrackerPage/TrackerPage.jsx'));
 export const App = () => {
   return (
     <div>
-      <ModalEditWater/>
+      <ModalEditWater />
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />
           {/* <Route path="/" element={<RestrictedRoute redirectTo="/tracker" component={<HomePage />} />} /> */}
+          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/signin" element={<SignInPage />} />
 
-          <Route
+          {/* <Route
             path="/signup"
             element={<RestrictedRoute redirectTo="/" component={<SignUpPage />} />}
           />
           <Route
             path="/signin"
             element={<RestrictedRoute redirectTo="/" component={<SignInPage />} />}
-          />
+          /> */}
           <Route
             path="/tracker"
             element={<PrivateRoute redirectTo="/signin" component={<TrackerPage />} />}
