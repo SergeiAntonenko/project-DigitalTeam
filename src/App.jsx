@@ -18,6 +18,7 @@ export const App = () => {
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          {/* <Route path="/" element={<RestrictedRoute redirectTo="/tracker" component={<HomePage />} />} /> */}
 
           <Route
             path="/signup"
