@@ -343,6 +343,6 @@
 
 @media screen and (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
   .advantages {
-    background-image: url('../../photos/main-photo-2x-min.jpg');
+    background-image: url('../../photos/main-photo-desktop-2x-min.jpg');
   }
 }
