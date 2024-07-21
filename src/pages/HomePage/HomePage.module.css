@@ -290,7 +290,8 @@
   .advantages {
     width: 736px;
     height: 672px;
-    margin-left: 32px;
+    display: flex;
+    justify-content: space-between;
     background-image: url('../../photos/main-photo-desktop-min.jpg');
   }
 
