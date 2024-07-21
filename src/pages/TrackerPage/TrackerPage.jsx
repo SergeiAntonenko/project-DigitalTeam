@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet';
 import Section from '../../shared/components/Section/Section';
 import WaterDetailedInfo from '../../components/WaterDetailedInfo/WaterDetailedInfo';
+import WaterMainInfo from '../../components/WaterMainInfo/WaterMainInfo';
 
 const TrackerPage = () => {
   return (
@@ -9,7 +10,7 @@ const TrackerPage = () => {
         <title>Tracker Page</title>
       </Helmet>
       <Section>
-        {/* <WaterMainInfo /> */}
+        <WaterMainInfo />
         <WaterDetailedInfo />
       </Section>
     </>
