@@ -3,7 +3,7 @@ import { api } from '../../api/api';
 
 export const register = createAsyncThunk('auth/register', async (credentials, thunkAPI) => {
   try {
-    const response = await api.instance.post('auth/register', credentials);
+    const response = await api.instance.post('users/register', credentials);
 
     api.setAuthHeader(response.data.token);
     return response.data;
@@ -12,9 +12,9 @@ export const register = createAsyncThunk('auth/register', async (credentials, th
   }
 });
 
-export const logIn = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
+export const login = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
   try {
-    const res = await api.instance.post('auth/login', credentials);
+    const res = await api.instance.post('users/login', credentials);
 
     api.setAuthHeader(res.data.token);
     return res.data;
@@ -23,9 +23,9 @@ export const logIn = createAsyncThunk('auth/login', async (credentials, thunkAPI
   }
 });
 
-export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    await api.instance.post('auth/logout');
+    await api.instance.post('users/logout');
 
     api.clearAuthHeader();
   } catch (error) {
