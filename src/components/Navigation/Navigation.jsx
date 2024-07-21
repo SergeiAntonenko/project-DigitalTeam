@@ -4,7 +4,7 @@ import css from '../Navigation/Navigation.module.css';
 const Navigation = () => {
   return (
     <>
-      <NavLink className={css.tryTracker} to="/SignUpPage">
+      <NavLink className={css.tryTracker} to="/signup">
         Try tracker
       </NavLink>
       <NavLink className={css.signIn} to="/signin">
