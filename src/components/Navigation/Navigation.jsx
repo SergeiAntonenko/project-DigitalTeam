@@ -7,7 +7,7 @@ const Navigation = () => {
       <NavLink className={css.tryTracker} to="/SignUpPage">
         Try tracker
       </NavLink>
-      <NavLink className={css.signIn} to="/SignInPage">
+      <NavLink className={css.signIn} to="/signin">
         Sign In
       </NavLink>
     </>
