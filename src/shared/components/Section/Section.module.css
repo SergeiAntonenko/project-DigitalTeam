@@ -3,9 +3,13 @@
   flex-direction: column;
   gap: 16px;
 }
+
 @media screen and (min-width: 1440px) {
   .section {
     flex-direction: row;
     gap: 32px;
+    width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
