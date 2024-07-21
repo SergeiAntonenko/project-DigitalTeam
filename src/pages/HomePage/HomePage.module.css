@@ -45,13 +45,12 @@
   border-radius: 30px;
   height: 353px;
   width: 343px;
-  background-image: url('../../photos/background.jpg');
+  background-image: url('../../photos/main-photo-min.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   position: relative;
   margin: 0 auto;
-  border: 1px solid black;
   padding: 4px;
 }
 
@@ -99,7 +98,7 @@
   margin: 1px;
 }
 
-span {
+.span {
   color: #9be1a0;
 }
 
@@ -156,7 +155,7 @@ span {
   letter-spacing: -0.01em;
   text-align: center;
   color: #323f47;
-  background-color: antiquewhite;
+  background-color: #fff;
 }
 
 @media (min-width: 768px) and (max-width: 1439px) {
@@ -200,6 +199,7 @@ span {
   .advantages {
     width: 704px;
     height: 446px;
+    background-image: url('../../photos/main-photo-tablet-min.jpg');
   }
 
   .Customers {
@@ -288,9 +288,10 @@ span {
   }
 
   .advantages {
-    width: 672px;
-    height: 736px;
+    width: 736px;
+    height: 672px;
     margin-left: 32px;
+    background-image: url('../../photos/main-photo-desktop-min.jpg');
   }
 
   .benefits {
@@ -308,5 +309,12 @@ span {
 
   .habitDrive {
     text-wrap: nowrap;
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+  .advantages {
+    background-image: url('../../photos/main-photo-2x-min.jpg');
   }
 }
