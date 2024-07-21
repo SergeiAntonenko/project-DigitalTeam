@@ -1,0 +1,77 @@
+.container {
+  display: flex;
+  justify-content: right;
+  width: 100%;
+}
+
+.addWaterBtn {
+  display: flex;
+  align-items: center;
+  border-radius: 30px;
+  padding: 14px 20px;
+  padding-right: 0;
+  height: 46px;
+  background-color: inherit;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #323f47;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  border: none;
+  cursor: pointer;
+  gap: 10px;
+}
+
+.iconCircle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background-color: #81de89;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.iconCircle:hover {
+  background-color: black;
+}
+
+.addWaterIcon {
+  stroke: white;
+  width: 16px;
+  height: 16px;
+  transition: stroke 0.3s ease-in-out;
+}
+
+@media screen and (min-width: 768px) {
+  .addWaterBtn {
+    padding: 18px 30px;
+    height: 60px;
+    font-size: 16px;
+    line-height: 150%;
+    padding-right: 0;
+  }
+
+  .addWaterIcon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .addWaterBtn {
+    padding: 20px 32px;
+    height: 70px;
+    font-size: 18px;
+    padding-right: 0;
+  }
+
+  .addWaterIcon {
+    width: 24px;
+    height: 24px;
+  }
+}
