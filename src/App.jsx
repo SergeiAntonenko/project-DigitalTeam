@@ -13,7 +13,6 @@ const TrackerPage = lazy(() => import('./pages/TrackerPage/TrackerPage.jsx'));
 export const App = () => {
   return (
     <div>
-      <ModalAddWater />
       <ModalEditWater/>
       <Layout>
         <Routes>
