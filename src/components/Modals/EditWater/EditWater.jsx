@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import css from './EditWater.module.css';
 import useWaterState from '../WaterState.jsx';
 import Iconsvg from '../MyIcons/MyIcons.jsx';
-import useModal from '../../OpenCloseModal.jsx';
+import useModal from '../../Modals/ModalAdd/OpenCloseModal.jsx';
 
 const ModalEditWater = () => {
   const { waterAmount, increaseWaterAmount, decreaseWaterAmount, setWaterAmount } = useWaterState();
@@ -62,7 +62,8 @@ const ModalEditWater = () => {
 
       <div className={css.waterwrapper}>
         <h3 className={css.amount_water}>Amount of water: {waterAmount}</h3>
-        <div>
+
+        <div className={css.minplus_wrapper}>
           <button className={css.button_water} onClick={decreaseWaterAmount}><span className={css.pl_min}>-</span></button>
           <button className={css.button_ml}>{waterAmount}ml</button>
           <button className={css.button_water} onClick={increaseWaterAmount}><span className={css.pl_min}>+</span></button>

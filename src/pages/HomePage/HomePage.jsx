@@ -17,7 +17,8 @@ const HomePage = () => {
       <div className={css.advantages}>
         <div>
           <p className={css.Customers}>
-            <span className={css.happySpan}></span>Our <span>happy</span> customers
+            <span className={css.happySpan}></span>Our <span className={css.span}>happy</span>{' '}
+            customers
           </p>
         </div>
         <div className={css.benefits}>
