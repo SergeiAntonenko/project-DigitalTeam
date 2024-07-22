@@ -1,0 +1,18 @@
+.general {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 149px;
+  height: 74px;
+  background-color: rgb(255, 255, 255);
+  padding: 14px 18px;
+  border-radius: 15px;
+}
+.center {
+  display: flex;
+  gap: 10px;
+  background-color: red;
+  width: 121px;
+  height: 38px;
+}

@@ -1,4 +1,4 @@
-import WaterItem from '../Wate';
+import WaterItem from '../WaterItem/WaterItem';
 // import s from './WaterList.module.css';
 
 const WaterList = () => {
