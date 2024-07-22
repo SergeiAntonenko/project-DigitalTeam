@@ -1,8 +1,13 @@
 .monthInfoContainer {
   display: flex;
+  flex-direction: column;
+  padding-top: 40px;
+}
+
+.topContainer {
+  display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 40px;
 }
 
 .rightContainer {
