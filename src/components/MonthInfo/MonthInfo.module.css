@@ -1,0 +1,19 @@
+.monthInfoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 40px;
+}
+
+.rightContainer {
+  display: flex;
+  align-items: center;
+}
+
+h1 {
+  margin: 0;
+}
+
+p {
+  margin: 0 10px;
+}

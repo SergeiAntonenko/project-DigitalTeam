@@ -1,0 +1,8 @@
+.container {
+  display: flex;
+  align-items: end;
+}
+
+.month {
+  margin: 0 10px;
+}
