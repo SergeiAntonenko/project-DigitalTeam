@@ -3,7 +3,7 @@ import { lazy } from 'react';
 import Layout from './components/Layout/Layout.jsx';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import RestrictedRoute from './components/RestrictedRoute/RestrictedRoute';
-import ModalAddWater from './components/Modals/ModalAdd/ModalAddWater';
+import ModalDelete from './components/Modals/ModalDelete/ModalDelete.jsx';
 import ModalEditWater from './components/Modals/EditWater/EditWater';
 const HomePage = lazy(() => import('./pages/HomePage/HomePage.jsx'));
 const SignInPage = lazy(() => import('./pages/SignInPage/SignInPage.jsx'));
@@ -13,7 +13,8 @@ const TrackerPage = lazy(() => import('./pages/TrackerPage/TrackerPage.jsx'));
 export const App = () => {
   return (
     <div>
-      <ModalEditWater/>
+      <ModalEditWater />
+      <ModalDelete />
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />

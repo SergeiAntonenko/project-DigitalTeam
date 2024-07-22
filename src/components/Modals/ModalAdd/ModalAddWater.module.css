@@ -15,6 +15,7 @@ h3 {
   width: 343px;
   box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
   background: #fff;
+  z-index: 999;
 }
 
 .title {
