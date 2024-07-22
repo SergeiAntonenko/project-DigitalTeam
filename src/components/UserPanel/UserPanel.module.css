@@ -1,15 +1,17 @@
 .userPanel {
-  margin-bottom: 40px;
+  margin-bottom: 65px;
 }
 
 .text {
+  /* display: flex; */
   font-weight: 400;
-  font-size: 32px;
+  font-size: 36px;
   line-height: 1;
   letter-spacing: -0.01em;
   color: black;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  /* margin-bottom: 20px; */
+  /* margin-top: 20px; */
+  height: 38px;
 }
 @media screen and (min-width: 768px) {
   .userPanel {

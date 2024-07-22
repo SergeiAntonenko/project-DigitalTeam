@@ -1,11 +1,13 @@
 // import { createSelector } from '@reduxjs/toolkit';
 // import { selectNameFilter } from '../filters/selectors';
 
-// export const selectContacts = state => state.contacts.items;
+export const selectDailyWater = state => state.water.dailyWater;
 
-// export const selectContactsError = state => state.contacts.error;
+export const selectMonthlyWater = state => state.water.monthlyWater;
 
-// export const selectContactsLoading = state => state.contacts.loading;
+export const selectWaterError = state => state.water.error;
+
+export const selectWaterLoading = state => state.water.loading;
 
 // export const selectFilteredContacts = createSelector(
 //   [selectContacts, selectNameFilter],

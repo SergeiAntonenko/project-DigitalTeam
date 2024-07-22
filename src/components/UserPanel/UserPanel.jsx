@@ -1,5 +1,5 @@
-import { UserBar } from '../../UserPanel/UserBar/UserBar';
-import css from '../UserPanel/UserPanel.module.css';
+import { UserBar } from '../UserBar/UserBar';
+import css from './UserPanel.module.css';
 
 export const UserPanel = () => {
   return (

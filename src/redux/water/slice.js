@@ -6,11 +6,11 @@ import {
   fetchWaterDaily,
   fetchWaterMonthly,
 } from './operations';
-import { logOut } from '../auth/operations';
+import { logout } from '../auth/operations';
 
 const initialState = {
-  dailyWater: null,
-  monthlyWater: null,
+  dailyWater: [],
+  monthlyWater: [],
   loading: false,
   error: null,
 };
@@ -25,7 +25,7 @@ export const waterSlice = createSlice({
         state.error = false;
       })
       .addCase(addWater.fulfilled, (state, action) => {
-        // state.items = action.payload;
+        state.dailyWater.push(action.payload);
         state.loading = false;
         state.error = false;
       })
@@ -38,7 +38,9 @@ export const waterSlice = createSlice({
         state.error = false;
       })
       .addCase(updateWater.fulfilled, (state, action) => {
-        // state.items.push(action.payload);
+        state.dailyWater = state.dailyWater.map(water => {
+          return water._id === action.payload._id ? action.payload : water;
+        });
         state.loading = false;
         state.error = false;
       })
@@ -51,7 +53,7 @@ export const waterSlice = createSlice({
         state.error = false;
       })
       .addCase(deleteWater.fulfilled, (state, action) => {
-        // state.items = state.items.filter(item => item.id !== action.payload.id);
+        state.dailyWater = state.dailyWater.filter(water => water._id !== action.payload._id);
         state.loading = false;
         state.error = false;
       })
@@ -85,14 +87,12 @@ export const waterSlice = createSlice({
         state.loading = false;
         state.error = true;
       })
-      .addCase(logOut.fulfilled, state => {
+      .addCase(logout.fulfilled, state => {
         state.dailyWater = null;
         state.monthlyWater = null;
         state.error = null;
         state.isLoading = false;
       }),
 });
-
-// export const { fetchingInProgress, fetchingSuccess, fetchingError } = waterSlice.actions;
 
 export default waterSlice.reducer;
