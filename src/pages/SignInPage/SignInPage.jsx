@@ -51,7 +51,7 @@ const SignInPage = () => {
                 <div className={css.passwordWrapper}>
                   <Field
                     className={`${css.field} ${errors.password && touched.password ? css.fieldError : ''}`}
-                    type={showPassword ? "text" : "password"}
+                    type={showPassword ? 'text' : 'password'}
                     name="password"
                     placeholder="Enter your password"
                   />
