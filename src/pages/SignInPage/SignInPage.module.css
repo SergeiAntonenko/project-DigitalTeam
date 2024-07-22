@@ -1,5 +1,146 @@
 .container {
   padding: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.leftSection {
+  /* display: flex; */
+  /* position: relative; */
+}
+
+.button {
+  height: 60px;
+  border-radius: 30px;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  text-align: center;
+  width: 100%;
+  background: #9be1a0;
+  color: #323f47;
+  border: 0;
+}
+
+.form {
+  margin-top: 170px;
+  width: 436px;
+  height: 398px;
+  display: flex;
+  flex-direction: column;
+  /* gap: 5px; */
+  justify-content: center;
+  /* align-items: center; */
+  position: absolute;
+
+  left: 120px;
+}
+
+.passwordWrapper {
+  position: relative;
+  /* height: 100px; */
+}
+
+.error {
+  color: #EF5050;
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: -0.01em;
+  text-align: left;
+  margin-top: -26px;
+}
+
+
+.eyeIcon {
+  position: absolute;
+  right: 15px;
+  top: 50%; 
+  transform: translateY(-100%);
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
+
+.formTitle {
+  font-family: Poppins;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 38px;
+  letter-spacing: -0.01em;
+  text-align: left;
+  margin-bottom: 25px;
+  color: #323f47;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  width: 436px;
+  gap: 8px;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  text-align: left;
+  /* color: #2F2F2F; */
+  color: #323f47;
+}
+
+.field {
+  padding: 10px;
+  font-size: 16px;
+  width: 436px;
+  border: 1px solid #2f2f2f; 
+  background-color: transparent;
+  border-radius: 15px;
+  box-sizing: border-box; 
+}
+
+.field::placeholder {
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  text-align: left;
+  color: #2f2f2f;
+  padding-left: 7px;
+}
+
+.fieldError {
+  border-color: #EF5050; 
+}
+
+.fieldError::placeholder {
+  color: #EF5050;
+}
+
+
+.reminder {
+  margin-top: 16px;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  color: #2f2f2f;
+}
+
+.link {
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  text-align: left;
+  text-decoration: underline;
+  color: #2f2f2f;
 }
 
 .logo {
@@ -10,16 +151,32 @@
   text-transform: uppercase;
   color: #323f47;
   margin-bottom: 62px;
+
+  /* font-size: 24px; */
+  line-height: 1;
+  letter-spacing: -0.01em;
+  /* margin-bottom: 50px;
+    margin-left: 32px;
+   */
+  position: absolute;
+  top: 32px;
+  left: 50px;
 }
 
-.welcomeSection {
+.SignInSection {
+  /* top: 201px; */
   background-color: #f0eff4;
+  /* background-color: red; */
   border-radius: 30px;
   height: 411px;
   text-align: left;
   padding: 24px 16px 16px 16px;
   width: 343px;
   margin-bottom: 16px;
+  display: flex;
+  position: relative;
+  /* justify-content: center; */
+  /* align-items: center; */
 }
 
 .descr {
@@ -44,18 +201,17 @@
   border-radius: 30px;
   height: 353px;
   width: 343px;
-  background-image: url('../../photos/HomePage-images/main-photo-min.jpg');
+  background-image: url('../../photos/main-photo-min.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   position: relative;
   padding: 4px;
-  object-fit: cover;
 }
 
 .Customers {
   border-radius: 30px;
-  padding: 8px 8px 8px 8px;
+  padding: 10px 14px;
   width: 160px;
   height: 48px;
   box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
@@ -63,16 +219,11 @@
   position: absolute;
   top: 209px;
   left: 16px;
+  text-align: center;
   line-height: 1.16667;
   font-size: 12px;
+  position: relative;
   margin-left: 5px;
-  display: flex;
-  justify-content: space-between;
-  text-wrap: wrap;
-}
-
-.happydescr {
-  width: 70px;
 }
 
 .happySpan {
@@ -93,13 +244,13 @@
   height: 6px;
   width: 6px;
   border-radius: 50%;
-  text-align: bottom;
-  vertical-align: bottom;
+  text-align: center;
+  vertical-align: middle;
   font-size: 400%;
   position: relative;
   display: inline-block;
   background-color: #9be1a0;
-  margin: 4px;
+  margin: 1px;
 }
 
 .colorHappy {
@@ -127,10 +278,9 @@
   font-weight: 700;
   font-size: 8px;
   color: #fff;
-  text-align: bottom;
+  text-align: center;
   position: relative;
   margin-bottom: 4px;
-  text-wrap: nowrap;
 }
 
 .statistics {
@@ -168,7 +318,7 @@
     padding: 32px;
   }
 
-  .welcomeSection {
+  .SignInSection {
     width: 704px;
     height: 498px;
   }
@@ -194,17 +344,21 @@
   }
 
   .logo {
-    font-size: 24px;
+    /* font-size: 24px; */
     line-height: 1;
     letter-spacing: -0.01em;
-    margin-bottom: 50px;
+    /* margin-bottom: 50px;
     margin-left: 32px;
+   */
+    position: absolute;
+    top: 32px;
+    left: 50px;
   }
 
   .advantages {
     width: 704px;
     height: 446px;
-    background-image: url('../../photos/HomePage-images/main-photo-tablet-min.jpg');
+    background-image: url('../../photos/main-photo-tablet-min.jpg');
   }
 
   .Customers {
@@ -221,10 +375,6 @@
   .happySpan {
     height: 15px;
     width: 15px;
-  }
-
-  .happydescr {
-    width: 90px;
   }
 
   .benefits {
@@ -246,10 +396,7 @@
   }
 
   .habbitSpan {
-    margin-right: 4px;
-    vertical-align: middle;
-    height: 8px;
-    width: 8px;
+    margin-right: 3px;
   }
 
   .statistics {
@@ -278,13 +425,6 @@
     justify-content: center;
   }
 
-  .habbitSpan {
-    margin-right: 4px;
-    vertical-align: middle;
-    height: 8px;
-    width: 8px;
-  }
-
   .water {
     font-size: 80px;
     line-height: 0.95;
@@ -292,13 +432,13 @@
   }
 
   .logo {
-    font-size: 24px;
+    /* font-size: 24px; */
     line-height: 1;
     letter-spacing: -0.01em;
     margin-bottom: 132px;
   }
 
-  .welcomeSection {
+  .SignInSection {
     width: 672px;
     height: 736px;
   }
@@ -310,7 +450,7 @@
   .advantages {
     width: 672px;
     height: 736px;
-    background-image: url('../../photos/HomePage-images/main-photo-desktop-min.jpg');
+    background-image: url('../../photos/main-photo-desktop-min.jpg');
   }
 
   .benefits {
@@ -360,14 +500,10 @@
     height: 34px;
     margin-left: 10px;
   }
-
-  .happydescr {
-    width: 90px;
-  }
 }
 
 @media screen and (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
   .advantages {
-    background-image: url('../../photos/HomePage-images/main-photo-desktop-2x-min.jpg');
+    background-image: url('../../photos/main-photo-desktop-2x-min.jpg');
   }
 }
