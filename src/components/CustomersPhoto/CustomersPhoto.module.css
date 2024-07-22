@@ -1,0 +1,64 @@
+.customers {
+  display: flex;
+  text-wrap: wrap;
+  margin-right: 2px;
+}
+
+.img1 {
+  width: 26px;
+  position: absolute;
+  z-index: 2;
+  left: 15px;
+  border-radius: 50%;
+}
+
+.img2 {
+  width: 26px;
+  position: absolute;
+  left: 35px;
+  z-index: 1;
+  border-radius: 50%;
+}
+
+.img3 {
+  width: 26px;
+  position: absolute;
+  left: 55px;
+  border-radius: 50%;
+}
+
+@media (min-width: 768px) and (max-width: 1439px) {
+  .img1 {
+    width: 47px;
+    left: 20px;
+    bottom: 9px;
+  }
+
+  .img2 {
+    width: 47px;
+    left: 50px;
+  }
+
+  .img3 {
+    width: 47px;
+    left: 80px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .img1 {
+    width: 47px;
+    left: 20px;
+    bottom: 9px;
+  }
+
+  .img2 {
+    width: 47px;
+    left: 50px;
+  }
+
+  .img3 {
+    width: 47px;
+    left: 80px;
+  }
+}

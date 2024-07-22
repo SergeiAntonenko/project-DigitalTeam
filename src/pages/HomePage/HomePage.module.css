@@ -44,17 +44,18 @@
   border-radius: 30px;
   height: 353px;
   width: 343px;
-  background-image: url('../../photos/main-photo-min.jpg');
+  background-image: url('../../photos/HomePage-images/main-photo-min.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   position: relative;
   padding: 4px;
+  object-fit: cover;
 }
 
 .Customers {
   border-radius: 30px;
-  padding: 10px 14px;
+  padding: 8px 8px 8px 8px;
   width: 160px;
   height: 48px;
   box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
@@ -62,11 +63,16 @@
   position: absolute;
   top: 209px;
   left: 16px;
-  text-align: center;
   line-height: 1.16667;
   font-size: 12px;
-  position: relative;
   margin-left: 5px;
+  display: flex;
+  justify-content: space-between;
+  text-wrap: wrap;
+}
+
+.happydescr {
+  width: 70px;
 }
 
 .happySpan {
@@ -87,13 +93,13 @@
   height: 6px;
   width: 6px;
   border-radius: 50%;
-  text-align: center;
-  vertical-align: middle;
+  text-align: bottom;
+  vertical-align: bottom;
   font-size: 400%;
   position: relative;
   display: inline-block;
   background-color: #9be1a0;
-  margin: 1px;
+  margin: 4px;
 }
 
 .colorHappy {
@@ -121,9 +127,10 @@
   font-weight: 700;
   font-size: 8px;
   color: #fff;
-  text-align: center;
+  text-align: bottom;
   position: relative;
   margin-bottom: 4px;
+  text-wrap: nowrap;
 }
 
 .statistics {
@@ -197,7 +204,7 @@
   .advantages {
     width: 704px;
     height: 446px;
-    background-image: url('../../photos/main-photo-tablet-min.jpg');
+    background-image: url('../../photos/HomePage-images/main-photo-tablet-min.jpg');
   }
 
   .Customers {
@@ -214,6 +221,10 @@
   .happySpan {
     height: 15px;
     width: 15px;
+  }
+
+  .happydescr {
+    width: 90px;
   }
 
   .benefits {
@@ -235,7 +246,10 @@
   }
 
   .habbitSpan {
-    margin-right: 3px;
+    margin-right: 4px;
+    vertical-align: middle;
+    height: 8px;
+    width: 8px;
   }
 
   .statistics {
@@ -264,6 +278,13 @@
     justify-content: center;
   }
 
+  .habbitSpan {
+    margin-right: 4px;
+    vertical-align: middle;
+    height: 8px;
+    width: 8px;
+  }
+
   .water {
     font-size: 80px;
     line-height: 0.95;
@@ -289,7 +310,7 @@
   .advantages {
     width: 672px;
     height: 736px;
-    background-image: url('../../photos/main-photo-desktop-min.jpg');
+    background-image: url('../../photos/HomePage-images/main-photo-desktop-min.jpg');
   }
 
   .benefits {
@@ -339,10 +360,14 @@
     height: 34px;
     margin-left: 10px;
   }
+
+  .happydescr {
+    width: 90px;
+  }
 }
 
 @media screen and (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
   .advantages {
-    background-image: url('../../photos/main-photo-desktop-2x-min.jpg');
+    background-image: url('../../photos/HomePage-images/main-photo-desktop-2x-min.jpg');
   }
 }
