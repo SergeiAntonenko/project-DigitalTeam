@@ -1,0 +1,54 @@
+.monthInfoContainer {
+  display: flex;
+  flex-direction: column;
+  padding-top: 40px;
+}
+
+.topContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rightContainer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+h3 {
+  margin: 0;
+}
+
+.icon {
+  width: 20px;
+}
+
+/* Mobile гумова верстка від 320 px до 374 px */
+@media screen and (max-width: 374px) {
+}
+
+/* Mobile адаптивна верстка з 375 px до 767 px */
+@media screen and (min-width: 375px) and (max-width: 767px) {
+}
+
+/* Tablet адаптивна верстка з 768 px до 1439 px */
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .icon {
+    color: 2px solid #323f47;
+    width: 24px;
+  }
+  h3 {
+    font-family: Poppins;
+    font-size: 28px;
+    line-height: 32px;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Desktop адаптивна верстка з 1440 px і більше */
+@media screen and (min-width: 1440px) {
+  .monthInfoContainer {
+    padding-top: 72px;
+  }
+}
