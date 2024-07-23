@@ -22,3 +22,24 @@ h1 {
 p {
   margin: 0 10px;
 }
+
+.icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Mobile гумова верстка від 320 px до 374 px */
+@media screen and (max-width: 374px) {
+}
+
+/* Mobile адаптивна верстка з 375 px до 767 px */
+@media screen and (min-width: 375px) and (max-width: 767px) {
+}
+
+/* Tablet адаптивна верстка з 768 px до 1439 px */
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+}
+
+/* Desktop адаптивна верстка з 1440 px і більше */
+@media screen and (min-width: 1440px) {
+}

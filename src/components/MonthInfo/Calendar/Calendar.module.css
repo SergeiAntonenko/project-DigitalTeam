@@ -1,31 +1,7 @@
-.calendar-container {
+.calendarGrid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr); /* 7 стовпців для тижня */
-  gap: 10px; /* Відстань між днями */
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  background-color: #f0eff4;
   padding: 10px;
-  background-color: #f0eff4; /* Фон календаря */
-}
-
-.calendar-day {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 50%; /* Кругла форма */
-  width: 40px; /* Ширина і висота клітинки */
-  height: 40px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.day-number {
-  margin-bottom: 4px;
-}
-
-.percentage {
-  font-size: 12px;
-  color: #888;
 }
