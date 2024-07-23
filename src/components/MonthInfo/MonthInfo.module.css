@@ -13,19 +13,16 @@
 .rightContainer {
   display: flex;
   align-items: center;
+  gap: 16px;
 }
 
 h1 {
   margin: 0;
 }
 
-p {
-  margin: 0 10px;
-}
-
 .icon {
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
 }
 
 /* Mobile гумова верстка від 320 px до 374 px */

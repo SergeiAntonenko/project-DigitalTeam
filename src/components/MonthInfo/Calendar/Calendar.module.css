@@ -1,7 +1,32 @@
 .calendarGrid {
+  /* display: flex;
+  flex-wrap: wrap; */
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  padding: 0;
   gap: 10px;
   background-color: #f0eff4;
-  padding: 10px;
+  box-sizing: border-box;
+  margin-top: 24px;
+}
+
+/* Mobile гумова верстка від 320 px до 374 px */
+@media screen and (max-width: 374px) {
+  .calendarGrid {
+    grid-template-columns: repeat(7, 1fr); /* 7 элементов в строку */
+  }
+}
+
+/* Mobile адаптивна верстка з 375 px до 767 px */
+@media screen and (min-width: 375px) and (max-width: 767px) {
+  .calendarGrid {
+    grid-template-columns: repeat(8, 1fr); /* 7 элементов в строку */
+  }
+}
+
+/* Tablet адаптивна верстка з 768 px до 1439 px */
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+}
+
+/* Desktop адаптивна верстка з 1440 px і більше */
+@media screen and (min-width: 1440px) {
 }

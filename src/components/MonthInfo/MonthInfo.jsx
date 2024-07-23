@@ -14,7 +14,7 @@ const MonthInfo = () => {
   return (
     <div className={styles.monthInfoContainer}>
       <div className={styles.topContainer}>
-        <h1>Month</h1>
+        <h3>Month</h3>
         <div className={styles.rightContainer}>
           <CalendarPagination currentDate={currentDate} onDateChange={handleDateChange} />
           <img src={pieChart} alt="Plus Icon" className={styles.icon} />
