@@ -13,12 +13,11 @@ const AdvantagesSection = () => {
         </p>
       </div>
       <div className={css.benefits}>
-        <div className={css.habitWrapper}>
-          <p className={css.habitDrive}>
-            <span className={css.habbitSpan}></span>Habit drive
-          </p>
-          <p className={css.statistics}>View statistics</p>
+        <div className={css.habitDrive}>
+          <div className={css.habbitCircle}></div>
+          <p className={css.habbitParag}>Habit drive</p>
         </div>
+        <p className={css.statistics}>View statistics</p>
         <p className={css.rate}>Personal rate setting</p>
       </div>
     </div>
