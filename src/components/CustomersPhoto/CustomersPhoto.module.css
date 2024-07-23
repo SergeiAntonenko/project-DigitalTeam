@@ -1,64 +1,93 @@
 .customers {
   display: flex;
-  text-wrap: wrap;
-  margin-right: 2px;
+  position: relative;
 }
 
 .img1 {
-  width: 26px;
-  position: absolute;
-  z-index: 2;
-  left: 15px;
+  width: 27px;
+  height: 28px;
+  background-image: url(../../images/AdvantagesSection/img1_mob.jpg);
+  background-position: center;
+  background-size: 27px 28px;
   border-radius: 50%;
+  position: absolute;
+  right: 34px;
+  z-index: 3;
 }
 
 .img2 {
-  width: 26px;
-  position: absolute;
-  left: 35px;
-  z-index: 1;
+  width: 27px;
+  height: 28px;
+  background-image: url(../../images/AdvantagesSection/img2_mob.jpg);
+  background-position: center;
+  background-size: 27px 28px;
   border-radius: 50%;
+  position: absolute;
+  z-index: 2;
+  right: 17px;
 }
 
 .img3 {
-  width: 26px;
-  position: absolute;
-  left: 55px;
+  width: 27px;
+  height: 28px;
+  background-image: url(../../images/AdvantagesSection/img3_mob.jpg);
+  background-position: center;
+  background-size: 27px 28px;
   border-radius: 50%;
 }
 
-@media (min-width: 768px) and (max-width: 1439px) {
+@media screen and (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+  .img1 {
+    background-image: url(../../images/AdvantagesSection/img1_mob_2x.jpg);
+  }
+
+  .img2 {
+    background-image: url(../../images/AdvantagesSection/img2_mob_2x.jpg);
+  }
+
+  .img3 {
+    background-image: url(../../images/AdvantagesSection/img3_mob_2x.jpg);
+  }
+}
+
+@media (min-width: 768px) {
   .img1 {
     width: 47px;
-    left: 20px;
-    bottom: 9px;
+    height: 47px;
+    background-size: 47px 47px;
+    background-image: url(../../images/AdvantagesSection/img1_tab.jpg);
+    right: 56px;
   }
 
   .img2 {
     width: 47px;
-    left: 50px;
+    height: 47px;
+    background-size: 47px 47px;
+    background-image: url(../../images/AdvantagesSection/img2_tab.jpg);
+    right: 27px;
   }
 
   .img3 {
     width: 47px;
-    left: 80px;
+    height: 47px;
+    background-size: 47px 47px;
+    background-image: url(../../images/AdvantagesSection/img3_tab.jpg);
+  }
+
+  @media screen and (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+    .img1 {
+      background-image: url(../../images/AdvantagesSection/img1_tab_2x.jpg);
+    }
+
+    .img2 {
+      background-image: url(../../images/AdvantagesSection/img2_tab_2x.jpg);
+    }
+
+    .img3 {
+      background-image: url(../../images/AdvantagesSection/img3_tab_2x.jpg);
+    }
   }
 }
 
 @media (min-width: 1440px) {
-  .img1 {
-    width: 47px;
-    left: 20px;
-    bottom: 9px;
-  }
-
-  .img2 {
-    width: 47px;
-    left: 50px;
-  }
-
-  .img3 {
-    width: 47px;
-    left: 80px;
-  }
 }

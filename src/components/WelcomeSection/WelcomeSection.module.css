@@ -1,0 +1,110 @@
+.logo {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.11111;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: #323f47;
+  margin-bottom: 62px;
+}
+
+.welcomeSection {
+  background-color: #f0eff4;
+  border-radius: 30px;
+  height: 411px;
+  text-align: left;
+  padding: 24px 16px 16px 16px;
+  width: 343px;
+  margin-bottom: 16px;
+}
+
+.descr {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: 0.06em;
+  color: #2f2f2f;
+  margin-bottom: 16px;
+}
+
+.water {
+  font-weight: 700;
+  font-size: 38px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: #323f47;
+  margin-bottom: 32px;
+}
+
+@media (min-width: 768px) and (max-width: 1439px) {
+  .welcomeSection {
+    width: 704px;
+    height: 498px;
+  }
+
+  .tabletWrapper {
+    max-width: 547px;
+    max-height: 342px;
+    padding-left: 64px;
+  }
+
+  .water {
+    font-size: 64px;
+    line-height: 1.09375;
+    letter-spacing: -0.01em;
+  }
+
+  .descr {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.06em;
+    color: #2f2f2f;
+  }
+
+  .logo {
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    margin-bottom: 50px;
+    margin-left: 32px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .water {
+    font-size: 80px;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+  }
+
+  .logo {
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    margin-bottom: 132px;
+  }
+
+  .welcomeSection {
+    width: 672px;
+    height: 736px;
+    margin-bottom: 0;
+  }
+
+  .tabletWrapper {
+    margin-left: 64px;
+  }
+
+  .benefits {
+    top: 598px;
+    bottom: 64px;
+    right: 32px;
+    left: 398px;
+  }
+}
+
+@media screen and (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+  .advantages {
+    background-image: url('../../photos/HomePage-images/main-photo-desktop-2x-min.jpg');
+  }
+}
