@@ -1,3 +1,4 @@
+import CustomersPhoto from '../../components/CustomersPhoto/CustomersPhoto';
 import { DocumentTitle } from '../../components/DocumentTitle';
 import Navigation from '../../components/Navigation/Navigation';
 import css from './HomePage.module.css';
@@ -15,9 +16,11 @@ const HomePage = () => {
         </div>
       </div>
       <div className={css.advantages}>
-        <div>
-          <p className={css.Customers}>
-            <span className={css.happySpan}></span>Our <span className={css.colorHappy}>happy</span>
+        <div className={css.Customers}>
+          <CustomersPhoto />
+          <p className={css.happydescr}>
+            Our
+            <span className={css.colorHappy}> happy </span>
             customers
           </p>
         </div>
