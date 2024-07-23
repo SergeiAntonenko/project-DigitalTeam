@@ -7,10 +7,10 @@
 .addWaterBtn {
   display: flex;
   align-items: center;
-  border-radius: 30px;
-  padding: 14px 20px;
+  width: 124px;
+  height: 30px;
   padding-right: 0;
-  height: 46px;
+  height: 30px;
   background-color: inherit;
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
@@ -49,11 +49,10 @@
 
 @media screen and (min-width: 768px) {
   .addWaterBtn {
-    padding: 18px 30px;
-    height: 60px;
+    width: 124px;
+    height: 30px;
     font-size: 16px;
     line-height: 150%;
-    padding-right: 0;
   }
 
   .addWaterIcon {
@@ -64,10 +63,7 @@
 
 @media screen and (min-width: 1440px) {
   .addWaterBtn {
-    padding: 20px 32px;
-    height: 70px;
-    font-size: 18px;
-    padding-right: 0;
+    line-height: 24px;
   }
 
   .addWaterIcon {

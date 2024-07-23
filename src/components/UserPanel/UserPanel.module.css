@@ -1,24 +1,33 @@
 .userPanel {
-  margin-bottom: 65px;
+  margin-bottom: 43px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .text {
-  /* display: flex; */
   font-weight: 400;
   font-size: 36px;
   line-height: 1;
   letter-spacing: -0.01em;
   color: black;
-  /* margin-bottom: 20px; */
-  /* margin-top: 20px; */
   height: 38px;
 }
 @media screen and (min-width: 768px) {
   .userPanel {
     display: flex;
+    flex-direction: row;
+
     justify-content: space-between;
+    margin-bottom: 49px;
   }
   .text {
     line-height: 1.5;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .userPanel {
+    margin-bottom: 65px;
   }
 }
