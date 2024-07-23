@@ -1,5 +1,7 @@
 import { format, subMonths, addMonths } from 'date-fns';
 import styles from './CalendarPagination.module.css';
+import leftPag from '../../../photos/chevron-left.png';
+import rightPag from '../../../photos/chevron-right.png';
 
 const CalendarPagination = ({ currentDate, onDateChange }) => {
   const handlePreviousMonth = () => {
@@ -15,13 +17,13 @@ const CalendarPagination = ({ currentDate, onDateChange }) => {
   return (
     <div className={styles.container}>
       <button onClick={handlePreviousMonth} className={styles.navButton}>
-        &lt;
+        <img src={leftPag} alt="Previous Month" />
       </button>
       <span className={styles.month}>
         {currentDate ? format(currentDate, 'MMMM, yyyy') : 'Invalid Date'}
       </span>
       <button onClick={handleNextMonth} className={styles.navButton}>
-        &gt;
+        <img src={rightPag} alt="Next Month" />
       </button>
     </div>
   );
