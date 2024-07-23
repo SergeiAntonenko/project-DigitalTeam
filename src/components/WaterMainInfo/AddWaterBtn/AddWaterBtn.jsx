@@ -1,13 +1,30 @@
+import { useState } from 'react';
 import css from './AddWaterBtn.module.css';
-import photos from '../../../photos/plus-mob.svg';
+import { FiPlus } from 'react-icons/fi';
+import ModalAddWater from '../../Modals/ModalAdd/ModalAddWater.jsx';
+
 
 const AddWaterBtn = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleModalOpen = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
+
     return (
-        <div>
-            <button className={css.addWaterBtn}>
-                <img src={photos} className={css.addWaterIcon} width="16" height="16" alt="Add water" />
+        <div className={css.container}>
+            <button className={css.addWaterBtn} onClick={handleModalOpen}>
+                <span className={css.iconCircle}>
+                    <FiPlus className={css.addWaterIcon} />
+                </span>
                 Add water
             </button>
+            
+            {isModalOpen && <ModalAddWater handleCloseModal={handleCloseModal} />}
         </div>
     );
 };
