@@ -1,7 +1,7 @@
 import { format, subMonths, addMonths } from 'date-fns';
 import styles from './CalendarPagination.module.css';
-import leftPag from '../../../photos/chevron-left.png';
-import rightPag from '../../../photos/chevron-right.png';
+import leftPag from '../../../images/AdvantagesSection/chevron-left.png';
+import rightPag from '../../../images/AdvantagesSection/chevron-right.png';
 
 const CalendarPagination = ({ currentDate, onDateChange }) => {
   const handlePreviousMonth = () => {

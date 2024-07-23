@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Calendar from './Calendar/Calendar';
 import CalendarPagination from './CalendarPagination/CalendarPagination';
 import styles from './MonthInfo.module.css';
-import pieChart from '../../photos/pie-chart-02.png';
+import pieChart from '../../images/AdvantagesSection/pie-chart-02.png';
 
 const MonthInfo = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
