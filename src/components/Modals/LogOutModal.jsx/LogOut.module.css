@@ -44,7 +44,7 @@
   font-size: 24px;
 }
 
-.delete_entry {
+.log_out {
   font-weight: 700;
   font-size: 20px;
   line-height: 1.2;
@@ -64,7 +64,7 @@
   padding-top: 16px;
 }
 
-.delete_button {
+.logout_button {
   font-weight: 700;
   font-size: 14px;
   line-height: 1.28571;
@@ -99,23 +99,13 @@
     height: 244px;
   }
 
-  .delete_entry {
+  .log_out {
     font-weight: 700;
     font-size: 28px;
     line-height: 1.14286;
     letter-spacing: -0.01em;
     text-align: center;
     color: #323f47;
-  }
-
-  .delete_button {
-    font-weight: 700;
-    font-size: 28px;
-    line-height: 1.14286;
-    letter-spacing: -0.01em;
-    text-align: center;
-    color: #323f47;
-    margin: 0;
   }
 
   .text {
