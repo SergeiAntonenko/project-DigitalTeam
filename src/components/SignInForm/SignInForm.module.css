@@ -1,4 +1,4 @@
-.signinForm {
+.formContainer {
   background-color: #f0eff4;
   border-radius: 30px;
   height: 780px;
@@ -9,49 +9,60 @@
   position: relative;
 }
 @media screen and (min-width: 768px) {
-  .signinForm {
+  .formContainer {
     height: 960px;
     padding: 0 134px;
   }
 }
 @media screen and (min-width: 1440px) {
-  .signinForm {
+  .formContainer {
     padding: 0 118px;
     width: 672px;
     height: 736px;
   }
 }
 
-
-
-.button {
-    font-family: Poppins;
-    display: flex;
-    width: 100%;
-    height: 50px;
-    justify-content: center;
-    align-items: center;
-    border-color: transparent;
-    border-radius: 30px;
-    background: #9be1a0;
-    color: #323f47;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 18px;
-    letter-spacing: -0.01em;
-    margin-bottom: 16px;
-    cursor: pointer;
-  }
-
-
-
 .form {
-  width: 436px;
-  height: 398px;
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
+}
+@media screen and (max-width: 768px) {
+  .form {
+    width: 311px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .form {
+    width: 436px;
+  }
+}
+
+.button {
+  font-family: Poppins;
+  display: flex;
+  width: 100%;
+  height: 60px;
   justify-content: center;
+  align-items: center;
+  border-color: transparent;
+  border-radius: 30px;
+  background: #9be1a0;
+  color: #323f47;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: -0.01em;
+  margin-top: 30px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+@media (min-width: 1440px) {
+  .button:hover {
+    background-color: #87d28d;
+  }
 }
 
 .eyeIcon {
@@ -69,7 +80,7 @@
   line-height: 18px;
   letter-spacing: -0.01em;
   text-align: left;
-  margin-top: -26px;
+  margin-top: 10px;
 }
 
 .formTitle {
@@ -101,19 +112,15 @@
   background-color: transparent;
 }
 
-
 @media screen and (min-width: 768px) {
-    .field,
-    .field::placeholder {
-      font-size: 16px;
-      line-height: 24px;
-      letter-spacing: -0.16px;
-      height: 56px;
-    }
+  .field,
+  .field::placeholder {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.16px;
+    height: 56px;
   }
-
-
-
+}
 
 .field::placeholder {
   font-family: Poppins;
@@ -128,9 +135,6 @@
 
 .fieldError {
   border-color: #ef5050;
-}
-
-.fieldError::placeholder {
   color: #ef5050;
 }
 
@@ -158,20 +162,13 @@
 
 .logo {
   position: absolute;
-  z-index: 999;
   top: 24px;
   left: 16px;
-  color: var(--color-darkblue);
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.24px;
-  text-transform: uppercase;
 }
 @media screen and (min-width: 768px) {
   .logo {
-    top: 32px;
-    left: 32px;
+    top: 24px;
+    left: 16px;
   }
 }
 
@@ -190,18 +187,18 @@
     letter-spacing: -0.16px;
   }
 }
+
 .signinFormGroupEmail {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 20px;
   width: 100%;
 }
 .signinFormGroupPassword {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 32px;
+  margin-top: 20px;
   width: 100%;
   position: relative;
 }

@@ -1,0 +1,40 @@
+.backdrop {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.container {
+  position: relative;
+  background-color: white;
+  border-radius: 15px;
+  padding: 40px 20px;
+  width: 343px;
+  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+}
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+svg {
+  width: 24px;
+  height: 24px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    border-radius: 15px;
+    padding: 40px;
+    width: 518px;
+  }
+}
