@@ -1,0 +1,67 @@
+.modalWrapp {
+  width: 137px;
+  height: 72px;
+  margin-top: 4px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.1);
+  background: rgb(255, 255, 255);
+  padding-top: 14px;
+  padding-bottom: 14px;
+  padding-left: 20px;
+}
+.div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+.button {
+  display: flex;
+  gap: 8px;
+  border: 0px;
+  justify-content: center;
+  align-items: center;
+}
+.icon {
+  width: 16px;
+  height: 16px;
+}
+
+.settings {
+  color: rgb(50, 63, 71);
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: 0%;
+  text-align: left;
+}
+.logOut {
+  color: rgba(50, 63, 71, 0.4);
+}
+
+@media screen and (min-width: 768px) {
+  .modalWrapp {
+    width: 157px;
+    height: 82px;
+    margin-top: 8px;
+  }
+  .settings {
+    color: rgb(50, 63, 71);
+    font-family: Poppins;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 22.4px;
+    letter-spacing: 0%;
+    text-align: left;
+  }
+  .logOut {
+    color: rgba(50, 63, 71, 0.4);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .modalWrapp {
+    margin-top: 13px;
+  }
+}

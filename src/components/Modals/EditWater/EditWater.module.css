@@ -39,13 +39,22 @@ h3 {
 }
 
 .amount_water {
-  font-family: 'Poppins', sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.28571;
   letter-spacing: -0.01em;
   color: #2f2f2f;
   padding-bottom: 8px;
+}
+
+.time_water {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  color: #2f2f2f;
+  padding-bottom: 16px;
+  padding-top: 16px;
 }
 
 .waterwrapper {
@@ -142,6 +151,11 @@ svg {
   letter-spacing: -0.01em;
   text-align: center;
   color: #323f47;
+}
+
+.button_save:hover,
+.button_save:focus {
+  background-color: #87d28d;
 }
 
 .closebutton {

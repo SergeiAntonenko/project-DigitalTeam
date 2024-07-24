@@ -40,10 +40,13 @@
 }
 
 .currentDate {
-  background-color: #323f47; /* Зеленый цвет или любой другой на ваш выбор */
-  color: #9be1a0; /* Белый цвет текста для контраста */
+  background-color: #323f47;
+  color: #9be1a0;
 }
 
+.below100 {
+  background-color: #d3d3d3; /* Серый цвет фона для процентов менее 100% */
+}
 /* Mobile гумова верстка від 320 px до 374 px */
 @media screen and (max-width: 374px) {
 }
