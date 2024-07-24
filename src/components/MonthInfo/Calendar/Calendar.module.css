@@ -8,15 +8,15 @@
   margin-top: 24px;
 }
 
-/* Mobile гумова верстка від 320 px до 374 px */
+/* Mobile rubber */
 @media screen and (max-width: 374px) {
 }
 
-/* Mobile адаптивна верстка з 375 px до 767 px */
+/* Mobile adaptive*/
 @media screen and (min-width: 375px) and (max-width: 767px) {
 }
 
-/* Tablet адаптивна верстка з 768 px до 1439 px */
+/* Tablet adaptive*/
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .calendarGrid {
     gap: 15px;
@@ -24,7 +24,7 @@
   }
 }
 
-/* Desktop адаптивна верстка з 1440 px і більше */
+/* Desktop adaptive*/
 @media screen and (min-width: 1440px) {
   .calendarGrid {
     gap: 15px;
