@@ -16,7 +16,7 @@ const Logout = ({ handleDelete }) => {
         <h1 className={css.log_out}>Log out</h1>
         <h2 className={css.text}>Do you really want to leave?</h2>
         <div className={css.button_container}>
-          <button onClick={handleDeleteConfirm} className={css.delete_button}>Log out</button>
+          <button onClick={handleDeleteConfirm} className={css.logout_button}>Log out</button>
           <button onClick={handleCloseModal} className={css.cancel_button}>Cancel</button>
         </div>
       </div>
