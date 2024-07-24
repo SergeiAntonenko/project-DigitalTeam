@@ -1,9 +1,10 @@
+.general {
+  position: relative;
+}
 .dropdown {
   display: flex;
   justify-content: flex-start;
-  /* justify-content: center; */
   align-items: center;
-  position: relative;
   background-color: inherit;
   border: none;
 }
@@ -17,6 +18,7 @@
   justify-content: center;
   gap: 8px;
   cursor: pointer;
+  position: relative;
 }
 
 .userName {
@@ -27,12 +29,32 @@
   color: #fff;
 }
 
-.iconChevron {
-  stroke: white;
+.chevron {
+  width: 16px;
+  height: 16px;
+  color: #fff;
 }
-
+.modal {
+  position: absolute;
+}
 @media screen and (min-width: 768px) {
   .dropdown {
     justify-content: center;
+  }
+  .chevron {
+    width: 20px;
+    height: 20px;
+  }
+  .button {
+    gap: 10px;
+  }
+  .userName {
+    color: rgb(255, 255, 255);
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: -1%;
+    text-align: center;
   }
 }
