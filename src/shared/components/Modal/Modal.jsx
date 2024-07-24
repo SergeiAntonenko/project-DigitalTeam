@@ -18,7 +18,7 @@ const Modal = ({ children, handleCloseModal }) => {
 
   return (
     <section onClick={handleCloseModal} className={s.backdrop}>
-      <div className={s.container}>
+      <div className={s.container} onClick={e => e.stopPropagation()}>
         <button className={s.closeButton} onClick={handleCloseModal}>
           <Iconsvg width="28px" height="28px" iconName="modal-close" />
         </button>
