@@ -1,52 +1,20 @@
 .waterListBlock {
-  padding-bottom: 0px;
-}
-
-.waterListBlockHead {
   display: flex;
-  align-items: center;
+  padding-left: 0px;
+  height: 30px;
   justify-content: space-between;
-  height: 32px;
-  padding-left: 16px;
-}
-
-.wrapper {
-  position: relative;
-  height: 98px;
+  margin-bottom: 24px;
 }
 
 @media screen and (min-width: 768px) {
-  .wrapper {
-    height: 118px;
+  .waterListBlock {
+    display: flex;
   }
 }
-
-.waterListError {
-  position: relative;
-  font-size: 16px;
-  text-align: center;
-}
-
-.errorIcon {
-  position: absolute;
-  top: 40px;
-  left: 50%;
-  width: 50px;
-  height: 50px;
-  color: rgb(246, 39, 39);
-
-  transform: translateX(-50%);
-}
-
-@media screen and (min-width: 768px) {
-  .errorIcon {
-    width: 80px;
-    height: 80px;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .waterListError {
-    font-size: 18px;
+@media screen and (min-width: 1440px) {
+  .waterListBlock {
+    display: flex;
+    padding-left: 16px;
+    height: 32px;
   }
 }

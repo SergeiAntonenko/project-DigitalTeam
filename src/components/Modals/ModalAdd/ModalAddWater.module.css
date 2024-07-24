@@ -5,19 +5,6 @@ h3 {
   padding: 0;
 }
 
-.modalwrapper {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 15px;
-  padding: 40px 20px;
-  width: 343px;
-  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
-  background: #fff;
-  z-index: 999;
-}
-
 .title {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
@@ -114,17 +101,6 @@ button {
   background: #fff;
 }
 
-.close_button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-
-svg {
-  width: 24px;
-  height: 24px;
-}
-
 .button_wrapper {
   display: flex;
   flex-direction: column;
@@ -154,12 +130,6 @@ svg {
 }
 
 @media screen and (min-width: 768px) {
-  .modalwrapper {
-    border-radius: 15px;
-    padding: 40px;
-    width: 518px;
-  }
-
   .title {
     font-size: 28px;
     line-height: 1.4;

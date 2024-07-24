@@ -1,0 +1,226 @@
+.advantages {
+  border-radius: 30px;
+  height: 353px;
+  width: 343px;
+  background-image: url('../../images/AdvantagesSection/main-photo-min.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  padding: 4px;
+  object-fit: cover;
+}
+
+.Customers {
+  border-radius: 30px;
+  width: 160px;
+  height: 48px;
+  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  top: 209px;
+  left: 16px;
+  line-height: 1.16667;
+  font-size: 12px;
+  display: flex;
+  gap: 4px;
+  justify-content: right;
+  align-items: center;
+  position: relative;
+  padding-right: 14px;
+  padding-left: 14px;
+}
+
+.happydescr {
+  max-width: 67px;
+  font-weight: 700;
+  line-height: 117%;
+}
+
+.happySpan {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 400%;
+  position: relative;
+  display: inline-block;
+  margin: 5%;
+  background-color: #9be1a0;
+  border: 2px solid #2f2f2f;
+}
+
+.habitDrive {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 4px;
+  padding-right: 12px;
+  padding-left: 12px;
+  border-radius: 30px;
+  min-width: 81px;
+  height: 26px;
+  background-color: #323f47;
+}
+
+.habbitCircle {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background-color: #9be1a0;
+}
+
+.habbitParag {
+  display: block;
+  font-weight: 700;
+  font-size: 8px;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+.colorHappy {
+  color: #9be1a0;
+}
+
+.benefits {
+  max-width: 168px;
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  position: absolute;
+  top: 265px;
+  right: 16px;
+}
+
+.statistics {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  width: 83px;
+  height: 26px;
+  background: #9be1a0;
+  font-weight: 700;
+  font-size: 8px;
+  letter-spacing: -0.01em;
+  color: #323f47;
+}
+
+.rate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  width: 108px;
+  height: 26px;
+  font-weight: 700;
+  font-size: 8px;
+  letter-spacing: -0.01em;
+  color: #323f47;
+  background-color: #fff;
+}
+
+@media screen and (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+  .advantages {
+    background-image: url('../../images/AdvantagesSection/main-photo-2x-min.jpg');
+  }
+}
+
+@media (min-width: 768px) {
+  .advantages {
+    width: 704px;
+    height: 446px;
+    background-image: url('../../images/AdvantagesSection/main-photo-tablet-min.jpg');
+  }
+
+  .Customers {
+    top: 283px;
+    left: 32px;
+    font-size: 15px;
+    line-height: 1.49333;
+    padding: 10px 20px;
+    width: 237px;
+    height: 67px;
+  }
+
+  .happydescr {
+    max-width: 90px;
+    font-size: 15px;
+  }
+
+  .benefits {
+    position: absolute;
+    top: 336px;
+    right: 32px;
+    max-width: 242px;
+    gap: 10px;
+  }
+
+  .habitDrive {
+    min-width: 111px;
+    height: 34px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .habbitParag {
+    font-size: 12px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+
+  .statistics {
+    font-size: 12px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    padding: 11px 16px;
+    width: 121px;
+    height: 34px;
+  }
+
+  .rate {
+    font-size: 12px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    padding: 11px 16px;
+    width: 158px;
+    height: 34px;
+  }
+  @media screen and (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+    .advantages {
+      background-image: url('../../images/AdvantagesSection/main-photo-tablet-2x-min.jpg');
+    }
+  }
+}
+@media (min-width: 1440px) {
+  .advantages {
+    width: 672px;
+    height: 736px;
+    background-image: url('../../images/AdvantagesSection/main-photo-desktop-min.jpg');
+  }
+
+  .benefits {
+    top: 594px;
+    right: 32px;
+  }
+
+  .Customers {
+    top: 537px;
+    left: 32px;
+    font-size: 15px;
+    line-height: 1.49333;
+    padding: 10px 20px;
+    width: 237px;
+    height: 67px;
+  }
+
+  .happydescr {
+    max-width: 90px;
+  }
+
+  @media screen and (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+    .advantages {
+      background-image: url('../../images/AdvantagesSection/main-photo-desktop-2x-min.jpg');
+    }
+  }
+}
