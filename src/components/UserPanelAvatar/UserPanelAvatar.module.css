@@ -13,3 +13,10 @@
   height: 100%;
   width: 100%;
 }
+
+@media screen and (min-width: 768px) {
+  .thumb {
+    width: 44px;
+    height: 44px;
+  }
+}
