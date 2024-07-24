@@ -60,7 +60,7 @@ const ModalEditWater = ({ id }) => {
         </div>
       </div>
       <div className={css.button_wrapper}>
-        <h3 className={css.amount_water}>Recording time: {recordingTime}</h3>
+        <h3 className={css.time_water}>Recording time: {recordingTime}</h3>
         <input type="text" value={recordingTime} onChange={handleRecordingTimeChange} />
         <h2 className={css.subtitle}>Enter the value of the water used:</h2>
         <input type="number" value={waterAmount} onChange={(e) => setWaterAmount(e.target.value)} />

@@ -13,7 +13,7 @@ const Logout = ({ handleDelete }) => {
         <button className={css.close_button} onClick={handleCloseModal}>
           <Iconsvg width="28px" height="28px" iconName="modal-close" />
         </button>
-        <h1 className={css.delete_entry}>Log out</h1>
+        <h1 className={css.log_out}>Log out</h1>
         <h2 className={css.text}>Do you really want to leave?</h2>
         <div className={css.button_container}>
           <button onClick={handleDeleteConfirm} className={css.delete_button}>Log out</button>
