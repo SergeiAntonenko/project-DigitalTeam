@@ -1,4 +1,4 @@
-import { useState, useId } from 'react';
+import { useState } from 'react';
 import css from './SignInForm.module.css';
 import { Formik, Form, Field, ErrorMessage, getIn } from 'formik';
 import * as Yup from 'yup';
@@ -23,7 +23,6 @@ const SignInForm = () => {
   const handleTogglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
 
   const dispatch = useDispatch();
 
@@ -57,7 +56,6 @@ const SignInForm = () => {
                 className={`${css.field} ${errors.email && touched.email ? css.fieldError : ''}`}
                 type="email"
                 name="email"
-                id={emailId}
                 placeholder="Enter your email"
               />
             </div>
@@ -73,7 +71,6 @@ const SignInForm = () => {
                 }`}
                 type={showPassword ? 'text' : 'password'}
                 name="password"
-                id={pwdId}
                 placeholder="Enter your password"
               />
               <div className={css.eyeIcon} onClick={handleTogglePasswordVisibility}>
