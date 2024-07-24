@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Calendar from './Calendar/Calendar';
 import CalendarPagination from './CalendarPagination/CalendarPagination';
 import styles from './MonthInfo.module.css';
-import pieChart from '../../images/AdvantagesSection/pie-chart-02.png';
+import pieChart from '../../images/AdvantagesSection/pie-chart-02.svg';
 
 const MonthInfo = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -17,7 +17,9 @@ const MonthInfo = () => {
         <h3>Month</h3>
         <div className={styles.rightContainer}>
           <CalendarPagination currentDate={currentDate} onDateChange={handleDateChange} />
-          <img src={pieChart} alt="Plus Icon" className={styles.icon} />
+          <button className={styles.pieChart}>
+            <img src={pieChart} alt="Plus Icon" className={styles.icon} />
+          </button>
         </div>
       </div>
       <Calendar currentDate={currentDate} />
@@ -26,27 +28,38 @@ const MonthInfo = () => {
 };
 
 export default MonthInfo;
-//============================================================================
-// import styles from './MonthInfo.module.css';
+
+//========================================================================
+// import { useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
 // import Calendar from './Calendar/Calendar';
 // import CalendarPagination from './CalendarPagination/CalendarPagination';
+// import styles from './MonthInfo.module.css';
 
 // const MonthInfo = () => {
+//   const [currentDate, setCurrentDate] = useState(new Date());
+//   const navigate = useNavigate();
+
+//   const handleDateChange = newDate => {
+//     setCurrentDate(newDate);
+//   };
+
+//   const handleStatsRedirect = () => {
+//     navigate('/stats');
+//   };
+
 //   return (
 //     <div className={styles.monthInfoContainer}>
 //       <div className={styles.topContainer}>
-//         <h1>Month</h1>
+//         <h3>Month</h3>
 //         <div className={styles.rightContainer}>
-//           <div className={styles.calendarControls}>
-//             <CalendarPagination />
-//           </div>
-//           {/* <CalendarPagination /> */}
-//           <img src="../../photos/pie-chart-02.svg" alt="Plus Icon" className={styles.icon} />
+//           <CalendarPagination currentDate={currentDate} onDateChange={handleDateChange} />
+//           <button onClick={handleStatsRedirect} className={styles.navButton}>
+//             <img src={pieChart} alt="Plus Icon" className={styles.icon} />
+//           </button>
 //         </div>
 //       </div>
-//       <div>
-//         <Calendar />
-//       </div>
+//       <Calendar currentDate={currentDate} />
 //     </div>
 //   );
 // };
