@@ -1,4 +1,4 @@
-import { useState, useId } from 'react';
+import { useState } from 'react';
 import css from './SignUpForm.module.css';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -28,16 +28,13 @@ const SignUpPage = () => {
     setShowPassword(!showPassword);
   };
 
-
   const handleTogglePasswordRepeatVisibility = () => {
     setShowPasswordRepeat(!showPasswordRepeat);
   };
 
-
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
-
     const namePart = values.email.split('@')[0];
     const updValues = {
       name: namePart,
@@ -73,7 +70,6 @@ const SignUpPage = () => {
                 className={`${css.field} ${errors.email && touched.email ? css.fieldError : ''}`}
                 type="email"
                 name="email"
-                id={emailId}
                 placeholder="Enter your email"
               />
             </div>
@@ -89,7 +85,6 @@ const SignUpPage = () => {
                 }`}
                 type={showPassword ? 'text' : 'password'}
                 name="password"
-
                 placeholder="Enter your password"
               />
               <div className={css.eyeIcon} onClick={handleTogglePasswordVisibility}>
@@ -106,7 +101,6 @@ const SignUpPage = () => {
                 className={`${css.field} ${
                   errors.passwordRepeat && touched.passwordRepeat ? css.fieldError : ''
                 }`}
-
                 type={showPasswordRepeat ? 'text' : 'password'}
                 name="passwordRepeat"
                 placeholder="Repeat password"
@@ -114,7 +108,6 @@ const SignUpPage = () => {
               <div className={css.eyeIcon} onClick={handleTogglePasswordRepeatVisibility}>
                 {showPasswordRepeat ? <FiEye size={20} /> : <FiEyeOff size={20} />}
               </div>
-
             </div>
             <ErrorMessage name="passwordRepeat" className={css.error} component="span" />
 
