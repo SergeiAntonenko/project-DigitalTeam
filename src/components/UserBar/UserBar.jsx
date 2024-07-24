@@ -1,35 +1,3 @@
-// import UserPanelAvatar from '../UserPanelAvatar/UserPanelAvatar';
-// import UserBarPopover from '../UserBarPopover/UserBarPopover';
-// import css from './UserBar.module.css';
-// import { IoChevronDown } from 'react-icons/io5';
-// import { useState } from 'react';
-// import { IoChevronUp } from 'react-icons/io5';
-
-// export const UserBar = () => {
-//   const [clicks, setClicks] = useState(false);
-
-//   const handleClick = () => {
-//     setClicks(!clicks);
-//   };
-//   return (
-//     <>
-//       <div className={css.general}>
-//         <button type="button" className={css.dropdown} onClick={handleClick}>
-//           <div className={css.button}>
-//             <span className={css.userName}> Nadia </span>
-//             <UserPanelAvatar />
-//             {clicks ? (
-//               <IoChevronUp className={css.chevron} />
-//             ) : (
-//               <IoChevronDown className={css.chevron} />
-//             )}
-//           </div>
-//         </button>
-//         <div className={css.modal}>{clicks && <UserBarPopover />}</div>
-//       </div>
-//     </>
-//   );
-// };
 import { useState, useEffect, useRef } from 'react';
 import UserPanelAvatar from '../UserPanelAvatar/UserPanelAvatar';
 import UserBarPopover from '../UserBarPopover/UserBarPopover';
@@ -37,21 +5,27 @@ import css from './UserBar.module.css';
 import { IoChevronDown, IoChevronUp } from 'react-icons/io5';
 
 export const UserBar = () => {
-  const [clicks, setClicks] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const popoverRef = useRef(null);
+  const buttonRef = useRef(null);
 
-  const handleClick = () => {
-    setClicks(prevClicks => !prevClicks);
+  const handleToggle = () => {
+    setIsOpen(prevState => !prevState);
   };
 
   const handleClickOutside = event => {
-    if (popoverRef.current && !popoverRef.current.contains(event.target)) {
-      setClicks(false);
+    if (
+      popoverRef.current &&
+      !popoverRef.current.contains(event.target) &&
+      buttonRef.current &&
+      !buttonRef.current.contains(event.target)
+    ) {
+      setIsOpen(false);
     }
   };
 
   useEffect(() => {
-    if (clicks) {
+    if (isOpen) {
       document.addEventListener('mousedown', handleClickOutside);
     } else {
       document.removeEventListener('mousedown', handleClickOutside);
@@ -59,23 +33,23 @@ export const UserBar = () => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [clicks]);
+  }, [isOpen]);
 
   return (
     <div className={css.general}>
-      <button ref={popoverRef} type="button" className={css.dropdown} onClick={handleClick}>
+      <button type="button" className={css.dropdown} onClick={handleToggle} ref={buttonRef}>
         <div className={css.button}>
           <span className={css.userName}>Nadia</span>
           <UserPanelAvatar />
-          {clicks ? (
+          {isOpen ? (
             <IoChevronUp className={css.chevron} />
           ) : (
             <IoChevronDown className={css.chevron} />
           )}
         </div>
       </button>
-      {clicks && (
-        <div className={css.modal}>
+      {isOpen && (
+        <div className={css.modal} ref={popoverRef}>
           <UserBarPopover />
         </div>
       )}
