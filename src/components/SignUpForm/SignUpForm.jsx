@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 import { FiEye } from 'react-icons/fi';
 import { FiEyeOff } from 'react-icons/fi';
+import Logo from '../Logo/Logo.jsx';
 
 const contactScheme = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
@@ -14,14 +15,19 @@ const contactScheme = Yup.object().shape({
 
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordRepeat, setShowPasswordRepeat] = useState(false);
 
   const handleTogglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
+  const handleTogglePasswordRepeatVisibility = () => {
+    setShowPasswordRepeat(!showPasswordRepeat);
+  };
+
   return (
-    <div className={css.signupBack}>
-      <h3 className={css.logo}>AquaTrack</h3>
+    <div className={css.formContainer}>
+        <div className={css.logo}><Logo /></div>
       <Formik
         initialValues={{
           email: '',
@@ -34,7 +40,7 @@ const SignUpPage = () => {
         }}
       >
         {({ errors, touched }) => (
-          <Form className={css.signupForm}>
+          <Form className={css.form}>
             <div className={css.formTitle}>Sign Up</div>
             <div className={css.signupFormGroupEmail}>
               <label className={css.signUpLabel} htmlFor="email">Email</label>
@@ -44,8 +50,8 @@ const SignUpPage = () => {
                 name="email"
                 placeholder="Enter your email"
               />
-              <ErrorMessage name="email" className={css.error} component="span" />
             </div>
+            <ErrorMessage name="email" className={css.error} component="span" />
 
             <div className={css.signupFormGroupPassword}>
               <label className={css.signUpLabel} htmlFor="password">Password</label>
@@ -60,8 +66,8 @@ const SignUpPage = () => {
                 <div className={css.eyeIcon} onClick={handleTogglePasswordVisibility}>
                   {showPassword ? <FiEye size={20} /> : <FiEyeOff size={20} />}
               </div>
-              <ErrorMessage name="password" className={css.error} component="span" />
             </div>
+            <ErrorMessage name="password" className={css.error} component="span" />
 
             <div className={css.signupFormGroupPassword}>
               <label className={css.signUpLabel} htmlFor="passwordRepeat">Repeat password</label>
@@ -69,15 +75,15 @@ const SignUpPage = () => {
                   className={`${css.field} ${
                     errors.passwordRepeat && touched.passwordRepeat ? css.fieldError : ''
                   }`}
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPasswordRepeat ? 'text' : 'password'}
                   name="passwordRepeat"
                   placeholder="Repeat password"
                 />
-                <div className={css.eyeIcon} onClick={handleTogglePasswordVisibility}>
-                  {showPassword ? <FiEye size={20} /> : <FiEyeOff size={20} />}
+                <div className={css.eyeIcon} onClick={handleTogglePasswordRepeatVisibility}>
+                  {showPasswordRepeat ? <FiEye size={20} /> : <FiEyeOff size={20} />}
                 </div>
-              <ErrorMessage name="passwordRepeat" className={css.error} component="span" />
             </div>
+            <ErrorMessage name="passwordRepeat" className={css.error} component="span" />
 
             <button className={css.button} type="submit">
               Sign Up
