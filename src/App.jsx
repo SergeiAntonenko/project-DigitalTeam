@@ -11,7 +11,7 @@ const TrackerPage = lazy(() => import('./pages/TrackerPage/TrackerPage.jsx'));
 export const App = () => {
   return (
     <div>
-      <Layout>
+        <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />
           {/* <Route path="/" element={<RestrictedRoute redirectTo="/tracker" component={<HomePage />} />} /> */}
