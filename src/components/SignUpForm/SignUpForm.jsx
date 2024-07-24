@@ -7,7 +7,7 @@ import { FiEye } from 'react-icons/fi';
 import { FiEyeOff } from 'react-icons/fi';
 import Logo from '../Logo/Logo.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { register } from '../../redux/users/operations.js';
+import { register } from '../../redux/auth/operations.js';
 
 const contactScheme = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
