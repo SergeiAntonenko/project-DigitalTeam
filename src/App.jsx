@@ -2,6 +2,9 @@ import { Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
 import Layout from './components/Layout/Layout.jsx';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import Logout from './components/Modals/LogOutModal.jsx/LogOutModal.jsx';
+import ModalDelete from './components/Modals/ModalDelete/ModalDelete.jsx'
+import  ModalEditWater from './components/Modals/EditWater/EditWater.jsx'
 // import RestrictedRoute from './components/RestrictedRoute/RestrictedRoute';
 const HomePage = lazy(() => import('./pages/HomePage/HomePage.jsx'));
 const SignInPage = lazy(() => import('./pages/SignInPage/SignInPage.jsx'));
@@ -11,6 +14,10 @@ const TrackerPage = lazy(() => import('./pages/TrackerPage/TrackerPage.jsx'));
 export const App = () => {
   return (
     <div>
+
+      <Logout />
+      <ModalDelete />
+      < ModalEditWater/>
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />
