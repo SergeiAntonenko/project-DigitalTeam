@@ -6,6 +6,9 @@ import { Link } from 'react-router-dom';
 import { FiEye } from 'react-icons/fi';
 import { FiEyeOff } from 'react-icons/fi';
 import Logo from '../Logo/Logo.jsx';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../redux/auth/operations.js';
+
 
 const contactScheme = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Email is required'),
@@ -19,6 +22,8 @@ const SignInForm = () => {
     setShowPassword(!showPassword);
   };
 
+  const dispatch = useDispatch();
+
   return (
     <div className={css.formContainer}>
         <div className={css.logo}><Logo /></div>
@@ -29,6 +34,7 @@ const SignInForm = () => {
         }}
         validationSchema={contactScheme}
         onSubmit={(values, actions) => {
+          dispatch(login(values));
           actions.resetForm();
         }}
       >
