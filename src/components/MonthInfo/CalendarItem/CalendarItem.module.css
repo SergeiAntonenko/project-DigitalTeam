@@ -46,17 +46,17 @@
 }
 
 .below100 {
-  background-color: #d3d3d3; /* Серый цвет фона для процентов менее 100% */
+  background-color: #d3d3d3; /* for < 100% */
 }
-/* Mobile гумова верстка від 320 px до 374 px */
+/* Mobile rubber*/
 @media screen and (max-width: 374px) {
 }
 
-/* Mobile адаптивна верстка з 375 px до 767 px */
+/* Mobile adaptive*/
 @media screen and (min-width: 375px) and (max-width: 767px) {
 }
 
-/* Tablet адаптивна верстка з 768 px до 1439 px */
+/* Tablet adaptive*/
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .calendarDayInfo {
     gap: 4px;
