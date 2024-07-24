@@ -1,7 +1,6 @@
 .dropdown {
   display: flex;
   justify-content: flex-start;
-  /* justify-content: center; */
   align-items: center;
   position: relative;
   background-color: inherit;
@@ -27,10 +26,11 @@
   color: #fff;
 }
 
-.iconChevron {
-  stroke: white;
+.chevron {
+  width: 16px;
+  height: 16px;
+  color: #fff;
 }
-
 @media screen and (min-width: 768px) {
   .dropdown {
     justify-content: center;
