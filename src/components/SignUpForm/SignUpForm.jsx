@@ -36,12 +36,15 @@ const SignUpPage = () => {
 
   const handleSubmit = (values, actions) => {
     const namePart = values.email.split('@')[0];
+    let name = namePart.charAt(0).toUpperCase() + namePart.slice(1);
+    if (name.length > 10) {
+      name = 'User';
+    }
     const updValues = {
-      name: namePart,
+      name: name,
       email: values.email,
       password: values.password,
     };
-    console.log(updValues);
     dispatch(register(updValues));
     actions.resetForm();
   };
