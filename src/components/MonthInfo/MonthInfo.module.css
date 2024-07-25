@@ -1,6 +1,6 @@
 .monthInfoContainer {
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
   padding-top: 40px;
 }
 
@@ -20,24 +20,18 @@ h3 {
   margin: 0;
 }
 
-.icon {
-  width: 20px;
+.pieChart {
+  width: 13px;
+  background-color: #f0eff4;
+  border: none;
 }
 
-/* Mobile гумова верстка від 320 px до 374 px */
-@media screen and (max-width: 374px) {
-}
-
-/* Mobile адаптивна верстка з 375 px до 767 px */
-@media screen and (min-width: 375px) and (max-width: 767px) {
-}
-
-/* Tablet адаптивна верстка з 768 px до 1439 px */
+/* Tablet */
 @media screen and (min-width: 768px) and (max-width: 1439px) {
-  .icon {
-    color: 2px solid #323f47;
+  .pieChart {
     width: 24px;
   }
+
   h3 {
     font-family: Poppins;
     font-size: 28px;
@@ -46,9 +40,19 @@ h3 {
   }
 }
 
-/* Desktop адаптивна верстка з 1440 px і більше */
+/* Desktop*/
 @media screen and (min-width: 1440px) {
   .monthInfoContainer {
-    padding-top: 72px;
+    padding-top: 40px;
+  }
+  .pieChart {
+    width: 24px;
+  }
+
+  h3 {
+    font-family: Poppins;
+    font-size: 28px;
+    line-height: 32px;
+    letter-spacing: -0.01em;
   }
 }

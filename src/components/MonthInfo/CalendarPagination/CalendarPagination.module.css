@@ -1,11 +1,18 @@
 .container {
   display: flex;
-  align-items: end;
+  align-items: center;
+}
+
+.navButton {
+  background-color: #f0eff4;
+  border: none;
+  width: 18px;
+  height: 18px;
+  fill: #323f47;
 }
 
 .month {
   margin: 0 10px;
-
   font-family: Poppins;
   font-size: 14px;
   font-weight: 700;
@@ -14,25 +21,16 @@
   text-align: center;
 }
 
-.navButton {
-  background-color: #f0eff4;
-  border: none;
-  width: 18px;
-  height: 18px;
-}
-
-/* Mobile гумова верстка від 320 px до 374 px */
-@media screen and (max-width: 374px) {
-}
-
-/* Mobile адаптивна верстка з 375 px до 767 px */
-@media screen and (min-width: 375px) and (max-width: 767px) {
+@media screen and (min-width: 768px) and (max-width: 1439px) {
   .month {
     font-size: 16px;
     line-height: 24px;
   }
 }
 
-/* Tablet адаптивна верстка з 768 px до 1439 px */
-@media screen and (min-width: 768px) and (max-width: 1439px) {
+@media screen and (min-width: 1440px) {
+  .month {
+    font-size: 16px;
+    line-height: 24px;
+  }
 }

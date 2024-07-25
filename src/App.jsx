@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
 import Layout from './components/Layout/Layout.jsx';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
-// import RestrictedRoute from './components/RestrictedRoute/RestrictedRoute';
+import RestrictedRoute from './components/RestrictedRoute/RestrictedRoute';
 import WaterForm from './components/Modals/WaterModal/WaterModal.jsx';
 import Logout from './components/Modals/LogOutModal.jsx/LogOutModal.jsx';
 import ModalDelete from './components/Modals/ModalDelete/ModalDelete.jsx'
@@ -26,17 +26,18 @@ export const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           {/* <Route path="/" element={<RestrictedRoute redirectTo="/tracker" component={<HomePage />} />} /> */}
-          <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/signin" element={<SignInPage />} />
+          {/* <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/signin" element={<SignInPage />} /> */}
 
-          {/* <Route
+          <Route
             path="/signup"
-            element={<RestrictedRoute redirectTo="/" component={<SignUpPage />} />}
+            redirectTo="/tracker"
+            element={<RestrictedRoute component={<SignUpPage />} />}
           />
           <Route
             path="/signin"
-            element={<RestrictedRoute redirectTo="/" component={<SignInPage />} />}
-          /> */}
+            element={<RestrictedRoute redirectTo="/tracker" component={<SignInPage />} />}
+          />
           <Route
             path="/tracker"
             element={<PrivateRoute redirectTo="/signin" component={<TrackerPage />} />}
