@@ -8,22 +8,54 @@ const authSlice = createSlice({
       name: null,
       email: null,
       _id: null,
+      gender: null,
+      weight: 0,
+      activeTime: 0,
+      dailyWaterGoal: 0,
+      avatar: null,
     },
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
+    isLoading: false,
   },
   extraReducers: builder => {
     builder
+      .addCase(register.pending, (state, action) => {
+        state.user = null;
+        state.token = null;
+        state.isLoggedIn = false;
+        state.isLoading = true;
+      })
       .addCase(register.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.user = action.payload.data.user;
+        state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
+        state.isLoading = false;
+      })
+      .addCase(register.rejected, (state, action) => {
+        state.user = null;
+        state.token = null;
+        state.isLoggedIn = false;
+        state.isLoading = false;
+      })
+      .addCase(login.pending, (state, action) => {
+        state.user = null;
+        state.token = null;
+        state.isLoggedIn = false;
+        state.isLoading = true;
       })
       .addCase(login.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.user = action.payload.data.user;
+        state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
+        state.isLoading = false;
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.user = null;
+        state.token = null;
+        state.isLoggedIn = false;
+        state.isLoading = false;
       })
       .addCase(logout.fulfilled, state => {
         state.user = { name: null, email: null };
@@ -34,7 +66,7 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload.data;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
