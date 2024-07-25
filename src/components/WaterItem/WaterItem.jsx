@@ -3,7 +3,7 @@ import { IconGlass } from '../../shared/icons/IconGlass';
 import { FiTrash } from 'react-icons/fi';
 import { FiEdit2 } from 'react-icons/fi';
 import { useState } from 'react';
-import ModalDelete from '../Modals/ModalDelete/ModalDelete';
+import ModalDelete from '../Modals/DeleteWaterModal/DeleteWaterModal';
 import ModalEditWater from '../Modals/EditWater/EditWater';
 import Modal from '../../shared/components/Modal/Modal';
 
