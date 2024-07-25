@@ -1,9 +1,8 @@
-import  { useState } from 'react';
-import css from './WaterModal.module.css';
+import React, { useState } from 'react';
+import css from './ModalAddWater.module.css';
 import useWaterState from '../WaterState.jsx';
-import Iconsvg from '../MyIcons/MyIcons.jsx';
 
-const WaterModal = ({ isModalOpen, onCloseModal, operationType }) => {
+const WaterModal = () => {
   const { waterAmount, increaseWaterAmount, decreaseWaterAmount, setWaterAmount } = useWaterState();
   const [recordingTime, setRecordingTime] = useState(
     new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
@@ -13,28 +12,42 @@ const WaterModal = ({ isModalOpen, onCloseModal, operationType }) => {
     setRecordingTime(e.target.value);
   };
 
-  const title = operationType === 'add' ? 'Add water' : 'Edit water';
+  const handleSave = () => {
+    //   fetch('http://example.com/saveWaterData', {
+    //     method: 'POST',
+    //     body: JSON.stringify({ waterAmount, recordingTime }),
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     }
+    //   })
+    //   .then(response => {
+    //     if (response.ok) {
+    //       handleCloseModal();
+    //     } else {
+    //       throw new Error('Error sending data to server');
+    //     }
+    //   })
+    //   .catch(error => {
+    //     console.error('Error:', error);
+    //   });
+  };
 
   return (
-    <div className={isModalOpen ? css.modalwrapper : css.modalwrapperHidden}>
-      <button className={css.button_close} onClick={onCloseModal}>
-        <Iconsvg width="28px" height="28px" iconName="modal-close" />
-      </button>
-      <h1 className={css.title}>{title}</h1>
+    <div className={css.modalwrapper}>
+      <h1 className={css.title}>Add water</h1>
       <h2 className={css.subtitle}>Choose a value:</h2>
-  
+
       <div className={css.waterwrapper}>
-        <h3 className={css.amount_water}>Amount of water: {waterAmount} ml</h3>
-  
+        <h3 className={css.amount_water}>Amount of water: {waterAmount}</h3>
+
         <div className={css.minplus_wrapper}>
           <button className={css.button_water} onClick={decreaseWaterAmount}>
             <span className={css.pl_min}>-</span>
           </button>
-          <button className={css.button_ml}>{waterAmount} ml</button>
+          <button className={css.button_ml}>{waterAmount}ml</button>
           <button className={css.button_water} onClick={increaseWaterAmount}>
             <span className={css.pl_min}>+</span>
           </button>
-          
         </div>
       </div>
       <div className={css.button_wrapper}>
@@ -43,11 +56,10 @@ const WaterModal = ({ isModalOpen, onCloseModal, operationType }) => {
         <h2 className={css.subtitle}>Enter the value of the water used:</h2>
         <input type="number" value={waterAmount} onChange={e => setWaterAmount(e.target.value)} />
       </div>
-      <button className={css.button_save}>
+      <button className={css.button_save} onClick={handleSave}>
         Save
       </button>
     </div>
-   
   );
 };
 

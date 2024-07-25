@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import css from './AddWaterBtn.module.css';
 import { FiPlus } from 'react-icons/fi';
-import ModalAddWater from '../../Modals/ModalAdd/ModalAddWater.jsx';
+import ModalAddWater from '../../Modals/ModalAdd/WaterModal.jsx';
 import Modal from '../../../shared/components/Modal/Modal.jsx';
 
 const AddWaterBtn = () => {

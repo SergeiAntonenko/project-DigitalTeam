@@ -82,7 +82,7 @@ import React, { useState, useEffect } from 'react';
 import css from './EditWater.module.css';
 import useWaterState from '../WaterState.jsx';
 import Iconsvg from '../MyIcons/MyIcons.jsx';
-import useModal from '../../Modals/ModalAdd/OpenCloseModal.jsx';
+import useModal from '../ModalAdd/OpenCloseModal.jsx';
 
 const ModalEditWater = ({ id, handleCloseModal }) => {
   const { waterAmount, increaseWaterAmount, decreaseWaterAmount, setWaterAmount } = useWaterState();

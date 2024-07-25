@@ -4,11 +4,12 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import css from './WaterForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { addWater, updateWater, fetchWaterDaily, fetchWaterMonthly } from '../../../redux/water/operations';
+import { addWater, updateWater, fetchWaterDaily, fetchWaterMonthly } from '../../../redux/water/operations.js';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 import toast from 'react-hot-toast';
-import { selectMonthlyWater, selectDailyWater } from '../../../redux/water/selectors';
+import { selectWaterLoading, selectMonthlyWater, selectDailyWater } from '../../../redux/water/selectors.js';
 import Modal from '../../../shared/components/Modal/Modal.jsx';
+import  { WaterLoader }  from '../../../loader/loader.jsx';
 
 const schemaWater = yup.object().shape({
   waterAmount: yup
@@ -27,6 +28,7 @@ const schemaWater = yup.object().shape({
 const WaterForm = ({ operationType, initialData, waterId, closeModal }) => {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(true);
+  const loading = useSelector(selectWaterLoading);
   const selectedDate = useSelector(selectDailyWater);
   const currentMonth = useSelector(selectMonthlyWater);
 
@@ -144,6 +146,7 @@ const WaterForm = ({ operationType, initialData, waterId, closeModal }) => {
 
   return (
     <>
+     {loading && <WaterLoader/>}
       {isModalOpen && (
         <Modal handleCloseModal={handleCloseModal}>
           <div>
