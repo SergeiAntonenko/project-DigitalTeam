@@ -3,11 +3,10 @@ import { useSelector } from 'react-redux';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import css from './ModalSettingForm.module.css';
-import { calcRequiredWater } from '../../calculation/calcRequiredWater';
- import { selectUser } from '../../redux/users/selectors';
-
+import { calcRequiredWater } from '../../../../calculation/calcRequiredWater';
+import { selectUser } from '../../../../redux/users/selectors';
 // import { useDispatch, useState } from 'react';
-import useModal from '../../components/Modals/ModalAdd/OpenCloseModal'
+import useModal from '../../ModalAdd/OpenCloseModal';
 
 
 const schema = yup.object().shape({

@@ -1,4 +1,4 @@
-import { ModalSettingForm } from '../ModalSettingForm/ModalSettingForm';
+import { ModalSettingForm } from '../ModalSettingForm/ModalSettingForm'
 import css from './ModalSetting.module.css';
 
 export const ModalSetting = ({ handleCloseModal }) => {
