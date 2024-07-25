@@ -5,6 +5,7 @@ import { FiEdit2 } from 'react-icons/fi';
 import { useState } from 'react';
 import ModalDelete from '../Modals/ModalDelete/ModalDelete';
 import ModalEditWater from '../Modals/EditWater/EditWater';
+import Modal from '../../shared/components/Modal/Modal';
 
 const WaterItem = () => {
   const [isModaDeleteOpen, setIsModaDeleteOpen] = useState(false);
