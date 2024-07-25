@@ -1,16 +1,20 @@
 import { useState, useEffect, useRef } from 'react';
 import UserPanelAvatar from '../UserPanelAvatar/UserPanelAvatar';
 import UserBarPopover from '../UserBarPopover/UserBarPopover';
-import css from './UserBar.module.css';
+import Logout from '../Modals/LogOutModal.jsx/LogOutModal';
+// import LogOut from './LogOut';
 import { IoChevronDown, IoChevronUp } from 'react-icons/io5';
+import css from './UserBar.module.css';
 
 export const UserBar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenPopover, setIsOpenPopover] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const popoverRef = useRef(null);
   const buttonRef = useRef(null);
 
   const handleToggle = () => {
-    setIsOpen(prevState => !prevState);
+    setIsOpenPopover(prevState => !prevState);
   };
 
   const handleClickOutside = event => {
@@ -20,12 +24,12 @@ export const UserBar = () => {
       buttonRef.current &&
       !buttonRef.current.contains(event.target)
     ) {
-      setIsOpen(false);
+      setIsOpenPopover(false);
     }
   };
 
   useEffect(() => {
-    if (isOpen) {
+    if (isOpenPopover) {
       document.addEventListener('mousedown', handleClickOutside);
     } else {
       document.removeEventListener('mousedown', handleClickOutside);
@@ -33,7 +37,16 @@ export const UserBar = () => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isOpen]);
+  }, [isOpenPopover]);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+    setIsOpenPopover(false);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className={css.general}>
@@ -41,18 +54,19 @@ export const UserBar = () => {
         <div className={css.button}>
           <span className={css.userName}>Nadia</span>
           <UserPanelAvatar />
-          {isOpen ? (
+          {isOpenPopover ? (
             <IoChevronUp className={css.chevron} />
           ) : (
             <IoChevronDown className={css.chevron} />
           )}
         </div>
       </button>
-      {isOpen && (
+      {isOpenPopover && (
         <div className={css.modal} ref={popoverRef}>
-          <UserBarPopover />
+          <UserBarPopover setIsOpenPopover={setIsOpenPopover} handleOpenModal={handleOpenModal} />
         </div>
       )}
+      {isModalOpen && <Logout handleCloseModal={handleCloseModal} />}
     </div>
   );
 };
