@@ -25,9 +25,11 @@ const schemaWater = yup.object().shape({
     .max(500, 'The maximum allowed amount of water is 500 ml.'),
 });
 
-const WaterForm = ({ operationType, initialData, waterId, closeModal }) => {
+const WaterForm = ({ operationType, initialData, waterId, initialWaterAmount, closeModal, onWaterAddOrUpdate }) => {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(true);
+  const [progress, setProgress] = useState(0);
+  const [waterAmount, setValue] = useState(initialWaterAmount);
   const loading = useSelector(selectWaterLoading);
   const selectedDate = useSelector(selectDailyWater);
   const currentMonth = useSelector(selectMonthlyWater);
@@ -39,6 +41,12 @@ const WaterForm = ({ operationType, initialData, waterId, closeModal }) => {
     return `${hours}:${minutes}`;
   };
 
+  const formatTime = (date) => {
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    return `${hours}:${minutes}`;
+  };
+
   const mlToDecimal = (ml) => {
     return parseFloat((ml / 1000).toFixed(3));
   };
@@ -47,7 +55,7 @@ const WaterForm = ({ operationType, initialData, waterId, closeModal }) => {
     handleSubmit,
     formState: { errors, isValid },
     getValues,
-    setValue,
+
     register,
   } = useForm({
     resolver: yupResolver(schemaWater),
@@ -71,20 +79,35 @@ const WaterForm = ({ operationType, initialData, waterId, closeModal }) => {
       };
 
       if (operationType === 'add') {
-        dispatch(addWater(newEntry));
-        closeModal();
-        toast.success('Added successfully.');
+        try {
+          dispatch(addWater(newEntry));
+          onWaterAddOrUpdate();
+          setProgress(progress + newEntry.amount); // Обновление прогресса
+          closeModal();
+          toast.success('Added successfully.');
+        } catch (error) {
+          // Обработка ошибок при добавлении
+          toast.error('Failed to add water.');
+        }
       } else if (operationType === 'edit' && waterId) {
-        dispatch(
-          updateWater({
-            id: waterId,
-            amount: mlToDecimal(data.waterAmount),
-            date: new Date(fullDateTime),
-          })
-        );
-        closeModal();
-        toast.success('Edited successfully.');
+        try {
+          dispatch(
+            updateWater({
+              id: waterId,
+              amount: mlToDecimal(data.waterAmount),
+              date: new Date(fullDateTime),
+            })
+          );
+          onWaterAddOrUpdate();
+          setProgress(progress + data.waterAmount - initialWaterAmount); // Обновление прогресса
+          closeModal();
+          toast.success('Edited successfully.');
+        } catch (error) {
+          // Обработка ошибок при редактировании
+          toast.error('Failed to edit water.');
+        }
       }
+      
 
       dispatch(fetchWaterDaily(selectedDate));
 
