@@ -2,8 +2,20 @@ import css from './WaterItem.module.css';
 import { IconGlass } from '../../shared/icons/IconGlass';
 import { FiTrash } from 'react-icons/fi';
 import { FiEdit2 } from 'react-icons/fi';
+import { useState } from 'react';
+import ModalDelete from '../Modals/ModalDelete/ModalDelete';
 
 const WaterItem = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
   return (
     <div className={css.general}>
       <div className={css.center}>
@@ -18,11 +30,12 @@ const WaterItem = () => {
           <button type="button" className={css.button1}>
             <FiEdit2 className={css.edit} />
           </button>
-          <button type="button" className={css.button2}>
+          <button type="button" className={css.button2} onClick={handleOpenModal}>
             <FiTrash className={css.edit} />
           </button>
         </div>
       </div>
+      {isModalOpen && <ModalDelete handleCloseModal={handleCloseModal} />}
     </div>
   );
 };
