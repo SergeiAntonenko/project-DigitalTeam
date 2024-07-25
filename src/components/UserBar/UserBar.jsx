@@ -4,6 +4,7 @@ import UserBarPopover from '../UserBarPopover/UserBarPopover';
 import Logout from '../Modals/LogOutModal.jsx/LogOutModal';
 import { IoChevronDown, IoChevronUp } from 'react-icons/io5';
 import css from './UserBar.module.css';
+import Modal from '../../shared/components/Modal/Modal';
 
 export const UserBar = () => {
   const [isOpenPopover, setIsOpenPopover] = useState(false);
@@ -65,7 +66,11 @@ export const UserBar = () => {
           <UserBarPopover setIsOpenPopover={setIsOpenPopover} handleOpenModal={handleOpenModal} />
         </div>
       )}
-      {isModalOpen && <Logout handleCloseModal={handleCloseModal} />}
+      {isModalOpen && (
+        <Modal handleCloseModal={handleCloseModal}>
+          <Logout handleCloseModal={handleCloseModal} />
+        </Modal>
+      )}
     </div>
   );
 };

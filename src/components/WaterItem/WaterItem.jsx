@@ -4,16 +4,26 @@ import { FiTrash } from 'react-icons/fi';
 import { FiEdit2 } from 'react-icons/fi';
 import { useState } from 'react';
 import ModalDelete from '../Modals/ModalDelete/ModalDelete';
+import ModalEditWater from '../Modals/EditWater/EditWater';
+import Modal from '../../shared/components/Modal/Modal';
 
 const WaterItem = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModaDeleteOpen, setIsModaDeleteOpen] = useState(false);
+  const [isModalEditWaterOpen, setIsModalEditWaterOpen] = useState(false);
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
+  const handleCloseModalDelete = () => {
+    setIsModaDeleteOpen(false);
   };
 
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
+  const handleOpenModalDelete = () => {
+    setIsModaDeleteOpen(true);
+  };
+  const handleCloseModalEditWater = () => {
+    setIsModalEditWaterOpen(false);
+  };
+
+  const handleOpenModalEditWater = () => {
+    setIsModalEditWaterOpen(true);
   };
 
   return (
@@ -27,15 +37,24 @@ const WaterItem = () => {
           <p className={css.text_time}>7:00 AM</p>
         </div>
         <div className={css.buttonContainer}>
-          <button type="button" className={css.button1}>
+          <button type="button" className={css.button1} onClick={handleOpenModalEditWater}>
             <FiEdit2 className={css.edit} />
           </button>
-          <button type="button" className={css.button2} onClick={handleOpenModal}>
+          <button type="button" className={css.button2} onClick={handleOpenModalDelete}>
             <FiTrash className={css.edit} />
           </button>
         </div>
       </div>
-      {isModalOpen && <ModalDelete handleCloseModal={handleCloseModal} />}
+      {isModaDeleteOpen && (
+        <Modal handleCloseModal={handleCloseModalDelete}>
+          <ModalDelete handleCloseModal={handleCloseModalDelete} />
+        </Modal>
+      )}
+      {isModalEditWaterOpen && (
+        <Modal handleCloseModal={handleCloseModalEditWater}>
+          <ModalEditWater handleCloseModal={handleCloseModalEditWater} />
+        </Modal>
+      )}
     </div>
   );
 };
