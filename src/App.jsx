@@ -6,6 +6,7 @@ import RestrictedRoute from './components/RestrictedRoute/RestrictedRoute';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsRefreshing } from './redux/auth/selectors.js';
 import { refreshUser } from './redux/auth/operations.js';
+import { WaterLoader } from './loader/loader.jsx';
 const HomePage = lazy(() => import('./pages/HomePage/HomePage.jsx'));
 const SignInPage = lazy(() => import('./pages/SignInPage/SignInPage.jsx'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage/SignUpPage.jsx'));
@@ -21,9 +22,7 @@ export const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <>
-      <p>Refreshing user...</p>
-    </>
+    <WaterLoader />
   ) : (
     <div>
       <Layout>
