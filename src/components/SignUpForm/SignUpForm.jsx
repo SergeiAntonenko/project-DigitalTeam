@@ -36,8 +36,9 @@ const SignUpPage = () => {
 
   const handleSubmit = (values, actions) => {
     const namePart = values.email.split('@')[0];
+    const name = namePart.charAt(0).toUpperCase() + namePart.slice(1);
     const updValues = {
-      name: namePart,
+      name: name,
       email: values.email,
       password: values.password,
     };
