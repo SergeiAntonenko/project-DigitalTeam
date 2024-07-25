@@ -17,18 +17,45 @@ const authSlice = createSlice({
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
+    isLoading: false,
   },
   extraReducers: builder => {
     builder
+      .addCase(register.pending, (state, action) => {
+        state.user = null;
+        state.token = null;
+        state.isLoggedIn = false;
+        state.isLoading = true;
+      })
       .addCase(register.fulfilled, (state, action) => {
         state.user = action.payload.data.user;
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
+        state.isLoading = false;
+      })
+      .addCase(register.rejected, (state, action) => {
+        state.user = null;
+        state.token = null;
+        state.isLoggedIn = false;
+        state.isLoading = false;
+      })
+      .addCase(login.pending, (state, action) => {
+        state.user = null;
+        state.token = null;
+        state.isLoggedIn = false;
+        state.isLoading = true;
       })
       .addCase(login.fulfilled, (state, action) => {
         state.user = action.payload.data.user;
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
+        state.isLoading = false;
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.user = null;
+        state.token = null;
+        state.isLoggedIn = false;
+        state.isLoading = false;
       })
       .addCase(logout.fulfilled, state => {
         state.user = { name: null, email: null };

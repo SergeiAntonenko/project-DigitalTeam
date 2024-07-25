@@ -4,7 +4,7 @@ import Layout from './components/Layout/Layout.jsx';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import RestrictedRoute from './components/RestrictedRoute/RestrictedRoute';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIsRefreshing } from './redux/auth/selectors.js';
+import { selectIsLoading, selectIsRefreshing } from './redux/auth/selectors.js';
 import { refreshUser } from './redux/auth/operations.js';
 import { WaterLoader } from './loader/loader.jsx';
 const HomePage = lazy(() => import('./pages/HomePage/HomePage.jsx'));
@@ -14,6 +14,7 @@ const TrackerPage = lazy(() => import('./pages/TrackerPage/TrackerPage.jsx'));
 
 export const App = () => {
   const isRefreshing = useSelector(selectIsRefreshing);
+  const isLoading = useSelector(selectIsLoading);
 
   const dispatch = useDispatch();
 
@@ -21,17 +22,18 @@ export const App = () => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  
-  return isRefreshing ? (
-    
+  return isRefreshing || isLoading ? (
     <WaterLoader />
 
   ) : (
     <div>
       <Layout>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          {/* <Route path="/" element={<RestrictedRoute redirectTo="/tracker" component={<HomePage />} />} /> */}
+          {/* <Route path="/" element={<HomePage />} /> */}
+          <Route
+            path="/"
+            element={<RestrictedRoute redirectTo="/tracker" component={<HomePage />} />}
+          />
           {/* <Route path="/signup" element={<SignUpPage />} />
           <Route path="/signin" element={<SignInPage />} /> */}
 
