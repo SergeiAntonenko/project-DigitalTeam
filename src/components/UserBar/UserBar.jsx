@@ -6,7 +6,7 @@ import { IoChevronDown, IoChevronUp } from 'react-icons/io5';
 import css from './UserBar.module.css';
 import Modal from '../../shared/components/Modal/Modal';
 
-export const UserBar = () => {
+export const UserBar = ({ userName }) => {
   const [isOpenPopover, setIsOpenPopover] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -52,7 +52,7 @@ export const UserBar = () => {
     <div className={css.general}>
       <button type="button" className={css.dropdown} onClick={handleToggle} ref={buttonRef}>
         <div className={css.button}>
-          <span className={css.userName}>Nadia</span>
+          <span className={css.userName}>{userName}</span>
           <UserPanelAvatar />
           {isOpenPopover ? (
             <IoChevronUp className={css.chevron} />
