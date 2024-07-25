@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import UserPanelAvatar from '../UserPanelAvatar/UserPanelAvatar';
 import UserBarPopover from '../UserBarPopover/UserBarPopover';
 import Logout from '../Modals/LogOutModal.jsx/LogOutModal';
-// import LogOut from './LogOut';
 import { IoChevronDown, IoChevronUp } from 'react-icons/io5';
 import css from './UserBar.module.css';
 
