@@ -1,13 +1,19 @@
+import { useState } from 'react';
 import { UserBar } from '../UserBar/UserBar';
 import css from './UserPanel.module.css';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../redux/auth/selectors';
 
 export const UserPanel = () => {
+  const userState = useSelector(selectUser);
+  const userName = userState.name;
+
   return (
     <div className={css.userPanel}>
       <p className={css.text}>
-        Hello, <strong> Nadia!</strong>
+        Hello, <strong>{userName}!</strong>
       </p>
-      <UserBar />
+      <UserBar userName={userName} />
     </div>
   );
 };
