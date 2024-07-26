@@ -12,7 +12,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 // import waterReducer from './water/slice';
 import { authReducer } from './auth/slice';
-
+import { dateReducer } from './date/dateSlice';
 const authPersistConfig = {
   key: 'auth',
   storage,
@@ -23,6 +23,7 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     // contacts: waterReducer,
+    date: dateReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
