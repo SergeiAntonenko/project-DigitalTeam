@@ -66,10 +66,23 @@
 }
 
 .eyeIcon {
+  width: 20px;
+  height: 20px;
   position: absolute;
-  right: 15px;
-  bottom: 11px;
+  right: 16px;
+  top: 50px;
   cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .eyeIcon {
+    top: 40px;
+  }
+}
+
+.eyeIcon svg {
+  width: 20px;
+  height: 20px;
 }
 
 .error {
