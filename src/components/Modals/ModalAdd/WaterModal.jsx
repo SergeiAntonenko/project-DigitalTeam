@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import css from './ModalAddWater.module.css';
 import useWaterState from '../WaterState.jsx';
 
-const WaterModal = () => {
+const ModalAddWater = () => {
   const { waterAmount, increaseWaterAmount, decreaseWaterAmount, setWaterAmount } = useWaterState();
   const [recordingTime, setRecordingTime] = useState(
     new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
@@ -63,4 +63,4 @@ const WaterModal = () => {
   );
 };
 
-export default WaterModal;
+export default ModalAddWater;
