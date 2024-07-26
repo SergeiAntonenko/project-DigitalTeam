@@ -1,16 +1,24 @@
 import { useEffect, useRef, useState } from 'react';
 import css from './WaterProgressBar.module.css';
+import WaterForm from '../../Modals/WaterForm/WaterForm.jsx';
 
-const WaterProgressBar = ({ progress }) => {
+const WaterProgressBar = () => {
     const waterRef = useRef(null);
+    const [progress, setProgress] = useState(0);
     const [lapPosition, setLapPosition] = useState(10);
+
+    const handleWaterAddOrUpdate = (e) => {
+        e.preventDefault();
+        const newProgressValue = parseInt(e.target.elements.waterAmount.value, 10);
+        if (!isNaN(newProgressValue)) {
+            setProgress(newProgressValue);
+        }
+    };
 
     const updLapPosition = () => {
         if (waterRef.current) {
             const containerWidth = waterRef.current.offsetWidth;
-
             let correctProgress = Math.min(100, Math.max(0, progress));
-
             let newPosition = (correctProgress * containerWidth) / 100;
 
             if (correctProgress >= 0 && correctProgress <= 5) {
@@ -52,9 +60,7 @@ const WaterProgressBar = ({ progress }) => {
                 <p className={css.data}>Today</p>
 
                 <div className={css.progressContainer} ref={waterRef}>
-
                     <div className={css.progressBar} style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}></div>
-                    
                     <div className={css.progressLap} style={{ left: `${lapPosition}px` }}></div>
                 </div>
 
@@ -70,6 +76,10 @@ const WaterProgressBar = ({ progress }) => {
                     <li>100%</li>
                 </ul>
             </div>
+                <div>
+                    <WaterForm onWaterAddOrUpdate={handleWaterAddOrUpdate} />
+                    <WaterProgressBar progress={progress} />
+                </div>
         </div>
     );
 };
