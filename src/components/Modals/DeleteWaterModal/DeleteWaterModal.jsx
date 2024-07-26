@@ -1,65 +1,46 @@
-// import React, { useState, useEffect } from 'react';
-import { useEffect } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import css from './DeleteWaterModal.module.css';
 import Iconsvg from '../MyIcons/MyIcons.jsx';
-import { deleteWater } from '../../../redux/water/operations.js';
+import { deleteWater } from "../../../redux/water/operations.js";
+import Modal from '../../../shared/components/Modal/Modal.jsx';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const DeleteModal = ({ handleCloseModal, water }) => {
+const DeleteModal = ({ closeDeleteModal, waterId }) => {
   const dispatch = useDispatch();
-  // const [isModalOpen, setIsModalOpen] = useState(true);
-
-  const handleDeleteConfirm = () => {
+  
+  const handleDelete = async () => {
     try {
-      dispatch(deleteWater(water._id));
-      alert('The amount of water consumed has been successfully deleted.');
+      await dispatch(deleteWater(waterId));
+      toast.success('Entry deleted successfully');
+      closeDeleteModal();
     } catch (error) {
-      alert("Something went wrong. Please try again.");
+      toast.error('Failed to delete entry');
     }
-    handleCloseModal();
   };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
+  const handleClose = () => {
+    closeDeleteModal();
   };
-
-  useEffect(() => {
-    const handleEscapeKey = (e) => {
-      if (e.key === 'Escape') {
-        handleCloseModal();
-      }
-    };
-
-    document.addEventListener('keydown', handleEscapeKey);
-    
-    return () => {
-      document.removeEventListener('keydown', handleEscapeKey);
-    };
-  }, []);
 
   return (
-    <>
-      {/* {isModalOpen && ( */}
+    <Modal>
       <div className={css.modalwrapper}>
-        <div className={css.modal_background} onClick={handleCloseModal}></div>
+        <div className={css.modal_background} onClick={handleClose}></div>
         <div className={css.modal_content}>
-          <button className={css.close_button} onClick={handleCloseModal}>
+          <button className={css.close_button} onClick={handleClose}>
             <Iconsvg width="28px" height="28px" iconName="modal-close" />
           </button>
           <h1 className={css.delete_entry}>Delete Entry</h1>
           <h2 className={css.text}>Are you sure you want to delete the entry?</h2>
           <div className={css.button_container}>
-            <button onClick={handleDeleteConfirm} className={css.delete_button}>
-              Delete
-            </button>
-            <button onClick={handleCloseModal} className={css.cancel_button}>
-              Cancel
-            </button>
+            <button onClick={handleDelete} className={css.delete_button}>Delete</button>
+            <button onClick={handleClose} className={css.cancel_button}>Cancel</button>
           </div>
         </div>
       </div>
-      {/* )} */}
-    </>
+    </Modal>
   );
 };
 
