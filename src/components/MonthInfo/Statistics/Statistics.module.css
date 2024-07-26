@@ -1,0 +1,30 @@
+.chartContainer {
+  width: 500px;
+  height: 400px;
+  margin-top: 10px;
+  margin-right: 30px;
+  margin-left: 0;
+  margin-bottom: 0;
+}
+
+.dot {
+  stroke: #87d28d;
+  stroke-width: 3;
+  fill: #ffffff; /* Белый цвет заполнения меток */
+  r: 6; /* Радиус меток */
+}
+
+.gradientStopTop {
+  stop-color: #9be1a0; /* Верхний цвет градиента */
+  stop-opacity: 1;
+}
+
+.gradientStopBottom {
+  stop-color: #9be1a0; /* Нижний цвет градиента */
+  stop-opacity: 0;
+}
+
+.area {
+  stroke-width: 3;
+  fill-opacity: 1;
+}

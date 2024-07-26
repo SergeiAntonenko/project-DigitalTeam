@@ -1,6 +1,7 @@
 import { AreaChart, Area, XAxis, YAxis, Tooltip } from 'recharts';
 import { curveCardinal } from 'd3-shape';
 import moment from 'moment';
+import styles from './Statistics.module.css';
 
 const getData = () => {
   const data = [];
@@ -31,7 +32,14 @@ const Statistics = () => {
         left: 0,
         bottom: 0,
       }}
+      className={styles.chartContainer}
     >
+      <defs>
+        <linearGradient id="colorWater" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="1.54%" className={styles.gradientStopTop} />
+          <stop offset="93.64%" className={styles.gradientStopBottom} />
+        </linearGradient>
+      </defs>
       <XAxis dataKey="date" axisLine={false} tickLine={false} />
       <YAxis
         domain={[0, 2.5]}
@@ -43,12 +51,12 @@ const Statistics = () => {
       />
       <Tooltip />
       <Area
+        className={styles.area}
         type={cardinal}
+        stroke="#87d28d" /* Зеленый цвет обводки графика */
         dataKey="water"
-        stroke="#8884d8"
-        fill="#8884d8"
-        fillOpacity={0.3}
-        dot={{ stroke: '#8884d8', strokeWidth: 2, r: 4 }}
+        fill="url(#colorWater)"
+        dot={{ className: styles.dot }}
       />
     </AreaChart>
   );
