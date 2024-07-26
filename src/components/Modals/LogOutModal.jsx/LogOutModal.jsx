@@ -4,9 +4,8 @@ import css from './LogOut.module.css';
 import Iconsvg from '../MyIcons/MyIcons.jsx';
 import Modal from '../../../shared/components/Modal/Modal.jsx';
 import { logout } from "../../../redux/auth/operations.js";
-import { toast } from 'react-hot-toast';
-
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LogOutModal = () => {
   const dispatch = useDispatch();
