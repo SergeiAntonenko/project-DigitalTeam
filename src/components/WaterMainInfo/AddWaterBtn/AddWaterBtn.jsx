@@ -1,8 +1,8 @@
-import { useState } from 'react';
 import css from './AddWaterBtn.module.css';
 import { FiPlus } from 'react-icons/fi';
-import ModalAddWater from '../../Modals/ModalAdd/WaterModal.jsx';
-import Modal from '../../../shared/components/Modal/Modal.jsx';
+import { useState } from 'react';
+import Modal from '../../shared/components/Modal/Modal';
+import WaterForm from '../WaterForm/WaterForm'; 
 
 const AddWaterBtn = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,20 +16,19 @@ const AddWaterBtn = () => {
   };
 
   return (
-    <div className={css.container}>
+    <>
       <button className={css.addWaterBtn} onClick={handleModalOpen}>
         <span className={css.iconCircle}>
           <FiPlus className={css.addWaterIcon} />
         </span>
         Add water
       </button>
-
       {isModalOpen && (
         <Modal handleCloseModal={handleCloseModal}>
-          <ModalAddWater />
+          <WaterForm operationType="add" />
         </Modal>
       )}
-    </div>
+    </>
   );
 };
 
