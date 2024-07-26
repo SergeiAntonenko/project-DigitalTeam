@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+axios.defaults.withCredentials = true;
+
 class Api {
   constructor() {
     this.instance = axios.create({
