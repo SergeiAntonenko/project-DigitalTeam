@@ -6,4 +6,4 @@ export const selectTotalCount = state => state.users.totalCount;
 
 export const selectUsersError = state => state.users.error;
 
-export const selectUsersLoading = state => state.users.loading;
+export const selectUsersLoading = state => state.users.isLoading;

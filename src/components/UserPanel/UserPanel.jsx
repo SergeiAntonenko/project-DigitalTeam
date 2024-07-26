@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { UserBar } from '../UserBar/UserBar';
 import css from './UserPanel.module.css';
 import { useSelector } from 'react-redux';
-import { selectUser } from '../../redux/auth/selectors';
+import { selectUser } from '../../redux/users/selectors';
 
 export const UserPanel = () => {
   const userState = useSelector(selectUser);

@@ -13,8 +13,16 @@ import storage from 'redux-persist/lib/storage';
 // import waterReducer from './water/slice';
 import { authReducer } from './auth/slice';
 import { dateReducer } from './date/dateSlice';
+import { usersReducer } from './users/slice';
+
 const authPersistConfig = {
   key: 'auth',
+  storage,
+  whitelist: ['token'],
+};
+
+const usersPersistConfig = {
+  key: 'users',
   storage,
   whitelist: ['token'],
 };
@@ -24,6 +32,7 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     // contacts: waterReducer,
     date: dateReducer,
+    users: persistReducer(usersPersistConfig, usersReducer),
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

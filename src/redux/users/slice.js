@@ -1,57 +1,78 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchUsersCount, updateUser, updateAvatar } from './operations';
+import { fetchUsersCount, updateUser, updateAvatar, getCurrentUser } from './operations';
 import { login, logout } from '../auth/operations';
 
 const initialState = {
-  user: null,
-  avatar: null,
-  totalCount: 1,
-  loading: false,
-  error: null,
+  user: {
+    name: null,
+    email: null,
+    _id: null,
+    gender: null,
+    weight: 0,
+    activeTime: 0,
+    dailyWaterGoal: 0,
+    avatar: null,
+  },
+  isLoading: false,
+  error: false,
+  token: null,
 };
 
-export const usersSlice = createSlice({
+const usersSlice = createSlice({
   name: 'users',
   initialState,
   extraReducers: builder =>
     builder
+      .addCase(getCurrentUser.pending, state => {
+        state.isLoading = true;
+        state.error = false;
+      })
+      .addCase(getCurrentUser.fulfilled, (state, action) => {
+        state.user = action.payload.data;
+        state.isLoading = false;
+        state.error = false;
+      })
+      .addCase(getCurrentUser.rejected, state => {
+        state.isLoading = false;
+        state.error = false;
+      })
       .addCase(fetchUsersCount.pending, state => {
-        state.loading = true;
+        state.isLoading = true;
         state.error = false;
       })
       .addCase(fetchUsersCount.fulfilled, (state, action) => {
         state.totalCount = action.payload;
-        state.loading = false;
+        state.isLoading = false;
         state.error = false;
       })
       .addCase(fetchUsersCount.rejected, state => {
-        state.loading = false;
+        state.isLoading = false;
         state.error = true;
       })
       .addCase(updateUser.pending, state => {
-        state.loading = true;
+        state.isLoading = true;
         state.error = false;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
         state.user = action.payload;
-        state.loading = false;
+        state.isLoading = false;
         state.error = false;
       })
       .addCase(updateUser.rejected, state => {
-        state.loading = false;
+        state.isLoading = false;
         state.error = true;
       })
       .addCase(updateAvatar.pending, state => {
-        state.loading = true;
+        state.isLoading = true;
         state.error = false;
       })
       .addCase(updateAvatar.fulfilled, (state, action) => {
         state.avatar = action.payload;
-        state.loading = false;
+        state.isLoading = false;
         state.error = false;
       })
       .addCase(updateAvatar.rejected, state => {
-        state.loading = false;
+        state.isLoading = false;
         state.error = true;
       })
       .addCase(login.fulfilled, (state, action) => {
@@ -61,11 +82,11 @@ export const usersSlice = createSlice({
         state.user = null;
         state.avatar = null;
         state.totalCount = 1;
-        state.loading = false;
+        state.isLoading = false;
         state.error = null;
       }),
 });
 
 // export const { fetchingInProgress, fetchingSuccess, fetchingError } = waterSlice.actions;
 
-export default usersSlice.reducer;
+export const usersReducer = usersSlice.reducer;

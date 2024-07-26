@@ -25,7 +25,6 @@ export const App = () => {
 
   return isRefreshing || isLoading ? (
     <WaterLoader />
-
   ) : (
     <div>
       {/* <WaterForm/> */}
@@ -53,10 +52,8 @@ export const App = () => {
             path="/tracker"
             element={<PrivateRoute redirectTo="/signin" component={<TrackerPage />} />}
           />
-          
         </Routes>
       </Layout>
-      
     </div>
   );
 };
