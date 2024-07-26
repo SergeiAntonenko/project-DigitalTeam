@@ -1,8 +1,8 @@
 import css from './AddWaterBtn.module.css';
 import { FiPlus } from 'react-icons/fi';
 import { useState } from 'react';
-import Modal from '../../shared/components/Modal/Modal';
-import WaterForm from '../WaterForm/WaterForm'; 
+import Modal from '../../../shared/components/Modal/Modal.jsx';
+import WaterForm from '../../Modals/WaterForm/WaterForm.jsx';
 
 const AddWaterBtn = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
