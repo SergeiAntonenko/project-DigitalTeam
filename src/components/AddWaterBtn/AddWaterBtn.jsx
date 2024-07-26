@@ -1,7 +1,7 @@
 import css from './AddWaterBtn.module.css';
 import { FiPlus } from 'react-icons/fi';
 import { useState } from 'react';
-import ModalAddWater from '../Modals/ModalAdd/WaterModal';
+import WaterModal from '../Modals/WaterModal/WaterModal';
 import Modal from '../../shared/components/Modal/Modal';
 
 const AddWaterBtn = () => {
@@ -25,7 +25,11 @@ const AddWaterBtn = () => {
       </button>
       {isModalOpen && (
         <Modal handleCloseModal={handleCloseModal}>
-          <ModalAddWater />
+          <WaterModal
+            isModalOpen={isModalOpen}
+            onCloseModal={handleCloseModal}
+            operationType={'add'}
+          />
         </Modal>
       )}
     </>
