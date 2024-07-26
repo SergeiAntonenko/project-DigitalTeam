@@ -6,8 +6,10 @@ import Iconsvg from '../MyIcons/MyIcons.jsx';
 import Modal from '../../../shared/components/Modal/Modal.jsx';
 import { logout } from '../../../redux/auth/operations.js';
 import { toast } from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 const LogOutModal = ({ handleCloseModal }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   // const [isModalOpen, setIsModalOpen] = useState(true);
 
@@ -59,14 +61,14 @@ const LogOutModal = ({ handleCloseModal }) => {
           <button className={css.close_button} onClick={handleCloseModal}>
             <Iconsvg width="28px" height="28px" iconName="modal-close" />
           </button>
-          <h1 className={css.log_out}>Log out</h1>
-          <h2 className={css.text}>Do you really want to leave?</h2>
+          <h1 className={css.log_out}>{t('log-out-modal.log-out')}</h1>
+          <h2 className={css.text}>{t('log-out-modal.want-to-leave')}</h2>
           <div className={css.button_container}>
             <button onClick={onLogOut} className={css.logout_button}>
-              Log out
+              {t('log-out-modal.log-out')}
             </button>
             <button onClick={handleCloseModal} className={css.cancel_button}>
-              Cancel
+              {t('log-out-modal.cancel')}
             </button>
           </div>
         </div>

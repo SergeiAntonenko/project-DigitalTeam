@@ -1,4 +1,14 @@
 {
+  "home-page.title": "Home Page",
   "welcome-section.description": "Record daily water intake and track",
-  "welcome-section.title": "Water consumption tracker"
+  "welcome-section.title": "Water consumption tracker",
+  "welcome-section.try-tracker": "Try tracker",
+  "welcome-section.sign-in": "Sign In",
+  "advantages-section.our-happy-customers": "Our<1> happy </1>customers",
+  "advantages-section.habit-drive": "Habit drive",
+  "advantages-section.view-statistics": "View statistics",
+  "advantages-section.personal-rate-setting": "Personal rate setting",
+  "log-out-modal.log-out": "Log out",
+  "log-out-modal.want-to-leave": "Do you really want to leave?",
+  "log-out-modal.cancel": "Cancel"
 }
