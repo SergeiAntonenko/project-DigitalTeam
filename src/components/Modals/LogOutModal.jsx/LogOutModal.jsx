@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import css from './LogOut.module.css';
 import Iconsvg from '../MyIcons/MyIcons.jsx';
 import Modal from '../../../shared/components/Modal/Modal.jsx';
-import { logout } from "../../../redux/auth/operations.js";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { logout } from '../../../redux/auth/operations.js';
+import { toast } from 'react-hot-toast';
 
-const LogOutModal = () => {
+const LogOutModal = ({ handleCloseModal }) => {
   const dispatch = useDispatch();
-const [isModalOpen, setIsModalOpen] = useState(true);
+
 
   const onLogOut = async () => {
     try {
@@ -33,9 +32,7 @@ const [isModalOpen, setIsModalOpen] = useState(true);
     }
   };
 
-const handleCloseModal = () => {
-  setIsModalOpen(false);
-};
+ 
 
   useEffect(() => {
     const handleEscapeKey = e => {
@@ -71,7 +68,7 @@ const handleCloseModal = () => {
           </div>
         </div>
       </Modal>
-    
+      {/* )} */}
     </>
   );
 };
