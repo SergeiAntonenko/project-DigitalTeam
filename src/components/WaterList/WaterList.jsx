@@ -1,11 +1,22 @@
+import WaterItemStub from '../WaterItem/WaterItemStub';
 import WaterItem from '../WaterItem/WaterItem';
-// import s from './WaterList.module.css';
+import css from './WaterList.module.css';
 
-const WaterList = () => {
+const WaterList = ({ array }) => {
   return (
-    <div>
-      <WaterItem />
-    </div>
+    <>
+      {array.length > 0 ? (
+        <ul className={css.waterListWrap}>
+          {array.map(item => (
+            <WaterItem key={item._id} item={item} />
+          ))}
+        </ul>
+      ) : (
+        <div className={css.general}>
+          <WaterItemStub />
+        </div>
+      )}
+    </>
   );
 };
 

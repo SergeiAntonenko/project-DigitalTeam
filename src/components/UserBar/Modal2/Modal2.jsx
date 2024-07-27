@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
-import s from './Modal.module.css';
-import Iconsvg from '../../../components/Modals/MyIcons/MyIcons';
+import { useEffect } from 'react';
+import s from './Modal2.module.css';
+import Iconsvg from '../../Modals/MyIcons/MyIcons';
 
-const Modal = ({ children, handleCloseModal }) => {
+const Modal2 = ({ children, handleCloseModal }) => {
   const handleEscapeKey = e => {
     if (e.key === 'Escape') {
       handleCloseModal();
     }
-  }; 
+  };
 
   useEffect(() => {
     document.addEventListener('keydown', handleEscapeKey);
@@ -28,4 +28,4 @@ const Modal = ({ children, handleCloseModal }) => {
   );
 };
 
-export default Modal;
+export default Modal2;

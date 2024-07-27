@@ -58,6 +58,7 @@ const SignUpPage = () => {
         initialValues={{
           email: '',
           password: '',
+          passwordRepeat: '',
         }}
         validationSchema={contactScheme}
         onSubmit={handleSubmit}

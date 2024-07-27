@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import css from './SignInForm.module.css';
-import { Formik, Form, Field, ErrorMessage, getIn } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 import { FiEye } from 'react-icons/fi';
@@ -84,7 +84,7 @@ const SignInForm = () => {
             </button>
 
             <div className={css.reminder}>
-              Don't have an account?{' '}
+            Don&rsquo;t have an account?{' '}
               <Link className={css.link} to="/signup">
                 Sign Up
               </Link>

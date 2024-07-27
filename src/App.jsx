@@ -12,7 +12,7 @@ const SignInPage = lazy(() => import('./pages/SignInPage/SignInPage.jsx'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage/SignUpPage.jsx'));
 const TrackerPage = lazy(() => import('./pages/TrackerPage/TrackerPage.jsx'));
 // import WaterForm from './components/Modals/WaterForm/WaterForm.jsx';
-// import WaterModal from './components/Modals/WaterModal/WaterModal.jsx';
+
 export const App = () => {
   const isRefreshing = useSelector(selectIsRefreshing);
   const isLoading = useSelector(selectIsLoading);
@@ -25,11 +25,10 @@ export const App = () => {
 
   return isRefreshing || isLoading ? (
     <WaterLoader />
-
   ) : (
     <div>
       {/* <WaterForm/> */}
-      {/* <WaterModal/> */}
+
       <Layout>
         <Routes>
           {/* <Route path="/" element={<HomePage />} /> */}
@@ -53,10 +52,8 @@ export const App = () => {
             path="/tracker"
             element={<PrivateRoute redirectTo="/signin" component={<TrackerPage />} />}
           />
-          
         </Routes>
       </Layout>
-      
     </div>
   );
 };
