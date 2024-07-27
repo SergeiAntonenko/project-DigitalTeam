@@ -124,6 +124,12 @@ const SignUpPage = () => {
                 Sign In
               </Link>
             </div>
+            <div className={css.reminder}>
+              Sign Up with{' '}
+              <Link className={css.link} to="/get-oauth-url">
+                Google
+              </Link>
+            </div>
           </Form>
         )}
       </Formik>
