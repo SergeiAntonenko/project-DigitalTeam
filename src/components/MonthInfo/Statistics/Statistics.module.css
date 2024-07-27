@@ -1,10 +1,8 @@
 .chartContainer {
-  width: 500px;
-  height: 400px;
-  margin-top: 10px;
-  margin-right: 30px;
-  margin-left: 0;
-  margin-bottom: 0;
+  width: 300px;
+  height: 215px;
+
+  cursor: pointer;
 }
 
 .dot {
@@ -24,7 +22,25 @@
   stop-opacity: 0;
 }
 
+.scaleLitr {
+}
+
 .area {
   stroke-width: 3;
   fill-opacity: 1;
+}
+.xSymbol {
+  font-family: Poppins;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 22.4px;
+  text-align: left;
+}
+
+.ySymbol {
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  text-align: left;
 }
