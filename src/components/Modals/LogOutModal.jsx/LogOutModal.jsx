@@ -52,7 +52,7 @@ const LogOutModal = ({ handleCloseModal }) => {
 
   return (
     <>
-      {/* {isModalOpen && ( */}
+    
       <Modal handleCloseModal={handleCloseModal}>
         <div className={css.modal_content}>
           <button className={css.close_button} onClick={handleCloseModal}>
@@ -70,7 +70,7 @@ const LogOutModal = ({ handleCloseModal }) => {
           </div>
         </div>
       </Modal>
-      {/* )} */}
+     
     </>
   );
 };

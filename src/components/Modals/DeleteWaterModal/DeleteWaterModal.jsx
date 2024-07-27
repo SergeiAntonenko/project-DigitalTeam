@@ -52,7 +52,7 @@ const DeleteModal = ({ handleCloseModal, water }) => {
           </div>
         </div>
       </div>
-      {/* )} */}
+      
     </>
   );
 };
