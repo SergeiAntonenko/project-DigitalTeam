@@ -1,4 +1,14 @@
 {
+  "home-page.title": "Головна сторінка",
   "welcome-section.description": "Записуйте щоденне споживання води та відстежуйте",
-  "welcome-section.title": "Трекер споживання води"
+  "welcome-section.title": "Трекер споживання води",
+  "welcome-section.try-tracker": "Спробуйте трекер",
+  "welcome-section.sign-in": "Увійти",
+  "advantages-section.our-happy-customers": "Наші<1> щасливі </1>клієнти",
+  "advantages-section.habit-drive": "Формування звичок",
+  "advantages-section.view-statistics": "Переглянути статистику",
+  "advantages-section.personal-rate-setting": "Персональне налаштування норм",
+  "log-out-modal.log-out": "Вийти",
+  "log-out-modal.want-to-leave": "Ви справді хочете вийти?",
+  "log-out-modal.cancel": "Скасувати"
 }
