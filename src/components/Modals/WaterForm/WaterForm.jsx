@@ -25,7 +25,7 @@ const schemaWater = yup.object().shape({
     .max(500, 'The maximum allowed amount of water is 500 ml.'),
 });
 
-const WaterForm = ({ operationType, initialData, waterId, initialWaterAmount, closeModal, onWaterAddOrUpdate }) => {
+const WaterForm = ({ operationType, initialData, waterId, initialWaterAmount, closeModal, onWaterAddOrUpdate, props }) => {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [progress, setProgress] = useState(0);
@@ -33,6 +33,7 @@ const WaterForm = ({ operationType, initialData, waterId, initialWaterAmount, cl
   const loading = useSelector(selectWaterLoading);
   const selectedDate = useSelector(selectDailyWater);
   const currentMonth = useSelector(selectMonthlyWater);
+
 
   const defaultTime = () => {
     const currentTime = new Date();
@@ -222,12 +223,13 @@ const WaterForm = ({ operationType, initialData, waterId, initialWaterAmount, cl
                 <p>{errors.keyboardAmount?.message}</p>
               </div>
               <button
-                className={css.button_save}
-                type="submit"
-                disabled={!isValid}
-              >
-                Save
-              </button>
+        className={css.button_save}
+        type="submit"
+        disabled={!isValid}
+    
+      >
+        Save
+      </button>
             </form>
           </div>
         </Modal>

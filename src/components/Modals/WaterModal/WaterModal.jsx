@@ -19,6 +19,15 @@ const WaterModal = ({ isModalOpen, onCloseModal, operationType }) => {
     }
   };
 
+  const handleSave = () => {
+    const data = {
+      amount: waterAmount,
+      time: recordingTime,
+    };
+    onSave(data);
+    onCloseModal();
+  };
+
   const title = operationType === 'add' ? 'Add water' : 'Edit water';
 
   const handleCloseModal = () => {
@@ -52,7 +61,7 @@ const WaterModal = ({ isModalOpen, onCloseModal, operationType }) => {
           <h2 className={css.subtitle}>Enter the value of the water used:</h2>
           <input type="text" value={waterAmount} onChange={handleWaterAmountChange} />
         </div>
-        <button className={css.button_save}>
+        <button className={css.button_save} onClick={handleSave}>
           Save
         </button>
       </div>
