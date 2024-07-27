@@ -10,5 +10,22 @@
   "advantages-section.personal-rate-setting": "Personal rate setting",
   "log-out-modal.log-out": "Log out",
   "log-out-modal.want-to-leave": "Do you really want to leave?",
-  "log-out-modal.cancel": "Cancel"
+  "log-out-modal.cancel": "Cancel",
+  "signup-signin-sections.signin": "Sign In",
+  "signup-signin-sections.signup": "Sign Up",
+  "signup-signin-sections.email": "Email",
+  "signup-signin-sections.password": "Password",
+  "signup-signin-sections.enter-email": "Enter your email",
+  "signup-signin-sections.enter-repeat-password": "Please repeat password",
+  "signup-signin-sections.enter-password": "Enter your password",
+  "signup-signin-sections.dont-have-account": "Don’t have an account?",
+  "signup-signin-sections.already-have-account": "Already have an account?",
+  "signup-signin-sections.repeat-password": "Repeat password",
+  "signup-signin-sections.invalid-email": "Invalid email",
+  "signup-signin-sections.email-required": "Email is required",
+  "signup-signin-sections.password-required": "Password is required",
+  "signup-signin-sections.password-repeat-required": "Password repeat is required",
+  "signup-signin-sections.password-short": "Password is too short",
+  "signup-signin-sections.password-long": "Password is too long",
+  "signup-signin-sections.password-match": "Passwords must match"
 }

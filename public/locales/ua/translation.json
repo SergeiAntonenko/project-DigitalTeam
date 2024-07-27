@@ -10,5 +10,22 @@
   "advantages-section.personal-rate-setting": "Персональне налаштування норм",
   "log-out-modal.log-out": "Вийти",
   "log-out-modal.want-to-leave": "Ви справді хочете вийти?",
-  "log-out-modal.cancel": "Скасувати"
+  "log-out-modal.cancel": "Скасувати",
+  "signup-signin-sections.signin": "Увійти",
+  "signup-signin-sections.signup": "Зареєструватися",
+  "signup-signin-sections.email": "Електронна пошта",
+  "signup-signin-sections.password": "Пароль",
+  "signup-signin-sections.enter-email": "Введіть вашу електронну пошту",
+  "signup-signin-sections.enter-password": "Введіть ваш пароль",
+  "signup-signin-sections.enter-repeat-password": "Повторіть введення пароля",
+  "signup-signin-sections.dont-have-account": "Не маєте акаунту?",
+  "signup-signin-sections.already-have-account": "Вже маєте акаунт?",
+  "signup-signin-sections.repeat-password": "Повторіть пароль",
+  "signup-signin-sections.invalid-email": "Невірна електронна пошта",
+  "signup-signin-sections.email-required": "Електронна пошта є обов'язковою",
+  "signup-signin-sections.password-required": "Пароль є обов'язковим",
+  "signup-signin-sections.password-repeat-required": "Повторення пароля є обов'язковим",
+  "signup-signin-sections.password-short": "Пароль занадто короткий",
+  "signup-signin-sections.password-long": "Дуже довгий пароль",
+  "signup-signin-sections.password-match": "Паролі повинні збігатися"
 }
