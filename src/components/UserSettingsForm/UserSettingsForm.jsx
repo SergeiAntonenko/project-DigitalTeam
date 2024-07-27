@@ -1,12 +1,12 @@
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import css from './ModalSettingForm.module.css';
-import { calcRequiredWater } from '../../../../calculation/calcRequiredWater';
-import { selectUser } from '../../../../redux/users/selectors';
-// import { useDispatch, useState } from 'react';
-import useModal from '../../ModalAdd/OpenCloseModal';
+import css from './UserSettingsForm.module.css';
+import { FormValidateError } from '../FormValidateError/FormValidateError';
+import { calcRequiredWater } from '../../calculation/calcRequiredWater';
+import { selectUser } from '../../redux/users/selectors';
 
 
 const schema = yup.object().shape({
@@ -69,19 +69,17 @@ const schema = yup.object().shape({
     }),
 });
 
-export const ModalSettingForm = () => {
-
-  const { isModalOpen, handleCloseModal } = useModal();
-
+export const UserSettingsForm = () => {
+ 
   const user = useSelector(selectUser);
 
-  // const dispatch = useDispatch();
+//   const dispatch = useDispatch();
 
   const {
     register,
     handleSubmit,
     watch,
-    formState: {error},
+    formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -94,34 +92,32 @@ export const ModalSettingForm = () => {
     },
   });
 
-    // Логіка відправки даних на бекенд
+  const onSubmit = async (data) => {
+    if (Object.keys(errors).length > 0) {
+      return;
+    }
 
-//   const onSubmit = async (data) => {
-//     if (Object.keys(errors).length > 0) {
-//       return;
-//     }
+    data.desiredVolume = data.desiredVolume * 1000;
 
-//     data.desiredVolume = data.desiredVolume * 1000;
-    
-  //   const formData = new FormData();
+    const formData = new FormData();
 
-  //   for (const key in data) {
-  //     if (key === 'avatar') {
-  //       if (data[key][0] !== undefined) {
-  //         formData.append(key, data[key][0]);
-  //       }
-  //       continue;
-  //     }
+    for (const key in data) {
+      if (key === 'avatar') {
+        if (data[key][0] !== undefined) {
+          formData.append(key, data[key][0]);
+        }
+        continue;
+      }
 
-  //     if (data[key] === '' || data[key] === undefined || data[key] === null) {
-  //       continue;
-  //     }
-  //     formData.append(key, data[key]);
-  //   }
+      if (data[key] === '' || data[key] === undefined || data[key] === null) {
+        continue;
+      }
+      formData.append(key, data[key]);
+    }
 
-  //   // const response = await dispatch(updateUser(formData));
-  //   // response.meta.requestStatus === 'fulfilled' && onClose();
-//   };
+    // const response = await dispatch(updateUser(formData));
+    // response.meta.requestStatus === 'fulfilled' && handleCloseModal();
+  };
 
   const { avatar, gender, name, email, weight, activityTime, desiredVolume } =
     watch();
@@ -139,11 +135,8 @@ export const ModalSettingForm = () => {
 
   return (
     <>
-      <form className={css.wrapper} onSubmit={handleSubmit()}>
-        {/* /(onSubmit) */}
-        <div className={css.avatarWrapper} style={{ display: isModalOpen ? 'block' : 'none' }}>
-                <button className={css.close_button} onClick={handleCloseModal}>
-      </button>
+      <form className={css.wrapper} onSubmit={handleSubmit(onSubmit)}>
+        <div className={css.avatarWrapper}>
           <img className={css.avatar} src={user.avatarURL} alt="Avatar" />
 
           {!avatar || avatar.length === 0 ? (
@@ -163,9 +156,9 @@ export const ModalSettingForm = () => {
           ) : (
             <strong className={css.avatarName}>{avatar[0].name}</strong>
           )}
-          {/* {errors.avatar && (
-            < message={errors.avatar.message} />
-          )} */}
+          {errors.avatar && (
+            <FormValidateError message={errors.avatar.message} />
+          )}
         </div>
 
         <div className={css.settingsWrapper}>
@@ -199,9 +192,9 @@ export const ModalSettingForm = () => {
                 Man
               </label>
 
-              {/* {errors.gender && (
-                < message={errors.gender.message} />
-              )} */}
+              {errors.gender && (
+                <FormValidateError message={errors.gender.message} />
+              )}
             </div>
 
             <div className={css.infoWrapper}>
@@ -215,9 +208,9 @@ export const ModalSettingForm = () => {
                 name="name"
                 id="name"
               />
-              {/* {errors.name && (
-                < message={errors.name.message} />
-              )} */}
+              {errors.name && (
+                <FormValidateError message={errors.name.message} />
+              )}
 
               <label className={css.subtitle} htmlFor="email">
                 Email
@@ -229,9 +222,9 @@ export const ModalSettingForm = () => {
                 name="email"
                 id="email"
               />
-              {/* {errors.email && (
-                < message={errors.email.message} />
-              )} */}
+              {errors.email && (
+                <FormValidateError message={errors.email.message} />
+              )}
             </div>
 
             <div className={css.normaWrapper}>
@@ -279,9 +272,9 @@ export const ModalSettingForm = () => {
                 name="weight"
                 id="weight"
               />
-              {/* {errors.weight && (
-                < message={errors.weight.message} />
-              )} */}
+              {errors.weight && (
+                <FormValidateError message={errors.weight.message} />
+              )}
 
               <label className={css.text} htmlFor="activityTime">
                 The time of active participation in sports:
@@ -293,9 +286,9 @@ export const ModalSettingForm = () => {
                 name="activityTime"
                 id="activityTime"
               />
-              {/* {errors.activityTime && (
-                < message={errors.activityTime.message} />
-              )} */}
+              {errors.activityTime && (
+                <FormValidateError message={errors.activityTime.message} />
+              )}
             </div>
 
             <div className={css.waterAmountWrapper}>
@@ -321,9 +314,9 @@ export const ModalSettingForm = () => {
                 name="desiredVolume"
                 id="desiredVolume"
               />
-              {/* {errors.desiredVolume && (
-                < message={errors.desiredVolume.message} />
-              )} */}
+              {errors.desiredVolume && (
+                <FormValidateError message={errors.desiredVolume.message} />
+              )}
 
             </div>
           </div>
@@ -337,9 +330,6 @@ export const ModalSettingForm = () => {
           Save
         </button>
       </form>
-
-          
     </>
   );
 };
-
