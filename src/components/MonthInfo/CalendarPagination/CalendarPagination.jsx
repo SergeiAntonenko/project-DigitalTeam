@@ -37,8 +37,10 @@ import leftChevron from '../../../images/AdvantagesSection/chevron-left.svg';
 import rightChevron from '../../../images/AdvantagesSection/chevron-right.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectMonth, setMonth } from '../../../redux/date/dateSlice';
+import { useTranslation } from 'react-i18next';
 
 const CalendarPagination = ({ currentDate, onDateChange }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const date = useSelector(selectMonth);
   const parsedDate = parse(date, 'MM-yyyy', new Date());
@@ -67,7 +69,11 @@ const CalendarPagination = ({ currentDate, onDateChange }) => {
         <img src={leftChevron} alt="Next Month" />
       </button>
       <span className={styles.month}>
-        {currentDate ? format(currentDate, 'MMMM, yyyy') : 'Invalid Date'}
+        {/* {currentDate ? format(currentDate, 'MMMM, yyyy') : 'Invalid Date'} */}
+        {currentDate
+          ? t(`month.${format(currentDate, 'MMMM').toLowerCase()}`) +
+            ` ${format(currentDate, 'yyyy')}`
+          : 'Invalid Date'}
       </span>
       <button onClick={handleNextMonth} className={styles.navButton}>
         <img src={rightChevron} alt="Next Month" />
@@ -77,3 +83,17 @@ const CalendarPagination = ({ currentDate, onDateChange }) => {
 };
 
 export default CalendarPagination;
+
+const MyComponent = () => {
+  const { t } = useTranslation();
+
+  const date = new Date();
+  const month = date.toLocaleString('default', { month: 'long' });
+  const translatedMonth = t(`months.${month}`);
+
+  return (
+    <div>
+      {translatedMonth}, {date.getFullYear()}
+    </div>
+  );
+};
