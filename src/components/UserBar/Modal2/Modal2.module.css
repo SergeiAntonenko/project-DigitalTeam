@@ -9,6 +9,8 @@
   top: 0;
   left: 0;
   z-index: 999;
+  overflow: auto; 
+  padding: 20px;
 }
 
 .container {
@@ -16,8 +18,24 @@
   background-color: white;
   border-radius: 15px;
   padding: 40px 20px;
-  width: 343px;
   box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+  max-height: calc(100vh - 150px);
+  overflow-y: auto;
+}
+.container::-webkit-scrollbar {
+  width: 10px;
+  height: 283px;
+}
+
+.container:-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: white;
+}
+
+.container::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+
+  background: rgb(219, 215, 216);
 }
 
 .closeButton {
@@ -35,6 +53,6 @@ svg {
   .container {
     border-radius: 15px;
     padding: 40px;
-    width: 518px;
+    width: 920px;
   }
 }
