@@ -12,7 +12,7 @@ import Iconsvg from '../MyIcons/MyIcons';
 const WaterModal = ({ isModalOpen, onCloseModal, operationType }) => {
   const { waterAmount, increaseWaterAmount, decreaseWaterAmount, setWaterAmount } = useWaterState();
   const [recordingTime, setRecordingTime] = useState(
-    Date().toLocaleTimeString(defaultLocale, { hour: '2-digit', minute: '2-digit' })
+    Date().toLocaleTimeString({ hour: '2-digit', minute: '2-digit' })
   );
 
   const handleRecordingTimeChange = e => {
