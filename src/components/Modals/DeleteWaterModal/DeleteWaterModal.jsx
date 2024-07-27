@@ -1,4 +1,3 @@
-// import React, { useState, useEffect } from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import css from './DeleteWaterModal.module.css';
@@ -7,7 +6,7 @@ import { deleteWater } from '../../../redux/water/operations.js';
 
 const DeleteModal = ({ handleCloseModal, water }) => {
   const dispatch = useDispatch();
-  // const [isModalOpen, setIsModalOpen] = useState(true);
+
 
   const handleDeleteConfirm = () => {
     try {
@@ -16,13 +15,9 @@ const DeleteModal = ({ handleCloseModal, water }) => {
     } catch (error) {
       alert('Something went wrong. Please try again.');
     }
-    handleCloseModal();
   };
 
-  // const handleCloseModal = () => {
-  //   setIsModalOpen(false);
-  // };
-
+ 
   useEffect(() => {
     const handleEscapeKey = e => {
       if (e.key === 'Escape') {
@@ -39,7 +34,6 @@ const DeleteModal = ({ handleCloseModal, water }) => {
 
   return (
     <>
-      {/* {isModalOpen && ( */}
       <div className={css.modalwrapper}>
         <div className={css.modal_background} onClick={handleCloseModal}></div>
         <div className={css.modal_content}>

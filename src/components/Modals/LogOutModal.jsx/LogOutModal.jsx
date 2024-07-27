@@ -1,4 +1,3 @@
-// import React, { useState, useEffect } from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import css from './LogOut.module.css';
@@ -9,7 +8,7 @@ import { toast } from 'react-hot-toast';
 
 const LogOutModal = ({ handleCloseModal }) => {
   const dispatch = useDispatch();
-  // const [isModalOpen, setIsModalOpen] = useState(true);
+
 
   const onLogOut = async () => {
     try {
@@ -33,9 +32,7 @@ const LogOutModal = ({ handleCloseModal }) => {
     }
   };
 
-  // const handleCloseModal = () => {
-  //   setIsModalOpen(false);
-  // };
+ 
 
   useEffect(() => {
     const handleEscapeKey = e => {
