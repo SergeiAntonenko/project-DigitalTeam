@@ -31,8 +31,8 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     // contacts: waterReducer,
-    date: dateReducer,
     users: persistReducer(usersPersistConfig, usersReducer),
+    date: dateReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

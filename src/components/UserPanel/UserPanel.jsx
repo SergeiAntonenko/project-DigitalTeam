@@ -5,8 +5,9 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '../../redux/users/selectors';
 
 export const UserPanel = () => {
+  let userName = 'User';
   const userState = useSelector(selectUser);
-  const userName = userState.name;
+  userName = userState.name;
 
   return (
     <div className={css.userPanel}>

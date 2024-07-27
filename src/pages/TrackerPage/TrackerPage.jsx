@@ -3,7 +3,6 @@ import { DocumentTitle } from '../../components/DocumentTitle';
 import WaterDetailedInfo from '../../components/WaterDetailedInfo/WaterDetailedInfo';
 import WaterMainInfo from '../../components/WaterMainInfo/WaterMainInfo';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIsLoading } from '../../redux/auth/selectors';
 import { useEffect } from 'react';
 import { getCurrentUser } from '../../redux/users/operations.js';
 

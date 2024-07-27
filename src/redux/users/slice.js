@@ -13,7 +13,7 @@ const initialState = {
     dailyWaterGoal: 0,
     avatar: null,
   },
-  isLoading: false,
+  userLoading: false,
   error: false,
   token: null,
 };
@@ -24,12 +24,12 @@ const usersSlice = createSlice({
   extraReducers: builder =>
     builder
       .addCase(getCurrentUser.pending, state => {
-        state.isLoading = true;
+        state.userLoading = true;
         state.error = false;
       })
       .addCase(getCurrentUser.fulfilled, (state, action) => {
         state.user = action.payload.data;
-        state.isLoading = false;
+        state.userLoading = false;
         state.error = false;
       })
       .addCase(getCurrentUser.rejected, state => {
