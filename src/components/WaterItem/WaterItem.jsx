@@ -4,7 +4,7 @@ import { FiTrash } from 'react-icons/fi';
 import { FiEdit2 } from 'react-icons/fi';
 import { useState } from 'react';
 import ModalDelete from '../Modals/DeleteWaterModal/DeleteWaterModal';
-import ModalEditWater from '../Modals/EditWater/EditWater';
+import WaterModal from '../Modals/WaterModal/WaterModal';
 import Modal from '../../shared/components/Modal/Modal';
 import { useSelector } from 'react-redux';
 import { selectDate } from '../../redux/date/dateSlice';
@@ -57,9 +57,11 @@ const WaterItem = ({ item: { _id: id, amount, time } }) => {
             </Modal>
           )}
           {isModalEditWaterOpen && (
-            <Modal handleCloseModal={handleCloseModalEditWater}>
-              <ModalEditWater handleCloseModal={handleCloseModalEditWater} entry={{ id, amount }} />
-            </Modal>
+            <WaterModal
+              isModalOpen={isModalEditWaterOpen}
+              onCloseModal={handleCloseModalEditWater}
+              // operationType={'add'}
+            />
           )}
         </div>
       </li>

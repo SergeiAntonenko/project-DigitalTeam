@@ -4,7 +4,7 @@ import { FiTrash } from 'react-icons/fi';
 import { FiEdit2 } from 'react-icons/fi';
 import { useState } from 'react';
 import ModalDelete from '../Modals/DeleteWaterModal/DeleteWaterModal';
-import ModalEditWater from '../Modals/EditWater/EditWater';
+import WaterModal from '../Modals/WaterModal/WaterModal';
 import Modal from '../../shared/components/Modal/Modal';
 
 const WaterItemStub = () => {
@@ -49,9 +49,11 @@ const WaterItemStub = () => {
         </Modal>
       )}
       {isModalEditWaterOpen && (
-        <Modal handleCloseModal={handleCloseModalEditWater}>
-          <ModalEditWater handleCloseModal={handleCloseModalEditWater} />
-        </Modal>
+        <WaterModal
+          isModalOpen={isModalEditWaterOpen}
+          onCloseModal={handleCloseModalEditWater}
+          // operationType={'add'}
+        />
       )}
     </div>
   );
