@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import css from './WaterModal.module.css';
 import useWaterState from '../WaterState.jsx';
 import Iconsvg from '../MyIcons/MyIcons.jsx';
@@ -6,7 +6,9 @@ import Modal from '../../../shared/components/Modal/Modal.jsx';
 
 const WaterModal = ({ isModalOpen, onCloseModal, operationType }) => {
   const { waterAmount, increaseWaterAmount, decreaseWaterAmount, setWaterAmount } = useWaterState();
-  const [recordingTime, setRecordingTime] = useState(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+  const [recordingTime, setRecordingTime] = useState(
+    new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+  );
 
   const handleRecordingTimeChange = e => {
     setRecordingTime(e.target.value);
@@ -46,7 +48,11 @@ const WaterModal = ({ isModalOpen, onCloseModal, operationType }) => {
         <div className={css.waterwrapper}>
           <h3 className={css.amount_water}>Amount of water: {waterAmount} ml</h3>
           <div className={css.minplus_wrapper}>
-            <button className={css.button_water} onClick={decreaseWaterAmount} disabled={waterAmount === 0}>
+            <button
+              className={css.button_water}
+              onClick={decreaseWaterAmount}
+              disabled={waterAmount === 0}
+            >
               <span className={css.pl_min}>-</span>
             </button>
             <button className={css.button_ml}>{waterAmount} ml</button>
@@ -61,9 +67,7 @@ const WaterModal = ({ isModalOpen, onCloseModal, operationType }) => {
           <h2 className={css.subtitle}>Enter the value of the water used:</h2>
           <input type="text" value={waterAmount} onChange={handleWaterAmountChange} />
         </div>
-        <button className={css.button_save} onClick={handleSave}>
-          Save
-        </button>
+        <button className={css.button_save}>Save</button>
       </div>
     </Modal>
   ) : null;

@@ -10,16 +10,16 @@ const LanguageToggle = () => {
   });
 
   const handleToggle = () => {
-    setLang(lng => {
-      const language = lng === 'en' ? 'ua' : 'en';
-      i18n.changeLanguage(language);
-      return language;
-    });
+    const language = lang === 'en' ? 'ua' : 'en';
+    i18n.changeLanguage(language);
+    setLang(language);
   };
+
+  const getToggleLabel = () => (lang === 'en' ? 'ua' : 'en').toUpperCase();
 
   return (
     <button className={s.lng} onClick={handleToggle}>
-      {lang.toUpperCase()}
+      {getToggleLabel()}
     </button>
   );
 };

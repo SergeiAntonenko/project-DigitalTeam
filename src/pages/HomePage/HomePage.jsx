@@ -5,11 +5,13 @@ import AdvantagesSection from '../../components/AdvantagesSection/AdvantagesSect
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { refreshUser } from '../../redux/auth/operations.js';
+import { useTranslation } from 'react-i18next';
 
 const HomePage = () => {
+  const { t } = useTranslation();
   return (
     <>
-      <DocumentTitle>Home Page</DocumentTitle>
+      <DocumentTitle>{t('home-page.title')}</DocumentTitle>
       <div className={css.container}>
         <WelcomeSection />
         <AdvantagesSection />
