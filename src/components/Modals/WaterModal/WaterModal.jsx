@@ -12,7 +12,7 @@ import Iconsvg from '../MyIcons/MyIcons';
 const WaterModal = ({ isModalOpen, onCloseModal, operationType }) => {
   const { waterAmount, increaseWaterAmount, decreaseWaterAmount, setWaterAmount } = useWaterState();
   const [recordingTime, setRecordingTime] = useState(
-    new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    new Date().toLocaleString([], { hour: '2-digit', minute: '2-digit' })
   );
 
   const handleRecordingTimeChange = e => {
@@ -35,11 +35,22 @@ const WaterModal = ({ isModalOpen, onCloseModal, operationType }) => {
   const dispatch = useDispatch();
   const [isUpdating] = useState(false);
   const user = useSelector(selectUser);
-  
+
   const id = user.id;
   const updatedWaterData = user.updatedWaterData;
 
- 
+  const currentDate = new Date();
+  const localDate = currentDate.toLocaleDateString('en-GB');
+  const localTime = currentDate.toLocaleTimeString('en-GB', {
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+
+  const waterData = {
+    waterValue: waterAmount,
+    localDate,
+    localTime,
+  };
 
   const handleSaveAndUpdate = () => {
     if (isUpdating) {
@@ -52,9 +63,8 @@ const WaterModal = ({ isModalOpen, onCloseModal, operationType }) => {
           console.error(err.message);
         });
     } else {
-      dispatch(addWater({ waterValue: waterAmount }))
+      dispatch(addWater({ waterValue: waterAmount, localDate, localTime }))
         .then(() => {
-          console.log('Success');
           onCloseModal();
         })
         .catch(err => {
@@ -71,7 +81,7 @@ const WaterModal = ({ isModalOpen, onCloseModal, operationType }) => {
         </button>
         <h1 className={css.title}>{title}</h1>
         <h2 className={css.subtitle}>Choose a value:</h2>
-        
+
         <div className={css.waterwrapper}>
           <h3 className={css.amount_water}>Amount of water: {waterAmount} ml</h3>
           <div className={css.minplus_wrapper}>
@@ -92,10 +102,11 @@ const WaterModal = ({ isModalOpen, onCloseModal, operationType }) => {
           <h3 className={css.time_water}>Recording time: {recordingTime}</h3>
           <input type="text" value={recordingTime} onChange={handleRecordingTimeChange} />
           <h2 className={css.subtitle}>Enter the value of the water used:</h2>
-          <input type="text" value={waterAmount} onChange={handleWaterAmountChange}/>
-        
+          <input type="text" value={waterAmount} onChange={handleWaterAmountChange} />
         </div>
-        <button className={css.button_save} onClick={handleSaveAndUpdate}>Save</button>
+        <button className={css.button_save} onClick={handleSaveAndUpdate}>
+          Save
+        </button>
       </div>
     </Modal>
   ) : null;

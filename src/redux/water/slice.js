@@ -15,17 +15,17 @@ const initialState = {
   error: null,
 };
 
-export const waterSlice = createSlice({
+const waterSlice = createSlice({
   name: 'water',
   initialState,
   extraReducers: builder =>
     builder
-      .addCase(addWater.pending, state => {
+      .addCase(addWater.pending, (state, action) => {
         state.loading = true;
         state.error = false;
       })
       .addCase(addWater.fulfilled, (state, action) => {
-        state.dailyWater.push(action.payload);
+        // state.dailyWater.push(action.payload);
         state.loading = false;
         state.error = false;
       })
@@ -95,4 +95,4 @@ export const waterSlice = createSlice({
       }),
 });
 
-export default waterSlice.reducer;
+export const waterReducer = waterSlice.reducer;
