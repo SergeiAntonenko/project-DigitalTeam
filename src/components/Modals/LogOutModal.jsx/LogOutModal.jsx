@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import css from './LogOut.module.css';
-import Iconsvg from '../MyIcons/MyIcons.jsx';
+import Iconsvg from '../../../images/Icons/Icons.jsx';
 import Modal from '../../../shared/components/Modal/Modal.jsx';
 import { logout } from '../../../redux/auth/operations.js';
-import { toast } from 'react-hot-toast';
+import toast  from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 
 const LogOutModal = ({ handleCloseModal }) => {
@@ -16,21 +16,11 @@ const LogOutModal = ({ handleCloseModal }) => {
     try {
       await dispatch(logout());
 
-      toast.success('Successfully logged out!', {
-        style: {
-          background: '#28a745',
-          color: '#ffffff',
-        },
-      });
+      toast.success('Successfully logged out!');
 
       handleCloseModal();
     } catch (error) {
-      toast.error('Something went wrong. Please try again.', {
-        style: {
-          background: '#dc3545',
-          color: '#ffffff',
-        },
-      });
+      toast.error('Something went wrong. Please try again.');
     }
   };
 
