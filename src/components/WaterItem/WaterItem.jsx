@@ -7,13 +7,11 @@ import ModalDelete from '../Modals/DeleteWaterModal/DeleteWaterModal';
 import WaterModal from '../Modals/WaterModal/WaterModal';
 import Modal from '../../shared/components/Modal/Modal';
 import { useSelector } from 'react-redux';
-import { selectDate } from '../../redux/date/dateSlice';
+import { selectWaterLoading } from '../../redux/water/selectors';
 
-const WaterItem = ({ item: { _id: id, amount, time } }) => {
+const WaterItem = ({ item }) => {
   const [isModaDeleteOpen, setIsModaDeleteOpen] = useState(false);
   const [isModalEditWaterOpen, setIsModalEditWaterOpen] = useState(false);
-
-  const date = useSelector(selectDate);
 
   const handleCloseModalDelete = () => {
     setIsModaDeleteOpen(false);
@@ -22,6 +20,7 @@ const WaterItem = ({ item: { _id: id, amount, time } }) => {
   const handleOpenModalDelete = () => {
     setIsModaDeleteOpen(true);
   };
+
   const handleCloseModalEditWater = () => {
     setIsModalEditWaterOpen(false);
   };
@@ -30,42 +29,41 @@ const WaterItem = ({ item: { _id: id, amount, time } }) => {
     setIsModalEditWaterOpen(true);
   };
 
+  const isWaterLoading = useSelector(selectWaterLoading);
+
   const formattedAmount =
-    amount >= 1000 ? `${(amount / 1000).toFixed(1).replace('.0', '')}${'L'}` : `${amount}${'Ml'}`;
+    item.waterValue >= 1000
+      ? `${(item.waterValue / 1000).toFixed(1).replace('.0', '')}${' l'}`
+      : `${item.waterValue}${' ml'}`;
+
   return (
-    <>
-      <li>
-        <div className={css.center}>
-          <div className={css.div1}>
-            <IconGlass className={css.div1} />
-          </div>
-          <div className={css.div2}>
-            <p className={css.text_value}>{formattedAmount}</p>
-            <p className={css.text_time}>{time}</p>
-          </div>
-          <div className={css.buttonContainer}>
-            <button type="button" className={css.button1} onClick={handleOpenModalEditWater}>
-              <FiEdit2 className={css.edit} />
-            </button>
-            <button type="button" className={css.button2} onClick={handleOpenModalDelete}>
-              <FiTrash className={css.edit} />
-            </button>
-          </div>
-          {isModaDeleteOpen && (
-            <Modal handleCloseModal={handleCloseModalDelete}>
-              <ModalDelete handleCloseModal={handleCloseModalDelete} entry={{ id, date }} />
-            </Modal>
-          )}
-          {isModalEditWaterOpen && (
-            <WaterModal
-              isModalOpen={isModalEditWaterOpen}
-              onCloseModal={handleCloseModalEditWater}
-              // operationType={'add'}
-            />
-          )}
+    isWaterLoading && (
+      <div className={css.center}>
+        <div className={css.div1}>
+          <IconGlass className={css.div1} />
         </div>
-      </li>
-    </>
+        <div className={css.div2}>
+          <span className={css.value}>{formattedAmount}</span>
+          <span className={css.time}>{item.localTime}</span>
+        </div>
+        <div className={css.buttonContainer}>
+          <button type="button" className={css.button1} onClick={handleOpenModalEditWater}>
+            <FiEdit2 className={css.edit} />
+          </button>
+          <button type="button" className={css.button2} onClick={handleOpenModalDelete}>
+            <FiTrash className={css.edit} />
+          </button>
+        </div>
+        {isModaDeleteOpen && (
+          <Modal handleCloseModal={handleCloseModalDelete}>
+            <ModalDelete handleCloseModal={handleCloseModalDelete} />
+          </Modal>
+        )}
+        {isModalEditWaterOpen && (
+          <WaterModal isModalOpen={isModalEditWaterOpen} onCloseModal={handleCloseModalEditWater} />
+        )}
+      </div>
+    )
   );
 };
 
