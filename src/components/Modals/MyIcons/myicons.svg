@@ -1,0 +1,13 @@
+<svg id ="modal-close" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M21 7L7 21" stroke="#2F2F2F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M7 7L21 21" stroke="#2F2F2F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
+
+<svg  id="eclipse" width="0" height="0" >
+  <symbol fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" id="Ellipse 13">
+    <circle cx="4" cy="4" r="4" fill="#9BE1A0"></circle>
+  </symbol>
+</svg>
+
+
+

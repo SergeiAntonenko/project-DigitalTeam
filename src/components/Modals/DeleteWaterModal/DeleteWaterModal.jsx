@@ -3,11 +3,8 @@ import { useDispatch } from 'react-redux';
 import css from './DeleteWaterModal.module.css';
 import Iconsvg from '../../../images/Icons/Icons.jsx';
 import { deleteWater } from '../../../redux/water/operations.js';
-<<<<<<< HEAD
 import toast from 'react-hot-toast';
-=======
 import { useTranslation } from 'react-i18next';
->>>>>>> main
 
 const DeleteModal = ({ handleCloseModal, water }) => {
   const { t } = useTranslation();
