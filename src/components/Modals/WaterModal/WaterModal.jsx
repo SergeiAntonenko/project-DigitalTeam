@@ -15,8 +15,12 @@
 //     new Date().toLocaleString([], { hour: '2-digit', minute: '2-digit' })
 //   );
 
-//   const handleRecordingTimeChange = e => {
-//     setRecordingTime(e.target.value);
+//   const handleChangeRecordingTime = e => {
+//     const inputValue = e.target.value;
+    
+//     if (/^[0-9]{0,2}:[0-9]{0,2}$/.test(inputValue) || inputValue === '') {
+//       setRecordingTime(inputValue);
+//     }
 //   };
 
 //   const handleWaterAmountChange = e => {
@@ -56,11 +60,11 @@
 //     if (isUpdating) {
 //       dispatch(updateWater({ recordId: id, water: updatedWaterData }))
 //         .then(() => {
-//           console.log('Update success');
+//           toast.success('Update success');
 //           onCloseModal();
 //         })
 //         .catch(err => {
-//           console.error(err.message);
+//           toast.error(err.message);
 //         });
 //     } else {
 //       dispatch(addWater({ waterValue: waterAmount, localDate, localTime }))
@@ -90,17 +94,18 @@
 //               onClick={decreaseWaterAmount}
 //               disabled={waterAmount === 0}
 //             >
-//               <span className={css.pl_min}>-</span>
+//            <Iconsvg className={css.pl_min} iconName="icon-minus-round"/>
 //             </button>
-//             <button className={css.button_ml}>{waterAmount} ml</button>
+//             <span className={css.button_ml}>{waterAmount} ml</span>
 //             <button className={css.button_water} onClick={increaseWaterAmount}>
-//               <span className={css.pl_min}>+</span>
+
+//             <Iconsvg className={css.pl_min} iconName="icon-plus-round" />
 //             </button>
 //           </div>
 //         </div>
 //         <div className={css.button_wrapper}>
 //           <h3 className={css.time_water}>Recording time: {recordingTime}</h3>
-//           <input type="text" value={recordingTime} onChange={handleRecordingTimeChange} />
+//           <input type="text" value={recordingTime} onChange={handleChangeRecordingTime} />
 //           <h2 className={css.subtitle}>Enter the value of the water used:</h2>
 //           <input type="text" value={waterAmount} onChange={handleWaterAmountChange} />
 //         </div>
@@ -110,10 +115,11 @@
 //       </div>
 //     </Modal>
 //   ) : null;
-// };
+//  };
 
-// export default WaterModal;
-// ============================================================
+//  export default WaterModal;
+
+
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -125,6 +131,7 @@ import Modal from '../../../shared/components/Modal/Modal';
 import css from './WaterModal.module.css';
 import Iconsvg from '../../../images/Icons/Icons.jsx';
 import toast  from 'react-hot-toast';
+
 
 const WaterModal = ({ isModalOpen, onCloseModal, operationType }) => {
   const { waterAmount, increaseWaterAmount, decreaseWaterAmount, setWaterAmount } = useWaterState();
@@ -139,8 +146,6 @@ const WaterModal = ({ isModalOpen, onCloseModal, operationType }) => {
       setRecordingTime(inputValue);
     }
   };
-
-  
 
 
   const handleWaterAmountChange = e => {
@@ -177,7 +182,7 @@ const WaterModal = ({ isModalOpen, onCloseModal, operationType }) => {
     if (isUpdating) {
       dispatch(updateWater({ recordId: id, water: updatedWaterData }))
         .then(() => {
-         toast.success('Update Success');
+         toast.success('Success');
           onCloseModal();
         })
         .catch(err => {
@@ -194,6 +199,7 @@ const WaterModal = ({ isModalOpen, onCloseModal, operationType }) => {
   };
 
   return isModalOpen ? (
+  
     <Modal handleCloseModal={handleCloseModal}>
       <div className={css.modalwrapper}>
         <button className={css.close_button} onClick={onCloseModal}>
@@ -230,6 +236,7 @@ const WaterModal = ({ isModalOpen, onCloseModal, operationType }) => {
         </button>
       </div>
     </Modal>
+  
   ) : null;
 };
 
