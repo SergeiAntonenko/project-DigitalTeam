@@ -8,6 +8,7 @@ const WaterProgressBar = ({ progress }) => {
     const updLapPosition = () => {
         if (waterRef.current) {
             const containerWidth = waterRef.current.offsetWidth;
+            const circleWidth = 15;
 
             let correctProgress = Math.min(100, Math.max(0, progress));
 
@@ -16,18 +17,21 @@ const WaterProgressBar = ({ progress }) => {
             if (correctProgress >= 0 && correctProgress <= 5) {
                 newPosition = 10;
             } else if (correctProgress === 100) {
-                newPosition = containerWidth;
+                newPosition = containerWidth - circleWidth / 2;
+            } else {
+                newPosition = (correctProgress * (containerWidth - circleWidth)) / 100 + circleWidth / 2;
             }
 
             if (window.innerWidth > 768) {
                 if (correctProgress >= 0 && correctProgress <= 5) {
                     newPosition = 15;
                 } else if (correctProgress === 100) {
-                    newPosition = containerWidth + 10;
+                    newPosition = containerWidth + 10 - circleWidth / 2;
                 } else {
-                    newPosition = (correctProgress * (containerWidth + 20)) / 100;
+                    newPosition = (correctProgress * (containerWidth + 20 - circleWidth)) / 100 + circleWidth / 2;
                 }
             }
+
             setLapPosition(newPosition);
         }
     };
@@ -44,7 +48,8 @@ const WaterProgressBar = ({ progress }) => {
         };
     }, []);
 
-    const shouldShowPercentage = (progress >= 15 && progress <= 40) || (progress >= 60 && progress <= 90);
+    const roundedProgress = Math.round(progress);
+    const shouldShowPercentage = (roundedProgress >= 15 && roundedProgress <= 40) || (roundedProgress >= 60 && roundedProgress <= 80);
 
     return (
         <div className={css.waterProgress}>
@@ -52,15 +57,13 @@ const WaterProgressBar = ({ progress }) => {
                 <p className={css.data}>Today</p>
 
                 <div className={css.progressContainer} ref={waterRef}>
-
                     <div className={css.progressBar} style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}></div>
-                    
                     <div className={css.progressLap} style={{ left: `${lapPosition}px` }}></div>
                 </div>
 
                 {shouldShowPercentage && (
                     <div className={css.progressPercentageMove} style={{ left: `${lapPosition}px` }}>
-                        {progress}%
+                        {roundedProgress}%
                     </div>
                 )}
 

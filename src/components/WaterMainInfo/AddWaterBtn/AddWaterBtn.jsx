@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Modal from '../../../shared/components/Modal/Modal.jsx';
 import WaterModal from '../../Modals/WaterModal/WaterModal.jsx';
 
-const AddWaterBtn = () => {
+const AddWaterBtn = ({ onWaterUpdate }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -29,6 +29,7 @@ const AddWaterBtn = () => {
           <WaterModal
             isModalOpen={isModalOpen}
             onCloseModal={handleCloseModal}
+            onWaterUpdate={onWaterUpdate}
             operationType={'add'}
           />
         </Modal>
