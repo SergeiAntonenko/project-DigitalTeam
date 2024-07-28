@@ -25,7 +25,7 @@ const waterSlice = createSlice({
         state.error = false;
       })
       .addCase(addWater.fulfilled, (state, action) => {
-        state.dailyWater.push(action.payload);
+        // state.dailyWater.push(action.payload);
         state.loading = false;
         state.error = false;
       })
