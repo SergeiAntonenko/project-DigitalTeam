@@ -11,6 +11,7 @@ const HomePage = lazy(() => import('./pages/HomePage/HomePage.jsx'));
 const SignInPage = lazy(() => import('./pages/SignInPage/SignInPage.jsx'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage/SignUpPage.jsx'));
 const TrackerPage = lazy(() => import('./pages/TrackerPage/TrackerPage.jsx'));
+// import WaterForm from './components/Modals/WaterForm/WaterForm.jsx';
 
 export const App = () => {
   const isRefreshing = useSelector(selectIsRefreshing);
@@ -26,6 +27,8 @@ export const App = () => {
     <WaterLoader />
   ) : (
     <div>
+      {/* <WaterForm/> */}
+
       <Layout>
         <Routes>
           {/* <Route path="/" element={<HomePage />} /> */}

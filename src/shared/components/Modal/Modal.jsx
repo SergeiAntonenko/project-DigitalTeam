@@ -7,7 +7,7 @@ const Modal = ({ children, handleCloseModal }) => {
     if (e.key === 'Escape') {
       handleCloseModal();
     }
-  };
+  }; 
 
   useEffect(() => {
     document.addEventListener('keydown', handleEscapeKey);

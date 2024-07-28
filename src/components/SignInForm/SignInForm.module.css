@@ -66,10 +66,23 @@
 }
 
 .eyeIcon {
+  width: 20px;
+  height: 20px;
   position: absolute;
-  right: 15px;
-  bottom: 10px;
+  right: 16px;
+  top: 50px;
   cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .eyeIcon {
+    top: 40px;
+  }
+}
+
+.eyeIcon svg {
+  width: 20px;
+  height: 20px;
 }
 
 .error {
@@ -95,7 +108,7 @@
 }
 
 .field {
-  position: relative;
+  /* position: relative; */
   border-radius: 15px;
   border: 1px solid #2f2f2f;
   outline: none;
@@ -202,3 +215,8 @@
   width: 100%;
   position: relative;
 }
+
+
+
+
+
