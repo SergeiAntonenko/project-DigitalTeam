@@ -8,14 +8,19 @@ export const addWater = createAsyncThunk(
       const state = thunkAPI.getState();
       const token = state.auth.token;
 
-      const response = await api.instance.post('/water/add', {
-        waterValue: waterAmount,
-        localDate,
-        localTime,
-        headers: {
-          Authorization: `Bearer ${token}`,
+      const response = await api.instance.post(
+        '/water/add',
+        {
+          waterValue: waterAmount,
+          localDate,
+          localTime,
         },
-      });
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
