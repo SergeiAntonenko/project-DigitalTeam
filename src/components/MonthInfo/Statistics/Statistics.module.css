@@ -1,8 +1,15 @@
-.chartContainer {
-  width: 300px;
-  height: 215px;
+.container {
+  display: flex;
+}
 
-  cursor: pointer;
+.scrollContainer {
+  overflow-x: auto; /* Обеспечивает горизонтальную прокрутку */
+  overflow-y: hidden;
+  width: 100%;
+}
+
+.chartWrapper {
+  width: 100%;
 }
 
 .dot {
@@ -22,25 +29,30 @@
   stop-opacity: 0;
 }
 
-.scaleLitr {
-}
-
 .area {
   stroke-width: 3;
   fill-opacity: 1;
 }
-.xSymbol {
-  font-family: Poppins;
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 22.4px;
-  text-align: left;
-}
 
+.xSymbol,
 .ySymbol {
   font-family: Poppins;
   font-size: 14px;
   font-weight: 400;
   line-height: 18px;
   text-align: left;
+}
+
+/* Tablet adaptive */
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .scrollContainer {
+    width: 100%;
+  }
+}
+
+/* Desktop adaptive */
+@media screen and (min-width: 1440px) {
+  .scrollContainer {
+    width: 100%;
+  }
 }
