@@ -39,6 +39,19 @@ const WaterModal = ({ isModalOpen, onCloseModal, operationType }) => {
   const id = user.id;
   const updatedWaterData = user.updatedWaterData;
 
+  const currentDate = new Date();
+  const localDate = currentDate.toLocaleDateString('en-GB');
+  const localTime = currentDate.toLocaleTimeString('en-GB', {
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+
+  const waterData = {
+    waterValue: waterAmount,
+    localDate,
+    localTime,
+  };
+
   const handleSaveAndUpdate = () => {
     if (isUpdating) {
       dispatch(updateWater({ recordId: id, water: updatedWaterData }))
@@ -50,9 +63,8 @@ const WaterModal = ({ isModalOpen, onCloseModal, operationType }) => {
           console.error(err.message);
         });
     } else {
-      dispatch(addWater({ waterValue: waterAmount }))
+      dispatch(addWater(waterData))
         .then(() => {
-          console.log('Success');
           onCloseModal();
         })
         .catch(err => {

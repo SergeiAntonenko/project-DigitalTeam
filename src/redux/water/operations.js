@@ -1,9 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from '../../api/api';
 
-export const addWater = createAsyncThunk('water/add', async (water, thunkAPI) => {
+export const addWater = createAsyncThunk('water/add', async (waterData, thunkAPI) => {
+  console.log(waterData);
   try {
-    const response = await api.instance.post('water/add', water);
+    const response = await api.instance.post('/water/add', waterData);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
