@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { AreaChart, Area, XAxis, Tooltip, YAxis } from 'recharts';
 import { curveCardinal } from 'd3-shape';
 import moment from 'moment';
@@ -12,10 +12,10 @@ const useMediaQuery = query => {
     const mediaQueryList = window.matchMedia(query);
     const documentChangeHandler = () => setMatches(mediaQueryList.matches);
 
-    mediaQueryList.addListener(documentChangeHandler);
+    mediaQueryList.addEventListener('change', documentChangeHandler);
     documentChangeHandler(); // Инициализируем значение
 
-    return () => mediaQueryList.removeListener(documentChangeHandler);
+    return () => mediaQueryList.removeEventListener('change', documentChangeHandler);
   }, [query]);
 
   return matches;
@@ -34,6 +34,11 @@ const getData = () => {
     });
     date = date.clone().subtract(1, 'day');
   }
+  // Добавляем начальную точку с 0%
+  data.push({
+    date: startOfMonth.subtract(1, 'day').format('DD'),
+    water: 0,
+  });
 
   return data.reverse();
 };
@@ -42,25 +47,51 @@ const data = getData();
 const cardinal = curveCardinal.tension(0.2);
 
 const Statistics = () => {
-  // Получаем текущую дату
-  const today = moment();
-  // Ищем индекс данных для текущей даты
-  const startIndex = data.findIndex(entry => entry.date === today.format('DD'));
-
-  // Отображаем 7 последних записей, начиная с текущей даты или выбранной даты
-  const visibleData = data.slice(Math.max(startIndex - 6, 0), startIndex + 1);
+  // Ссылка на контейнер прокрутки
+  const scrollContainerRef = useRef(null);
 
   // Проверка медиа-запросов
   const isMobile = useMediaQuery('(max-width: 767px)');
-  const chartWidth = isMobile ? visibleData.length * 40 : visibleData.length * 100;
+  const chartWidth = isMobile ? data.length * 35 : data.length * 84;
+
+  useEffect(() => {
+    // Прокручиваем к текущей дате или крайней правой точке данных
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollLeft = scrollContainerRef.current.scrollWidth;
+    }
+  }, []);
 
   return (
     <div className={styles.container}>
-      <div className={styles.scrollContainer}>
+      <div className={styles.yAxisContainer}>
+        <AreaChart
+          width={60} // Минимальная ширина для отображения Y оси
+          height={215}
+          data={data}
+          margin={{
+            top: 47,
+            right: 0,
+            left: -15,
+            bottom: 0,
+          }}
+          className={styles.chartWrapper}
+        >
+          <YAxis
+            type="number"
+            domain={[0, 2.5]}
+            ticks={[0, 0.5, 1, 1.5, 2, 2.5]}
+            tickFormatter={tick => (tick === 0 ? '0%' : `${tick}L`)}
+            axisLine={false}
+            tickLine={false}
+            className={styles.ySymbol}
+          />
+        </AreaChart>
+      </div>
+      <div className={styles.scrollContainer} ref={scrollContainerRef}>
         <AreaChart
           width={chartWidth} // Динамическая ширина диаграммы
           height={215}
-          data={visibleData}
+          data={data}
           margin={{
             top: 47,
             right: 0,
@@ -75,16 +106,8 @@ const Statistics = () => {
               <stop offset="93.64%" className={styles.gradientStopBottom} />
             </linearGradient>
           </defs>
+
           <XAxis dataKey="date" axisLine={false} tickLine={false} className={styles.xSymbol} />
-          <YAxis
-            type="number"
-            domain={[0, 2.5]}
-            ticks={[0, 0.5, 1, 1.5, 2, 2.5]} // Задаем метки
-            tickFormatter={tick => `${tick === 0 ? '0%' : `${tick}L`}`} // Формат меток
-            axisLine={false}
-            tickLine={false}
-            className={styles.ySymbol}
-          />
           <Tooltip content={<CustomTooltip />} />
           <Area
             className={styles.area}
