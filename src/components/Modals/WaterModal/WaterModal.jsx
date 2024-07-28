@@ -157,10 +157,7 @@ const WaterModal = ({ isModalOpen, onCloseModal, operationType }) => {
 
   const currentDate = new Date();
   const localDate = currentDate.toLocaleDateString('en-GB');
-  const localTime = currentDate.toLocaleTimeString('en-GB', {
-    hour: '2-digit',
-    minute: '2-digit',
-  });
+  const localTime = recordingTime;
 
   const waterData = {
     waterValue: waterAmount,

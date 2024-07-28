@@ -3,8 +3,10 @@ import { FiPlus } from 'react-icons/fi';
 import { useState } from 'react';
 import Modal from '../../../shared/components/Modal/Modal.jsx';
 import WaterModal from '../../Modals/WaterModal/WaterModal.jsx';
+import { useTranslation } from 'react-i18next';
 
 const AddWaterBtn = () => {
+  const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -21,7 +23,7 @@ const AddWaterBtn = () => {
         <span className={css.iconCircle}>
           <FiPlus className={css.addWaterIcon} />
         </span>
-        Add water
+        {t('shared.add-water-btn')}
       </button>
 
       {isModalOpen && (
