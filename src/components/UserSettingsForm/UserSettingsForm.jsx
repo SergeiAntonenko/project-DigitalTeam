@@ -153,7 +153,7 @@ export const UserSettingsForm = () => {
                 type="radio"
                 name="gender"
                 id="woman"
-                value="Woman"
+                value="Woman" defaultChecked              
               />
               <label className={`${css.text} ${css.genderLabel}`} htmlFor="woman">
                 Woman
