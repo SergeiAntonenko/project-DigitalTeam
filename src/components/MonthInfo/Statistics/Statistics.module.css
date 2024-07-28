@@ -1,0 +1,71 @@
+.container {
+  display: flex;
+  position: relative;
+  padding-right: 20px;
+}
+
+.yAxisContainer {
+  position: sticky;
+  left: 0;
+}
+
+.scrollContainer {
+  overflow-x: auto; /* Обеспечивает горизонтальную прокрутку */
+  overflow-y: hidden;
+  width: 100%;
+}
+
+.chartWrapper {
+  width: 100%;
+}
+
+.dot {
+  stroke: #87d28d;
+  stroke-width: 3;
+  fill: #ffffff; /* Белый цвет заполнения меток */
+  r: 6; /* Радиус меток */
+}
+
+.gradientStopTop {
+  stop-color: #9be1a0; /* Верхний цвет градиента */
+  stop-opacity: 1;
+}
+
+.gradientStopBottom {
+  stop-color: #9be1a0; /* Нижний цвет градиента */
+  stop-opacity: 0;
+}
+
+.area {
+  stroke-width: 3;
+  fill-opacity: 1;
+}
+
+.xSymbol,
+.ySymbol {
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  text-align: left;
+}
+
+.ySymbol {
+}
+
+/* Tablet adaptive */
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .scrollContainer {
+    width: 100%;
+  }
+  .container {
+    padding-bottom: 40px;
+  }
+}
+
+/* Desktop adaptive */
+@media screen and (min-width: 1440px) {
+  .scrollContainer {
+    width: 100%;
+  }
+}
