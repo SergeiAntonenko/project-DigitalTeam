@@ -1,62 +1,68 @@
-// import React from 'react';
-// import css from './LogOut.module.css';
-// import Iconsvg from '../MyIcons/MyIcons.jsx';
-// import useModal from '../ModalAdd/OpenCloseModal.jsx';
-
-// const Logout = ({ handleDelete }) => {
-//   const { isModalOpen, handleCloseModal, handleDeleteConfirm } = useModal(handleDelete);
-
-//   return (
-//     <div className={css.modalwrapper} style={{ display: isModalOpen ? 'block' : 'none' }}>
-//       <div className={css.modal_background} onClick={handleCloseModal}></div>
-//       <div className={css.modal_content}>
-//         <button className={css.close_button} onClick={handleCloseModal}>
-//           <Iconsvg width="28px" height="28px" iconName="modal-close" />
-//         </button>
-//         <h1 className={css.log_out}>Log out</h1>
-//         <h2 className={css.text}>Do you really want to leave?</h2>
-//         <div className={css.button_container}>
-//           <button onClick={handleDeleteConfirm} className={css.logout_button}>
-//             Log out
-//           </button>
-//           <button onClick={handleCloseModal} className={css.cancel_button}>
-//             Cancel
-//           </button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Logout;
-// ================================================
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import css from './LogOut.module.css';
-import Iconsvg from '../MyIcons/MyIcons.jsx';
-import useModal from '../ModalAdd/OpenCloseModal.jsx';
+import Iconsvg from '../../../images/Icons/Icons.jsx';
+import Modal from '../../../shared/components/Modal/Modal.jsx';
+import { logout } from '../../../redux/auth/operations.js';
+import toast  from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
-const Logout = ({ handleDelete, handleCloseModal }) => {
-  const { isModalOpen, handleDeleteConfirm } = useModal(handleDelete);
+const LogOutModal = ({ handleCloseModal }) => {
+  const { t } = useTranslation();
+  const dispatch = useDispatch();
+
+
+  const onLogOut = async () => {
+    try {
+      await dispatch(logout());
+
+      toast.success('Successfully logged out!');
+
+      handleCloseModal();
+    } catch (error) {
+      toast.error('Something went wrong. Please try again.');
+    }
+  };
+
+ 
+
+  useEffect(() => {
+    const handleEscapeKey = e => {
+      if (e.key === 'Escape') {
+        handleCloseModal();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscapeKey);
+
+    return () => {
+      document.removeEventListener('keydown', handleEscapeKey);
+    };
+  }, []);
 
   return (
-    <div className={css.modalwrapper} style={{ display: isModalOpen ? 'block' : 'none' }}>
-      <div className={css.modal_background} onClick={handleCloseModal}></div>
-      <div className={css.modal_content}>
-        <button className={css.close_button} onClick={handleCloseModal}>
-          <Iconsvg width="28px" height="28px" iconName="modal-close" />
-        </button>
-        <h1 className={css.log_out}>Log out</h1>
-        <h2 className={css.text}>Do you really want to leave?</h2>
-        <div className={css.button_container}>
-          <button onClick={handleDeleteConfirm} className={css.logout_button}>
-            Log out
+    <>
+    
+      <Modal handleCloseModal={handleCloseModal}>
+        <div className={css.modal_content}>
+          <button className={css.close_button} onClick={handleCloseModal}>
+            <Iconsvg width="28px" height="28px" iconName="modal-close" />
           </button>
-          <button onClick={handleCloseModal} className={css.cancel_button}>
-            Cancel
-          </button>
+          <h1 className={css.log_out}>{t('log-out-modal.log-out')}</h1>
+          <h2 className={css.text}>{t('log-out-modal.want-to-leave')}</h2>
+          <div className={css.button_container}>
+            <button onClick={onLogOut} className={css.logout_button}>
+              {t('log-out-modal.log-out')}
+            </button>
+            <button onClick={handleCloseModal} className={css.cancel_button}>
+              {t('log-out-modal.cancel')}
+            </button>
+          </div>
         </div>
-      </div>
-    </div>
+      </Modal>
+     
+    </>
   );
 };
 
-export default Logout;
+export default LogOutModal;

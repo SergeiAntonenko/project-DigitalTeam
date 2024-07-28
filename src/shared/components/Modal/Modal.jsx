@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import s from './Modal.module.css';
-import Iconsvg from '../../../components/Modals/MyIcons/MyIcons';
+import Iconsvg from '../../../images/Icons/Icons';
 
 const Modal = ({ children, handleCloseModal }) => {
   const handleEscapeKey = e => {
     if (e.key === 'Escape') {
       handleCloseModal();
     }
-  };
+  }; 
 
   useEffect(() => {
     document.addEventListener('keydown', handleEscapeKey);

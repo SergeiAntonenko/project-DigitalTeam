@@ -1,13 +1,15 @@
-import { useState } from 'react';
 import css from './AddWaterBtn.module.css';
 import { FiPlus } from 'react-icons/fi';
-import ModalAddWater from '../../Modals/ModalAdd/ModalAddWater.jsx';
+import { useState } from 'react';
 import Modal from '../../../shared/components/Modal/Modal.jsx';
+import WaterModal from '../../Modals/WaterModal/WaterModal.jsx';
+import { useTranslation } from 'react-i18next';
 
 const AddWaterBtn = () => {
+  const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleModalOpen = () => {
+  const handleOpenModal = () => {
     setIsModalOpen(true);
   };
 
@@ -16,20 +18,24 @@ const AddWaterBtn = () => {
   };
 
   return (
-    <div className={css.container}>
-      <button className={css.addWaterBtn} onClick={handleModalOpen}>
+    <>
+      <button className={css.addWaterBtn} onClick={handleOpenModal}>
         <span className={css.iconCircle}>
           <FiPlus className={css.addWaterIcon} />
         </span>
-        Add water
+        {t('shared.add-water-btn')}
       </button>
 
       {isModalOpen && (
         <Modal handleCloseModal={handleCloseModal}>
-          <ModalAddWater />
+          <WaterModal
+            isModalOpen={isModalOpen}
+            onCloseModal={handleCloseModal}
+            operationType={'add'}
+          />
         </Modal>
       )}
-    </div>
+    </>
   );
 };
 

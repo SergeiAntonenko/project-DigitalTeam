@@ -1,6 +1,6 @@
 .waterDailyNorma {
     border-radius: 15px;
-    width: 102px;
+    width: fit-content;
     height: 54px;
     box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
     background-color: #fff;
@@ -8,10 +8,12 @@
     top: 122px;
     left: 16px;
 }
+
 .textNorma {
     text-align: start;
     padding: 12px;
 }
+
 .liter {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
@@ -29,38 +31,38 @@
 }
 
 @media screen and (min-width: 768px) {
-section {
-    min-width: 768px;
-    padding: 32px;
-}
+    section {
+        min-width: 768px;
+        padding: 32px;
+    }
 
-.waterDailyNorma {
-    top: 157px;
-    left: 32px;
-    width: 129px;
-    height: 78px;
-}
+    .waterDailyNorma {
+        top: 157px;
+        left: 32px;
+        height: 78px;
+    }
 
-.literNorma {
-    font-size: 12px;
-    line-height: 187%;
-}
+    .literNorma {
+        font-size: 12px;
+        line-height: 187%;
+    }
 
-.liter {
-    font-size: 15px;
-    line-height: 149%;
-}
+    .liter {
+        font-size: 15px;
+        line-height: 149%;
+    }
 
-.textNorma {
-    padding: 14px 18px;
-}
+    .textNorma {
+        padding: 14px 18px;
+    }
 }
 
 @media screen and (min-width: 1440px) {
-section {
-    min-width: 1440px;
-}
-.waterDailyNorma {
-    left: 64px;
-}
+    section {
+        min-width: 1440px;
+    }
+
+    .waterDailyNorma {
+        left: 64px;
+    }
 }

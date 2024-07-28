@@ -2,13 +2,16 @@ import { useState, useEffect, useRef } from 'react';
 import UserPanelAvatar from '../UserPanelAvatar/UserPanelAvatar';
 import UserBarPopover from '../UserBarPopover/UserBarPopover';
 import Logout from '../Modals/LogOutModal.jsx/LogOutModal';
+import { UserSettingsModal } from '../UserSettingsModal/UserSettingsModal';
 import { IoChevronDown, IoChevronUp } from 'react-icons/io5';
 import css from './UserBar.module.css';
 import Modal from '../../shared/components/Modal/Modal';
+import Modal2 from './Modal2/Modal2';
 
 export const UserBar = ({ userName }) => {
   const [isOpenPopover, setIsOpenPopover] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen2, setIsModalOpen2] = useState(false);
 
   const popoverRef = useRef(null);
   const buttonRef = useRef(null);
@@ -48,6 +51,15 @@ export const UserBar = ({ userName }) => {
     setIsModalOpen(false);
   };
 
+  const handleOpenModal2 = () => {
+    setIsModalOpen2(true);
+    setIsOpenPopover(false);
+  };
+
+  const handleCloseModal2 = () => {
+    setIsModalOpen2(false);
+  };
+
   return (
     <div className={css.general}>
       <button type="button" className={css.dropdown} onClick={handleToggle} ref={buttonRef}>
@@ -63,13 +75,22 @@ export const UserBar = ({ userName }) => {
       </button>
       {isOpenPopover && (
         <div className={css.modal} ref={popoverRef}>
-          <UserBarPopover setIsOpenPopover={setIsOpenPopover} handleOpenModal={handleOpenModal} />
+          <UserBarPopover
+            setIsOpenPopover={setIsOpenPopover}
+            handleOpenModal={handleOpenModal}
+            handleOpenModal2={handleOpenModal2}
+          />
         </div>
       )}
       {isModalOpen && (
         <Modal handleCloseModal={handleCloseModal}>
           <Logout handleCloseModal={handleCloseModal} />
         </Modal>
+      )}
+      {isModalOpen2 && (
+        <Modal2 handleCloseModal={handleCloseModal2}>
+          <UserSettingsModal handleCloseModal={handleCloseModal2} />
+        </Modal2>
       )}
     </div>
   );

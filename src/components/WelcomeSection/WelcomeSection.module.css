@@ -18,6 +18,13 @@
   margin-bottom: 16px;
 }
 
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 74px;
+}
+
 .descr {
   font-weight: 400;
   font-size: 14px;
@@ -46,6 +53,11 @@
     max-width: 547px;
     max-height: 342px;
     padding-left: 64px;
+  }
+
+  .container {
+    margin-bottom: 50px;
+    padding-right: 32px;
   }
 
   .water {
@@ -85,6 +97,11 @@
     margin-bottom: 132px;
   }
 
+  .container {
+    margin-bottom: 132px;
+    padding-right: 32px;
+  }
+
   .welcomeSection {
     width: 672px;
     height: 736px;
@@ -103,7 +120,9 @@
   }
 }
 
-@media screen and (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+@media screen and (min-device-pixel-ratio: 2),
+(min-resolution: 192dpi),
+(min-resolution: 2dppx) {
   .advantages {
     background-image: url('../../photos/HomePage-images/main-photo-desktop-2x-min.jpg');
   }
