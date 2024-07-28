@@ -10,15 +10,15 @@ import { useSelector } from 'react-redux';
 import { selectWaterLoading } from '../../redux/water/selectors';
 
 const WaterItem = ({ item }) => {
-  const [isModaDeleteOpen, setIsModaDeleteOpen] = useState(false);
+  const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
   const [isModalEditWaterOpen, setIsModalEditWaterOpen] = useState(false);
 
   const handleCloseModalDelete = () => {
-    setIsModaDeleteOpen(false);
+    setIsModalDeleteOpen(false);
   };
 
   const handleOpenModalDelete = () => {
-    setIsModaDeleteOpen(true);
+    setIsModalDeleteOpen(true);
   };
 
   const handleCloseModalEditWater = () => {
@@ -54,13 +54,15 @@ const WaterItem = ({ item }) => {
             <FiTrash className={css.edit} />
           </button>
         </div>
-        {isModaDeleteOpen && (
+        {isModalDeleteOpen && (
           <Modal handleCloseModal={handleCloseModalDelete}>
             <ModalDelete handleCloseModal={handleCloseModalDelete} />
           </Modal>
         )}
         {isModalEditWaterOpen && (
-          <WaterModal isModalOpen={isModalEditWaterOpen} onCloseModal={handleCloseModalEditWater} />
+          <Modal handleCloseModal={handleCloseModalEditWater}>
+            <WaterModal onCloseModal={handleCloseModalEditWater} />
+          </Modal>
         )}
       </div>
     )

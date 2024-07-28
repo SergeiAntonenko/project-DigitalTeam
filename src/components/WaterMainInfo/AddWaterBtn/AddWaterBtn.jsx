@@ -28,11 +28,7 @@ const AddWaterBtn = () => {
 
       {isModalOpen && (
         <Modal handleCloseModal={handleCloseModal}>
-          <WaterModal
-            isModalOpen={isModalOpen}
-            onCloseModal={handleCloseModal}
-            operationType={'add'}
-          />
+          <WaterModal onCloseModal={handleCloseModal} operationType={'add'} />
         </Modal>
       )}
     </>
