@@ -84,16 +84,16 @@ const CalendarPagination = ({ currentDate, onDateChange }) => {
 
 export default CalendarPagination;
 
-const MyComponent = () => {
-  const { t } = useTranslation();
+// const MyComponent = () => {
+//   const { t } = useTranslation();
 
-  const date = new Date();
-  const month = date.toLocaleString('default', { month: 'long' });
-  const translatedMonth = t(`months.${month}`);
+//   const date = new Date();
+//   const month = date.toLocaleString('default', { month: 'long' });
+//   const translatedMonth = t(`months.${month}`);
 
-  return (
-    <div>
-      {translatedMonth}, {date.getFullYear()}
-    </div>
-  );
-};
+//   return (
+//     <div>
+//       {translatedMonth}, {date.getFullYear()}
+//     </div>
+//   );
+// };
