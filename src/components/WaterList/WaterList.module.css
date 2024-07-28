@@ -58,11 +58,12 @@
 }
 @media screen and (min-width: 1440px) {
   .general {
-    margin-left: 16px;
+    /* margin-left: 16px; */
     width: 192px;
   }
   .waterListWrap {
     gap: 16px;
+    margin-left: 16px;
   }
   .noWater {
     padding-top: 30px;
