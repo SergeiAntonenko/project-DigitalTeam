@@ -21,6 +21,7 @@
   .calendarGrid {
     gap: 15px;
     grid-template-columns: repeat(8, 1fr);
+    margin-bottom: 35px;
   }
 }
 
