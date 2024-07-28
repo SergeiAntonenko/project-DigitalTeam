@@ -8,6 +8,7 @@ import Logo from '../Logo/Logo.jsx';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/auth/operations';
 import { useTranslation } from 'react-i18next';
+import GoogleAuthButton from '../GoogleAuth/GoogleAuth.jsx';
 
 const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -87,16 +88,12 @@ const SignInForm = () => {
               {t('signup-signin-sections.signin')}
             </button>
 
+            <GoogleAuthButton />
+
             <div className={css.reminder}>
               {t('signup-signin-sections.dont-have-account')}{' '}
               <Link className={css.link} to="/signup">
                 {t('signup-signin-sections.signup')}
-              </Link>
-            </div>
-            <div className={css.reminder}>
-              Sign In with{' '}
-              <Link className={css.link} to="/get-oauth-url">
-                Google
               </Link>
             </div>
           </Form>

@@ -8,6 +8,7 @@ import Logo from '../Logo/Logo.jsx';
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/operations';
 import { useTranslation } from 'react-i18next';
+import GoogleAuthButton from '../GoogleAuth/GoogleAuth.jsx';
 
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -123,16 +124,12 @@ const SignUpPage = () => {
               {t('signup-signin-sections.signup')}
             </button>
 
+            <GoogleAuthButton />
+
             <div className={css.reminder}>
               {t('signup-signin-sections.already-have-account')}{' '}
               <Link className={css.link} to="/signin">
                 {t('signup-signin-sections.signin')}
-              </Link>
-            </div>
-            <div className={css.reminder}>
-              Sign Up with{' '}
-              <Link className={css.link} to="/get-oauth-url">
-                Google
               </Link>
             </div>
           </Form>
