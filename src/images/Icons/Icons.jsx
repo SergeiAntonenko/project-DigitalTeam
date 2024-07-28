@@ -1,4 +1,6 @@
-import sprite from './myicons.svg';
+import sprite from './icons.svg';
+import React from 'react';
+
 
 const Iconsvg = ({ width, height, iconName, styles }) => {
   return (

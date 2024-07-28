@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import css from './DeleteWaterModal.module.css';
-import Iconsvg from '../MyIcons/MyIcons.jsx';
+import Iconsvg from '../../../images/Icons/Icons.jsx';
 import { deleteWater } from '../../../redux/water/operations.js';
+import toast from 'react-hot-toast';
 
 const DeleteModal = ({ handleCloseModal, water }) => {
   const dispatch = useDispatch();
@@ -11,9 +12,9 @@ const DeleteModal = ({ handleCloseModal, water }) => {
   const handleDeleteConfirm = () => {
     try {
       dispatch(deleteWater(water._id));
-      alert('The amount of water consumed has been successfully deleted.');
+      toast.success('The amount of water consumed has been successfully deleted.');
     } catch (error) {
-      alert('Something went wrong. Please try again.');
+      toast.error('Something went wrong. Please try again.');
     }
   };
 
