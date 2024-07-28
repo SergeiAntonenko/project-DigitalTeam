@@ -80,7 +80,7 @@ const Statistics = () => {
             type="number"
             domain={[0, 2.5]}
             ticks={[0, 0.5, 1, 1.5, 2, 2.5]}
-            tickFormatter={tick => (tick === 0 ? '0%' : `${tick}L`)}
+            tickFormatter={value => (value === 0 ? '0%' : `${value}L`)}
             axisLine={false}
             tickLine={false}
             className={styles.ySymbol}
