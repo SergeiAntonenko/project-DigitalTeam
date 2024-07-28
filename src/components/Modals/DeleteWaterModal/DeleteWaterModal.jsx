@@ -3,11 +3,15 @@ import { useDispatch } from 'react-redux';
 import css from './DeleteWaterModal.module.css';
 import Iconsvg from '../../../images/Icons/Icons.jsx';
 import { deleteWater } from '../../../redux/water/operations.js';
+<<<<<<< HEAD
 import toast from 'react-hot-toast';
+=======
+import { useTranslation } from 'react-i18next';
+>>>>>>> main
 
 const DeleteModal = ({ handleCloseModal, water }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
-
 
   const handleDeleteConfirm = () => {
     try {
@@ -18,7 +22,6 @@ const DeleteModal = ({ handleCloseModal, water }) => {
     }
   };
 
- 
   useEffect(() => {
     const handleEscapeKey = e => {
       if (e.key === 'Escape') {
@@ -41,19 +44,18 @@ const DeleteModal = ({ handleCloseModal, water }) => {
           <button className={css.close_button} onClick={handleCloseModal}>
             <Iconsvg width="28px" height="28px" iconName="modal-close" />
           </button>
-          <h1 className={css.delete_entry}>Delete Entry</h1>
-          <h2 className={css.text}>Are you sure you want to delete the entry?</h2>
+          <h1 className={css.delete_entry}>{t('delete-water-modal.delete-entry')}</h1>
+          <h2 className={css.text}>{t('delete-water-modal.are-you-sure')}</h2>
           <div className={css.button_container}>
             <button onClick={handleDeleteConfirm} className={css.delete_button}>
-              Delete
+              {t('delete-water-modal.delete')}
             </button>
             <button onClick={handleCloseModal} className={css.cancel_button}>
-              Cancel
+              {t('log-out-modal.cancel')}
             </button>
           </div>
         </div>
       </div>
-      
     </>
   );
 };

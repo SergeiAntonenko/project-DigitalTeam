@@ -8,14 +8,10 @@ import { FormValidateError } from '../FormValidateError/FormValidateError';
 import { calcRequiredWater } from '../../calculation/calcRequiredWater';
 import { selectUser } from '../../redux/users/selectors';
 
-
 const schema = yup.object().shape({
   avatar: yup.mixed(),
 
-  gender: yup
-    .string()
-    .nullable()
-    .oneOf(['Woman', 'Man'], 'Please select your gender'),
+  gender: yup.string().nullable().oneOf(['Woman', 'Man'], 'Please select your gender'),
 
   name: yup
     .string()
@@ -51,29 +47,24 @@ const schema = yup.object().shape({
       if (originalValue === '') return null;
       return value;
     })
-    .test('is-decimal', 'Please enter a valid number', (value) => {
+    .test('is-decimal', 'Please enter a valid number', value => {
       if (value === undefined || value === null || value === '') return true;
       return !isNaN(parseFloat(value)) && isFinite(value);
     })
-    .test(
-      'min-value',
-      'Value must be greater than or equal to 0.1',
-      (value) => {
-        if (value === undefined || value === null || value === '') return true;
-        return parseFloat(value) >= 0.1;
-      }
-    )
-    .test('max-value', 'Value must be less than or equal to 31.2', (value) => {
+    .test('min-value', 'Value must be greater than or equal to 0.1', value => {
+      if (value === undefined || value === null || value === '') return true;
+      return parseFloat(value) >= 0.1;
+    })
+    .test('max-value', 'Value must be less than or equal to 31.2', value => {
       if (value === undefined || value === null || value === '') return true;
       return parseFloat(value) <= 31.2;
     }),
 });
 
 export const UserSettingsForm = () => {
- 
   const user = useSelector(selectUser);
 
-//   const dispatch = useDispatch();
+  //   const dispatch = useDispatch();
 
   const {
     register,
@@ -92,7 +83,7 @@ export const UserSettingsForm = () => {
     },
   });
 
-  const onSubmit = async (data) => {
+  const onSubmit = async data => {
     if (Object.keys(errors).length > 0) {
       return;
     }
@@ -119,17 +110,10 @@ export const UserSettingsForm = () => {
     // response.meta.requestStatus === 'fulfilled' && handleCloseModal();
   };
 
-  const { avatar, gender, name, email, weight, activityTime, desiredVolume } =
-    watch();
+  const { avatar, gender, name, email, weight, activityTime, desiredVolume } = watch();
 
   const isAnyFieldFilled =
-    avatar ||
-    gender ||
-    name ||
-    email ||
-    weight ||
-    activityTime ||
-    desiredVolume;
+    avatar || gender || name || email || weight || activityTime || desiredVolume;
 
   const requiredWater = calcRequiredWater(gender, weight, activityTime);
 
@@ -156,9 +140,7 @@ export const UserSettingsForm = () => {
           ) : (
             <strong className={css.avatarName}>{avatar[0].name}</strong>
           )}
-          {errors.avatar && (
-            <FormValidateError message={errors.avatar.message} />
-          )}
+          {errors.avatar && <FormValidateError message={errors.avatar.message} />}
         </div>
 
         <div className={css.settingsWrapper}>
@@ -173,10 +155,7 @@ export const UserSettingsForm = () => {
                 id="woman"
                 value="Woman"
               />
-              <label
-                className={`${css.text} ${css.genderLabel}`}
-                htmlFor="woman"
-              >
+              <label className={`${css.text} ${css.genderLabel}`} htmlFor="woman">
                 Woman
               </label>
 
@@ -192,9 +171,7 @@ export const UserSettingsForm = () => {
                 Man
               </label>
 
-              {errors.gender && (
-                <FormValidateError message={errors.gender.message} />
-              )}
+              {errors.gender && <FormValidateError message={errors.gender.message} />}
             </div>
 
             <div className={css.infoWrapper}>
@@ -208,9 +185,7 @@ export const UserSettingsForm = () => {
                 name="name"
                 id="name"
               />
-              {errors.name && (
-                <FormValidateError message={errors.name.message} />
-              )}
+              {errors.name && <FormValidateError message={errors.name.message} />}
 
               <label className={css.subtitle} htmlFor="email">
                 Email
@@ -222,9 +197,7 @@ export const UserSettingsForm = () => {
                 name="email"
                 id="email"
               />
-              {errors.email && (
-                <FormValidateError message={errors.email.message} />
-              )}
+              {errors.email && <FormValidateError message={errors.email.message} />}
             </div>
 
             <div className={css.normaWrapper}>
@@ -233,30 +206,23 @@ export const UserSettingsForm = () => {
               <div className={css.formulaWrapper}>
                 <div className={css.formulaSubwrapper}>
                   <p className={css.text}>For woman:</p>
-                  <span className={`${css.text} ${css.normaFormula}`}>
-                    V=(M*0,03) + (T*0,4)
-                  </span>
+                  <span className={`${css.text} ${css.normaFormula}`}>V=(M*0,03) + (T*0,4)</span>
                 </div>
 
                 <div className={css.formulaSubwrapper}>
                   <p className={css.text}>For man:</p>
-                  <span className={`${css.text} ${css.normaFormula}`}>
-                    V=(M*0,04) + (T*0,6)
-                  </span>
+                  <span className={`${css.text} ${css.normaFormula}`}>V=(M*0,04) + (T*0,6)</span>
                 </div>
               </div>
 
               <p className={css.normaTextArea}>
-                <span className={css.normaAsterisk}>*</span> V is the volume of
-                the water norm in liters per day, M is your body weight, T is
-                the time of active sports, or another type of activity
-                commensurate in terms of loads (in the absence of these, you
-                must set 0)
+                <span className={css.normaAsterisk}>*</span> V is the volume of the water norm in
+                liters per day, M is your body weight, T is the time of active sports, or another
+                type of activity commensurate in terms of loads (in the absence of these, you must
+                set 0)
               </p>
 
-              <span className={`${css.text} ${css.footnote}`}>
-                Active time in hours
-              </span>
+              <span className={`${css.text} ${css.footnote}`}>Active time in hours</span>
             </div>
           </div>
 
@@ -272,9 +238,7 @@ export const UserSettingsForm = () => {
                 name="weight"
                 id="weight"
               />
-              {errors.weight && (
-                <FormValidateError message={errors.weight.message} />
-              )}
+              {errors.weight && <FormValidateError message={errors.weight.message} />}
 
               <label className={css.text} htmlFor="activityTime">
                 The time of active participation in sports:
@@ -286,21 +250,15 @@ export const UserSettingsForm = () => {
                 name="activityTime"
                 id="activityTime"
               />
-              {errors.activityTime && (
-                <FormValidateError message={errors.activityTime.message} />
-              )}
+              {errors.activityTime && <FormValidateError message={errors.activityTime.message} />}
             </div>
 
             <div className={css.waterAmountWrapper}>
               <div className={css.amountField}>
-                <p className={css.text}>
-                  The required amount of water in liters per day:
-                </p>
+                <p className={css.text}>The required amount of water in liters per day:</p>
 
                 <span className={css.amount}>
-                  {!gender || !weight
-                    ? 'Waiting for your metrics'
-                    : requiredWater + ' L'}
+                  {!gender || !weight ? 'Waiting for your metrics' : requiredWater + ' L'}
                 </span>
               </div>
 
@@ -314,19 +272,12 @@ export const UserSettingsForm = () => {
                 name="desiredVolume"
                 id="desiredVolume"
               />
-              {errors.desiredVolume && (
-                <FormValidateError message={errors.desiredVolume.message} />
-              )}
-
+              {errors.desiredVolume && <FormValidateError message={errors.desiredVolume.message} />}
             </div>
           </div>
         </div>
 
-        <button
-          className={css.submitButton}
-          type="submit"
-          disabled={!isAnyFieldFilled}
-        >
+        <button className={css.submitButton} type="submit" disabled={!isAnyFieldFilled}>
           Save
         </button>
       </form>
