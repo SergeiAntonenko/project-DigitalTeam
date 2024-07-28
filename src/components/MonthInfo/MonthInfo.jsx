@@ -22,8 +22,7 @@ const MonthInfo = () => {
   return (
     <div className={styles.monthInfoContainer}>
       <div className={styles.topContainer}>
-        <h3>{view === 'calendar' ? 'Month' : 'Statisics'}</h3>
-        <h3>{t('mouth-info.month')}</h3>
+        <h3>{view === 'calendar' ? t('mouth-info.month') : 'Statistics'}</h3>
         <div className={styles.rightContainer}>
           <CalendarPagination currentDate={currentDate} onDateChange={handleDateChange} />
           <button className={styles.pieChart} onClick={handleStatistics}>
