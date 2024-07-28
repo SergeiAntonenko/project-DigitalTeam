@@ -7,9 +7,6 @@ import pieChart from '../../images/AdvantagesSection/pie-chart-02.svg';
 import { useTranslation } from 'react-i18next'; // Добавлено из HEAD
 import pieChartActive from '../../images/AdvantagesSection/pie-chart-02-active.svg';
 
-import Statistics from './Statistics/Statistics';
-import { useTranslation } from 'react-i18next';
-
 const MonthInfo = () => {
   const { t } = useTranslation(); // Добавлено из HEAD
   const [currentDate, setCurrentDate] = useState(new Date());
