@@ -63,7 +63,7 @@ const WaterModal = ({ isModalOpen, onCloseModal, operationType }) => {
           console.error(err.message);
         });
     } else {
-      dispatch(addWater(waterData))
+      dispatch(addWater({ waterValue: waterAmount, localDate, localTime }))
         .then(() => {
           onCloseModal();
         })
