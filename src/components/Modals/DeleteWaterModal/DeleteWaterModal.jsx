@@ -1,7 +1,5 @@
-import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import css from './DeleteWaterModal.module.css';
-import Iconsvg from '../../../images/Icons/Icons.jsx';
 import { deleteWater } from '../../../redux/water/operations.js';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
