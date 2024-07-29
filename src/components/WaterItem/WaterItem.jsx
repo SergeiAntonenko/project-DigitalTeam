@@ -31,8 +31,22 @@ const WaterItem = ({ item }) => {
 
   const formattedAmount =
     item.waterValue >= 1000
-      ? `${(item.waterValue / 1000).toFixed(1).replace('.0', '')}${' l'}`
+      ? `${(item.waterValue / 1000).toFixed(1).replace('.0', '')}${' L'}`
       : `${item.waterValue}${' ml'}`;
+
+  const formatTime = timeString => {
+    // Разделяем строку времени на часы и минуты
+    const [hours, minutes] = timeString.split(':').map(Number);
+
+    // Определяем, является ли время AM или PM
+    const period = hours >= 12 ? 'PM' : 'AM';
+
+    // Преобразуем часы в формат 12-часов
+    const formattedHours = hours % 12 === 0 ? 12 : hours % 12;
+
+    // Возвращаем форматированное время
+    return `${formattedHours}:${minutes < 10 ? '0' : ''}${minutes} ${period}`;
+  };
 
   return (
     <div className={css.center}>

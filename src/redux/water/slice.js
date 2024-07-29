@@ -157,6 +157,7 @@ const waterSlice = createSlice({
         state.error = null;
       })
       .addCase(deleteWater.fulfilled, (state, action) => {
+        console.log('action.payload:', action.payload);
         if (state.dailyWater) {
           state.dailyWater = state.dailyWater.filter(water => water._id !== action.payload._id);
         }
