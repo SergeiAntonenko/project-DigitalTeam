@@ -48,6 +48,10 @@
 .below100 {
   background-color: #d3d3d3; /* for < 100% */
 }
+
+.clicked {
+  border: rgb(68, 116, 227) 2px solid;
+}
 /* Mobile rubber*/
 @media screen and (max-width: 374px) {
 }

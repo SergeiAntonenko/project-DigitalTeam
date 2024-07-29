@@ -5,7 +5,7 @@ import Modal from '../../../shared/components/Modal/Modal.jsx';
 import WaterModal from '../../Modals/WaterModal/WaterModal.jsx';
 import { useTranslation } from 'react-i18next';
 
-const AddWaterBtn = () => {
+const AddWaterBtn = ({ onWaterUpdate }) => {
   const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -31,6 +31,7 @@ const AddWaterBtn = () => {
           <WaterModal
             isModalOpen={isModalOpen}
             onCloseModal={handleCloseModal}
+            onWaterUpdate={onWaterUpdate}
             operationType={'add'}
           />
         </Modal>

@@ -5,11 +5,22 @@ export const addWater = createAsyncThunk(
   'water/add',
   async ({ waterValue: waterAmount, localDate, localTime }, thunkAPI) => {
     try {
-      const response = await api.instance.post('/water/add', {
-        waterValue: waterAmount,
-        localDate,
-        localTime,
-      });
+      const state = thunkAPI.getState();
+      const token = state.auth.token;
+
+      const response = await api.instance.post(
+        '/water/add',
+        {
+          waterValue: waterAmount,
+          localDate,
+          localTime,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -38,9 +49,18 @@ export const deleteWater = createAsyncThunk('water/deleteWater', async (recordId
   }
 });
 
-export const fetchWaterDaily = createAsyncThunk('water/fetchWaterDaily', async (_, thunkAPI) => {
+export const fetchWaterDaily = createAsyncThunk('water/daily', async (date, thunkAPI) => {
+  const state = thunkAPI.getState();
+  const token = state.auth.token;
   try {
-    const response = await api.instance.get('water/daily');
+    const response = await api.instance.get('water/daily', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      params: {
+        date: date,
+      },
+    });
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
