@@ -43,7 +43,6 @@ import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 
 const DeleteModal = ({ handleCloseModal, water }) => {
-  console.log(water);
   const { t } = useTranslation();
   const dispatch = useDispatch();
 

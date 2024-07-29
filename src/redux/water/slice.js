@@ -11,6 +11,7 @@ import { logout } from '../auth/operations';
 const initialState = {
   dailyWater: [],
   monthlyWater: [],
+  totalDay: null,
   loading: false,
   error: null,
 };
@@ -25,6 +26,8 @@ const waterSlice = createSlice({
         state.error = null;
       })
       .addCase(addWater.fulfilled, (state, action) => {
+        console.log(action);
+        state.totalDay = state.totalDay + action.payload.waterCount.waterValue;
         state.loading = false;
         if (!state.dailyWater) {
           state.dailyWater = [];
@@ -46,6 +49,7 @@ const waterSlice = createSlice({
             return water._id === action.payload._id ? action.payload : water;
           });
         }
+
         state.loading = false;
         state.error = null;
       })
@@ -63,6 +67,8 @@ const waterSlice = createSlice({
             water => water._id !== action.payload.waterCount._id
           );
         }
+        state.totalDay = state.totalDay - action.payload.waterCount.waterValue;
+
         state.loading = false;
         state.error = null;
       })
@@ -76,6 +82,7 @@ const waterSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchWaterDaily.fulfilled, (state, action) => {
+        state.totalDay = action.payload.totalDay;
         state.dailyWater = action.payload.waterCount;
         state.loading = false;
         state.error = null;
