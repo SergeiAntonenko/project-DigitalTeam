@@ -49,3 +49,24 @@ export const refreshUser = createAsyncThunk('auth/refresh-token', async (_, thun
     return thunkAPI.rejectWithValue(error.message);
   }
 });
+
+export const getGoogleUrl = createAsyncThunk('auth/get-oauth-url', async (_, thunkAPI) => {
+  try {
+    const { data } = await api.instance.get('/users/get-oauth-url');
+    return data.data.url;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+export const verifyGoogleOAuth = createAsyncThunk('auth/confirm-oauth', async (code, thunkAPI) => {
+  try {
+    const res = await api.instance.post('/users/confirm-oauth', { code });
+
+    api.setAuthHeader(res.data.accessToken);
+
+    return res.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});

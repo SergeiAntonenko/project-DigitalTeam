@@ -5,7 +5,8 @@
   "welcome-section.title": "Трекер споживання води",
   "welcome-section.try-tracker": "Спробуйте трекер",
   "welcome-section.sign-in": "Увійти",
-  "advantages-section.our-happy-customers": "Наші<1> щасливі </1>клієнти",
+  "advantages-section.happy": "щасливих",
+  "advantages-section.customers": "клієнтів",
   "advantages-section.habit-drive": "Формування звичок",
   "advantages-section.view-statistics": "Переглянути статистику",
   "advantages-section.personal-rate-setting": "Персональне налаштування норм",
@@ -50,5 +51,17 @@
   "delete-water-modal.delete": "Видалити",
   "water-progress-bar.today": "Сьогодні",
   "water-daily-norma.my-daily-norma": "Моя денна норма",
-  "water-daily-norma.liter": "л"
+  "water-daily-norma.liter": "л",
+  "modal-water.add": "додати",
+  "modal-water.add-water": "Додати воду",
+  "modal-water.edit-water": "Редагувати введену кількість води",
+  "modal-water.choose-value": "Вибрати значення",
+  "modal-water.amount-water": "Кількість води",
+  "modal-water.rec-time": "Час запису",
+  "modal-water.enter-value": "Введіть кількість випитої води",
+  "modal-water.save": "Зберегти",
+  "modal-water.delete-entry": "Видалити запис",
+  "modal-water.are-you-sure": "Ви впевнені, що хочете видалити запис?",
+  "modal-water.delete": "Видалити",
+  "modal-water.cancel": "Скасувати"
 }

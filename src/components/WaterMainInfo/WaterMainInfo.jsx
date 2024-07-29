@@ -3,6 +3,7 @@ import WaterDailyNorma from './WaterDailyNorma/WaterDailyNorma';
 import css from './WaterMainInfo.module.css';
 import WaterProgressBar from './WaterProgressBar/WaterProgressBar';
 import Logo from '../Logo/Logo.jsx';
+import LanguageToggle from '../LanguageToggle/LanguageToggle.jsx';
 import { useState } from 'react';
 
 const WaterMainInfo = () => {
@@ -19,6 +20,7 @@ const WaterMainInfo = () => {
     <div className={css.waterMainInfo}>
       <div className={css.logo}>
         <Logo />
+        <LanguageToggle />
       </div>
 
       <WaterDailyNorma />

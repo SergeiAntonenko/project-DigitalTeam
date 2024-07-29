@@ -89,7 +89,7 @@
 }
 
 .hiddenFileInput + label::before {
-  content: url('./svg/upload.svg');
+  content: url('../../images/Icons/upload.svg');
   margin-left: auto;
   display: block;
   width: 18px;
@@ -198,7 +198,7 @@
 }
 
 .footnote::before {
-  content: url('./svg/emojione-v1_white-exclamation-mark.svg');
+  content: url('../../images//Icons/exclamation-mark.svg');
   width: 18px;
   height: 18px;
 }

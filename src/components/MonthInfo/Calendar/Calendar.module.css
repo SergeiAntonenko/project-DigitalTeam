@@ -21,13 +21,14 @@
   .calendarGrid {
     gap: 15px;
     grid-template-columns: repeat(8, 1fr);
+    margin-bottom: 35px;
   }
 }
 
 /* Desktop adaptive*/
 @media screen and (min-width: 1440px) {
   .calendarGrid {
-    gap: 15px;
+    /* gap: 15px; */
     grid-template-columns: repeat(8, 1fr);
   }
 }
