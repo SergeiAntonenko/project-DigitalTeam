@@ -8,7 +8,7 @@ import Logo from '../Logo/Logo.jsx';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/auth/operations';
 import { useTranslation } from 'react-i18next';
-import GoogleAuthButton from '../GoogleAuth/GoogleAuth.jsx';
+import GoogleAuthButton from '../GoogleAuth/GoogleAuthButton.jsx';
 
 const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);

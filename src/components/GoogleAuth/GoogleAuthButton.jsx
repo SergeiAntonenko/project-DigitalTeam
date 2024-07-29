@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { getGoogleUrl } from '../../redux/auth/operations';
-import css from './GoogleAuth.module.css';
+import css from './GoogleAuthButton.module.css';
 import { useEffect, useState } from 'react';
 
 const GoogleAuthButton = () => {
@@ -8,16 +8,17 @@ const GoogleAuthButton = () => {
   const [authUrl, setAuthUrl] = useState('');
 
   const handleGoogleOAuth = async () => {
-    // console.log('work');
     try {
       const resultAction = await dispatch(getGoogleUrl());
       if (getGoogleUrl.fulfilled.match(resultAction)) {
         const url = resultAction.payload;
+        console.log(url);
         if (url) {
           setAuthUrl(url);
         }
+      } else {
+        console.error('Failed to get Google OAuth URL');
       }
-      console.log('work', resultAction);
     } catch (err) {
       console.log(err);
     }
@@ -34,7 +35,6 @@ const GoogleAuthButton = () => {
       <button className={css.googleButton} type="button" onClick={handleGoogleOAuth}>
         Continue with Google
       </button>
-      {authUrl && <p>Redirecting to: {authUrl}</p>}
     </div>
   );
 };

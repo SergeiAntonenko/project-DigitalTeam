@@ -52,8 +52,8 @@ export const refreshUser = createAsyncThunk('auth/refresh-token', async (_, thun
 
 export const getGoogleUrl = createAsyncThunk('auth/get-oauth-url', async (_, thunkAPI) => {
   try {
-    const res = await api.instance.get('/users/get-oauth-url');
-    return res.data.url;
+    const { data } = await api.instance.get('/users/get-oauth-url');
+    return data.data.url;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -63,7 +63,7 @@ export const verifyGoogleOAuth = createAsyncThunk('auth/confirm-oauth', async (c
   try {
     const res = await api.instance.post('/users/confirm-oauth', { code });
 
-    api.setAuthHeader(res.data.data.accessToken);
+    api.setAuthHeader(res.data.accessToken);
 
     return res.data;
   } catch (error) {
