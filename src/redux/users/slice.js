@@ -16,6 +16,7 @@ const initialState = {
   userLoading: false,
   error: false,
   token: null,
+  totalUsers: null,
 };
 
 const usersSlice = createSlice({
@@ -33,46 +34,46 @@ const usersSlice = createSlice({
         state.error = false;
       })
       .addCase(getCurrentUser.rejected, state => {
-        state.isLoading = false;
+        state.userLoading = false;
         state.error = false;
       })
       .addCase(fetchUsersCount.pending, state => {
-        state.isLoading = true;
+        state.userLoading = true;
         state.error = false;
       })
       .addCase(fetchUsersCount.fulfilled, (state, action) => {
-        state.totalCount = action.payload;
-        state.isLoading = false;
+        state.totalUsers = action.payload;
+        state.userLoading = false;
         state.error = false;
       })
       .addCase(fetchUsersCount.rejected, state => {
-        state.isLoading = false;
+        state.userLoading = false;
         state.error = true;
       })
       .addCase(updateUser.pending, state => {
-        state.isLoading = true;
+        state.userLoading = true;
         state.error = false;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
         state.user = action.payload;
-        state.isLoading = false;
+        state.userLoading = false;
         state.error = false;
       })
       .addCase(updateUser.rejected, state => {
-        state.isLoading = false;
+        state.userLoading = false;
         state.error = true;
       })
       .addCase(updateAvatar.pending, state => {
-        state.isLoading = true;
+        state.userLoading = true;
         state.error = false;
       })
       .addCase(updateAvatar.fulfilled, (state, action) => {
-        state.avatar = action.payload;
-        state.isLoading = false;
+        state.user.avatar = action.payload;
+        state.userLoading = false;
         state.error = false;
       })
       .addCase(updateAvatar.rejected, state => {
-        state.isLoading = false;
+        state.userLoading = false;
         state.error = true;
       })
       .addCase(login.fulfilled, (state, action) => {
@@ -81,12 +82,10 @@ const usersSlice = createSlice({
       .addCase(logout.fulfilled, state => {
         state.user = null;
         state.avatar = null;
-        state.totalCount = 1;
-        state.isLoading = false;
+        state.totalUsers = null;
+        state.userLoading = false;
         state.error = null;
       }),
 });
-
-// export const { fetchingInProgress, fetchingSuccess, fetchingError } = waterSlice.actions;
 
 export const usersReducer = usersSlice.reducer;
