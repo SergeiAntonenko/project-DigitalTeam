@@ -1,16 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, login, logout, refreshUser, getGoogleUrl } from './operations';
+import {
+  register,
+  login,
+  logout,
+  refreshUser,
+  getGoogleUrl,
+  verifyGoogleOAuth,
+} from './operations';
 
 const INITIAL_STATE = {
-  // user: {
-  //   name: null,
-  //   email: null,
-  //   gender: null,
-  //   weight: null,
-  //   activeTime: null,
-  //   dailyWaterGoal: 1.5,
-  //   avatar: null,
-  // },
+  user: {
+    name: null,
+    email: null,
+    gender: null,
+    weight: null,
+    activeTime: null,
+    dailyWaterGoal: null,
+    avatar: null,
+  },
   token: null,
   isLoggedIn: false,
   isRefreshing: false,

@@ -17,8 +17,9 @@ const GoogleOAuthCallback = () => {
       if (code) {
         try {
           const resultAction = await dispatch(verifyGoogleOAuth({ code }));
+          console.log(resultAction);
           if (verifyGoogleOAuth.fulfilled.match(resultAction)) {
-            navigate.push('/');
+            navigate('/');
           }
         } catch (err) {
           console.log(err);
@@ -29,7 +30,11 @@ const GoogleOAuthCallback = () => {
     handleGoogleOAuth();
   }, [dispatch, location.search, navigate]);
 
-  return <WaterLoader />;
+  return (
+    <>
+      <WaterLoader />
+    </>
+  );
 };
 
 export default GoogleOAuthCallback;
