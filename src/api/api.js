@@ -5,7 +5,7 @@ axios.defaults.withCredentials = true;
 class Api {
   constructor() {
     this.instance = axios.create({
-      baseURL: 'https://project-digitalteam-backend.onrender.com',
+      baseURL: 'http://localhost:3000',
       withCredentials: true,
     });
   }

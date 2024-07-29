@@ -165,26 +165,27 @@ const WaterModal = ({ onCloseModal, operationType }) => {
   const localDate = currentDate.toLocaleDateString('en-GB');
   const localTime = recordingTime;
 
-  const waterData = {
-    waterValue: waterAmount,
-    localDate,
-    localTime,
-  };
-
   const handleSaveAndUpdate = () => {
     if (isUpdating) {
       dispatch(updateWater({ recordId: id, water: updatedWaterData }))
         .then(() => {
-          toast.success('Success');
+          toast.success('Water updated successfully');
         })
         .finally(() => onCloseModal())
         .catch(err => {
           toast.error('Something wrong');
         });
     } else {
-      dispatch(addWater({ waterValue: waterAmount, localDate, localTime })).finally(() => {
-        onCloseModal();
-      });
+      dispatch(addWater({ waterValue: waterAmount, localDate, localTime }))
+        .finally(() => {
+          onCloseModal();
+        })
+        .then(() => {
+          toast.success('Water added successfully');
+        })
+        .catch(err => {
+          toast.error('Something wrong');
+        });
       // .catch(err => {
       //   console.error(err.message);
       // });
