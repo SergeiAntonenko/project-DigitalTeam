@@ -21,7 +21,7 @@ export const getCurrentUser = createAsyncThunk('users/current', async (_, thunkA
 export const fetchUsersCount = createAsyncThunk('users/fetchUsersCount', async (_, thunkAPI) => {
   try {
     const response = await api.instance.get('users/count');
-    return response.data;
+    return response.data.totalUsers;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
