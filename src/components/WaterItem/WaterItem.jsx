@@ -10,15 +10,15 @@ import { useSelector } from 'react-redux';
 import { selectWaterLoading } from '../../redux/water/selectors';
 
 const WaterItem = ({ item }) => {
-  const [isModaDeleteOpen, setIsModaDeleteOpen] = useState(false);
+  const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
   const [isModalEditWaterOpen, setIsModalEditWaterOpen] = useState(false);
 
   const handleCloseModalDelete = () => {
-    setIsModaDeleteOpen(false);
+    setIsModalDeleteOpen(false);
   };
 
   const handleOpenModalDelete = () => {
-    setIsModaDeleteOpen(true);
+    setIsModalDeleteOpen(true);
   };
 
   const handleCloseModalEditWater = () => {
@@ -28,8 +28,6 @@ const WaterItem = ({ item }) => {
   const handleOpenModalEditWater = () => {
     setIsModalEditWaterOpen(true);
   };
-
-  const isWaterLoading = useSelector(selectWaterLoading);
 
   const formattedAmount =
     item.waterValue >= 1000
@@ -51,33 +49,33 @@ const WaterItem = ({ item }) => {
   };
 
   return (
-    isWaterLoading && (
-      <div className={css.center}>
-        <div className={css.div1}>
-          <IconGlass className={css.div1} />
-        </div>
-        <div className={css.div2}>
-          <span className={css.value}>{formattedAmount}</span>
-          <span className={css.time}>{formatTime(item.localTime)}</span>
-        </div>
-        <div className={css.buttonContainer}>
-          <button type="button" className={css.button1} onClick={handleOpenModalEditWater}>
-            <FiEdit2 className={css.edit} />
-          </button>
-          <button type="button" className={css.button2} onClick={handleOpenModalDelete}>
-            <FiTrash className={css.edit} />
-          </button>
-        </div>
-        {isModaDeleteOpen && (
-          <Modal handleCloseModal={handleCloseModalDelete}>
-            <ModalDelete handleCloseModal={handleCloseModalDelete} />
-          </Modal>
-        )}
-        {isModalEditWaterOpen && (
-          <WaterModal isModalOpen={isModalEditWaterOpen} onCloseModal={handleCloseModalEditWater} />
-        )}
+    <div className={css.center}>
+      <div className={css.div1}>
+        <IconGlass className={css.div1} />
       </div>
-    )
+      <div className={css.div2}>
+        <span className={css.value}>{formattedAmount}</span>
+        <span className={css.time}>{item.localTime}</span>
+      </div>
+      <div className={css.buttonContainer}>
+        <button type="button" className={css.button1} onClick={handleOpenModalEditWater}>
+          <FiEdit2 className={css.edit} />
+        </button>
+        <button type="button" className={css.button2} onClick={handleOpenModalDelete}>
+          <FiTrash className={css.edit} />
+        </button>
+      </div>
+      {isModalDeleteOpen && (
+        <Modal handleCloseModal={handleCloseModalDelete}>
+          <ModalDelete handleCloseModal={handleCloseModalDelete} />
+        </Modal>
+      )}
+      {isModalEditWaterOpen && (
+        <Modal handleCloseModal={handleCloseModalEditWater}>
+          <WaterModal onCloseModal={handleCloseModalEditWater} />
+        </Modal>
+      )}
+    </div>
   );
 };
 

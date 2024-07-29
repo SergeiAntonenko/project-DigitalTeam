@@ -4,6 +4,10 @@
   padding-top: 40px;
 }
 
+button {
+  background: none;
+  border: none;
+}
 .topContainer {
   display: flex;
   align-items: center;
@@ -13,22 +17,20 @@
 .rightContainer {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
 }
 
 h3 {
   margin: 0;
 }
 
-.pieChart {
-  width: 13px;
-  background-color: #f0eff4;
-  border: none;
+.icon {
+  width: 16px;
 }
 
 /* Tablet */
 @media screen and (min-width: 768px) and (max-width: 1439px) {
-  .pieChart {
+  .icon {
     width: 24px;
   }
 
@@ -45,7 +47,7 @@ h3 {
   .monthInfoContainer {
     padding-top: 40px;
   }
-  .pieChart {
+  .icon {
     width: 24px;
   }
 

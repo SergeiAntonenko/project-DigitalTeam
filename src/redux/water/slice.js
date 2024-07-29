@@ -124,14 +124,11 @@ const waterSlice = createSlice({
         state.error = null;
       })
       .addCase(addWater.fulfilled, (state, action) => {
-        // state.loading = false;
-        // console.log('action.payload:', action.payload);
-
-        state.loading = true;
+        state.loading = false;
         if (!state.dailyWater) {
           state.dailyWater = [];
         }
-        state.dailyWater.push(action.payload);
+        state.dailyWater.push(action.payload.waterCount);
         state.error = null;
       })
       .addCase(addWater.rejected, state => {
@@ -172,11 +169,12 @@ const waterSlice = createSlice({
         state.error = true;
       })
       .addCase(fetchWaterDaily.pending, state => {
+        state.dailyWater = [];
         state.loading = true;
         state.error = null;
       })
       .addCase(fetchWaterDaily.fulfilled, (state, action) => {
-        state.dailyWater = action.payload;
+        state.dailyWater = action.payload.waterCount;
         state.loading = false;
         state.error = null;
       })
