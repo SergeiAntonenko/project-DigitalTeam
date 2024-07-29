@@ -55,7 +55,7 @@ const WaterItem = ({ item }) => {
       </div>
       <div className={css.div2}>
         <span className={css.value}>{formattedAmount}</span>
-        <span className={css.time}>{item.localTime}</span>
+        <span className={css.time}>{formatTime(item.localTime)}</span>
       </div>
       <div className={css.buttonContainer}>
         <button type="button" className={css.button1} onClick={handleOpenModalEditWater}>

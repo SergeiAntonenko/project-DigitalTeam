@@ -40,6 +40,7 @@
   }
   .waterListWrap {
     gap: 31.5px;
+    /* margin-bottom: 32px; */
   }
   .noWater {
     font-size: 18px;
