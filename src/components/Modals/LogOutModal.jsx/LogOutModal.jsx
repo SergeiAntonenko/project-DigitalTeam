@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import css from './LogOut.module.css';
-import Iconsvg from '../../../images/Icons/Icons.jsx';
 import Modal from '../../../shared/components/Modal/Modal.jsx';
 import { logout } from '../../../redux/auth/operations.js';
 import toast  from 'react-hot-toast';
@@ -16,11 +15,11 @@ const LogOutModal = ({ handleCloseModal }) => {
     try {
       await dispatch(logout());
 
-      toast.success('Successfully logged out!');
+      toast.success('Successfully logged out!',  {duration: 2000});
 
       handleCloseModal();
     } catch (error) {
-      toast.error('Something went wrong. Please try again.');
+      toast.error('Something went wrong. Please try again.',  {duration: 2000});
     }
   };
 
@@ -46,7 +45,7 @@ const LogOutModal = ({ handleCloseModal }) => {
       <Modal handleCloseModal={handleCloseModal}>
         <div className={css.modal_content}>
           <button className={css.close_button} onClick={handleCloseModal}>
-            <Iconsvg width="28px" height="28px" iconName="modal-close" />
+           
           </button>
           <h1 className={css.log_out}>{t('log-out-modal.log-out')}</h1>
           <h2 className={css.text}>{t('log-out-modal.want-to-leave')}</h2>

@@ -7,7 +7,7 @@ import useWaterState from '../WaterState';
 import Modal from '../../../shared/components/Modal/Modal';
 // import WaterForm from '../WaterForm/WaterForm';
 import css from './WaterModal.module.css';
-import Iconsvg from '../../../images/Icons/Icons.jsx';
+import sprite from '../../../images/Icons/icons.svg';
 import toast  from 'react-hot-toast';
 
 
@@ -60,11 +60,11 @@ const WaterModal = ({ isModalOpen, onCloseModal, operationType, onWaterUpdate })
     try {
       if (isUpdating) {
         await dispatch(updateWater({ recordId: id, water: updatedWaterData }));
-        toast.success('Update success');
+        toast.success('Update success',  {duration: 2000});
         onCloseModal();
       } else {
         await dispatch(addWater({ waterValue: waterAmount }));
-        toast.success('Success');
+        toast.success('Success',  {duration: 2000});
         onWaterUpdate(waterAmount);
         onCloseModal();
       }
@@ -77,7 +77,7 @@ const WaterModal = ({ isModalOpen, onCloseModal, operationType, onWaterUpdate })
     <Modal handleCloseModal={handleCloseModal}>
       <div className={css.modalwrapper}>
         <button className={css.close_button} onClick={onCloseModal}>
-          <Iconsvg width="28px" height="28px" iconName="modal-close" />
+         
         </button>
         <h1 className={css.title}>{title}</h1>
         <h2 className={css.subtitle}>Choose a value:</h2>
@@ -90,12 +90,18 @@ const WaterModal = ({ isModalOpen, onCloseModal, operationType, onWaterUpdate })
               onClick={decreaseWaterAmount}
               disabled={waterAmount === 0}
             >
-           <Iconsvg className={css.pl_min} iconName="icon-minus-round"/>
+           <svg className={css.svgpl_min} stroke="#323f47" width="40" height="40">
+          <use href={sprite + "#icon-minus-round"}></use>
+        </svg>
+
             </button>
             <span className={css.button_ml}>{waterAmount} ml</span>
             <button className={css.button_water} onClick={increaseWaterAmount}>
 
-            <Iconsvg className={css.pl_min} iconName="icon-plus-round" />
+            <svg className={css.svgpl_min} stroke="#323f47" width="40" height="40">
+          <use href={sprite + "#icon-plus-round"}></use>
+        </svg>
+
             </button>
           </div>
         </div>
