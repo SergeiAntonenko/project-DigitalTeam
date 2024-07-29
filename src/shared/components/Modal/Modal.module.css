@@ -1,14 +1,12 @@
 .backdrop {
   position: fixed;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  top: 0;
-  left: 0;
-  z-index: 999;
+  inset: 0px;
+  background-color: rgba(47, 47, 47, 0.6);
+  z-index: 15;
+  overflow: auto;
+  display: grid;
+  place-items: center;
+  padding: 20px;
 }
 
 .container {
@@ -16,7 +14,7 @@
   background-color: white;
   border-radius: 15px;
   padding: 40px 20px;
-  width: 343px;
+  min-width: 343px;
   box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -35,6 +33,6 @@
   .container {
     border-radius: 15px;
     padding: 40px;
-    width: 518px;
+    min-width: 518px;
   }
 }

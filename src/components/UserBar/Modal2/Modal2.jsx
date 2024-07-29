@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import s from './Modal2.module.css';
-import Iconsvg from '../../Modals/MyIcons/MyIcons';
+import Iconsvg from '../../../images/Icons/Icons';
 
 const Modal2 = ({ children, handleCloseModal }) => {
   const handleEscapeKey = e => {
@@ -20,7 +20,7 @@ const Modal2 = ({ children, handleCloseModal }) => {
     <section onClick={handleCloseModal} className={s.backdrop}>
       <div className={s.container} onClick={e => e.stopPropagation()}>
         <button className={s.closeButton} onClick={handleCloseModal}>
-          <Iconsvg width="28px" height="28px" iconName="modal-close" />
+          <Iconsvg width="28px" height="28px" iconName="icon-close" />
         </button>
         {children}
       </div>
