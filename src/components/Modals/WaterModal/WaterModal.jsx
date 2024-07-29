@@ -130,8 +130,12 @@ import Modal from '../../../shared/components/Modal/Modal';
 import css from './WaterModal.module.css';
 import Iconsvg from '../../../images/Icons/Icons.jsx';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
+
+
 
 const WaterModal = ({ onCloseModal, operationType }) => {
+  const { t } = useTranslation();
   const { waterAmount, increaseWaterAmount, decreaseWaterAmount, setWaterAmount } = useWaterState();
   const [recordingTime, setRecordingTime] = useState(
     new Date().toLocaleString([], { hour: '2-digit', minute: '2-digit' })
@@ -152,7 +156,9 @@ const WaterModal = ({ onCloseModal, operationType }) => {
     }
   };
 
-  const title = operationType === 'add' ? 'Add water' : 'Edit the entered amount of water';
+  // const title = operationType === 'add' ? 'Add water' : 'Edit the entered amount of water';
+  const title = operationType === 'add' ? t('modal-water.add-water') : t('modal-water.edit-water');
+
 
   const dispatch = useDispatch();
   const [isUpdating] = useState(false);
@@ -195,10 +201,10 @@ const WaterModal = ({ onCloseModal, operationType }) => {
   return (
     <>
       <h1 className={css.title}>{title}</h1>
-      <h2 className={css.subtitle}>Choose a value:</h2>
+      <h2 className={css.subtitle}>{t('modal-water.choose-value')}:</h2>
 
       <div className={css.waterwrapper}>
-        <h3 className={css.amount_water}>Amount of water: {waterAmount} ml</h3>
+        <h3 className={css.amount_water}>{t('modal-water.amount-water')}: {waterAmount} ml</h3>
         <div className={css.minplus_wrapper}>
           <button
             className={css.button_water}
@@ -214,21 +220,22 @@ const WaterModal = ({ onCloseModal, operationType }) => {
         </div>
       </div>
       <div className={css.button_wrapper}>
-        <h3 className={css.time_water}>Recording time: {recordingTime}</h3>
+        <h3 className={css.time_water}>{t('modal-water.rec-time')}: {recordingTime}</h3>
         <input
           type="text"
           value={recordingTime}
           onChange={handleChangeRecordingTime}
           placeholder="first (:) after (numbers)"
         />
-        <h2 className={css.subtitle}>Enter the value of the water used:</h2>
+        <h2 className={css.subtitle}>{t('modal-water.enter-value')}:</h2>
         <input type="text" value={waterAmount} onChange={handleWaterAmountChange} />
       </div>
       <button className={css.button_save} onClick={handleSaveAndUpdate}>
-        Save
+        {t('modal-water.save')}
       </button>
     </>
   );
 };
 
 export default WaterModal;
+
