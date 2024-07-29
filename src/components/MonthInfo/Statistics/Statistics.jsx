@@ -78,12 +78,19 @@ const Statistics = () => {
         >
           <YAxis
             type="number"
-            domain={[0, 2.5]}
+            // tickCount={6}
+            // domain={[0, 2.5]}
             ticks={[0, 0.5, 1, 1.5, 2, 2.5]}
-            tickFormatter={value => (value === 0 ? '0%' : `${value}L`)}
+            tickFormatter={value => {
+              console.log(value); // Для отладки
+              return value === 0 ? '0%' : `${value}L`;
+            }}
             axisLine={false}
             tickLine={false}
             className={styles.ySymbol}
+            padding={{ bottom: 30 }} // Увеличение отступа снизу
+
+            // allowDataOverflow={true} // Добавьте это свойство
           />
         </AreaChart>
       </div>
@@ -107,7 +114,13 @@ const Statistics = () => {
             </linearGradient>
           </defs>
 
-          <XAxis dataKey="date" axisLine={false} tickLine={false} className={styles.xSymbol} />
+          <XAxis
+            dataKey="date"
+            axisLine={false}
+            tickLine={false}
+            className={styles.xSymbol}
+            padding={{ bottom: 30 }} // Увеличение отступа снизу
+          />
           <Tooltip content={<CustomTooltip />} />
           <Area
             className={styles.area}
