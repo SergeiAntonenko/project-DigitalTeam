@@ -29,43 +29,39 @@ const WaterItem = ({ item }) => {
     setIsModalEditWaterOpen(true);
   };
 
-  const isWaterLoading = useSelector(selectWaterLoading);
-
   const formattedAmount =
     item.waterValue >= 1000
       ? `${(item.waterValue / 1000).toFixed(1).replace('.0', '')}${' l'}`
       : `${item.waterValue}${' ml'}`;
 
   return (
-    isWaterLoading && (
-      <div className={css.center}>
-        <div className={css.div1}>
-          <IconGlass className={css.div1} />
-        </div>
-        <div className={css.div2}>
-          <span className={css.value}>{formattedAmount}</span>
-          <span className={css.time}>{item.localTime}</span>
-        </div>
-        <div className={css.buttonContainer}>
-          <button type="button" className={css.button1} onClick={handleOpenModalEditWater}>
-            <FiEdit2 className={css.edit} />
-          </button>
-          <button type="button" className={css.button2} onClick={handleOpenModalDelete}>
-            <FiTrash className={css.edit} />
-          </button>
-        </div>
-        {isModalDeleteOpen && (
-          <Modal handleCloseModal={handleCloseModalDelete}>
-            <ModalDelete handleCloseModal={handleCloseModalDelete} />
-          </Modal>
-        )}
-        {isModalEditWaterOpen && (
-          <Modal handleCloseModal={handleCloseModalEditWater}>
-            <WaterModal onCloseModal={handleCloseModalEditWater} />
-          </Modal>
-        )}
+    <div className={css.center}>
+      <div className={css.div1}>
+        <IconGlass className={css.div1} />
       </div>
-    )
+      <div className={css.div2}>
+        <span className={css.value}>{formattedAmount}</span>
+        <span className={css.time}>{item.localTime}</span>
+      </div>
+      <div className={css.buttonContainer}>
+        <button type="button" className={css.button1} onClick={handleOpenModalEditWater}>
+          <FiEdit2 className={css.edit} />
+        </button>
+        <button type="button" className={css.button2} onClick={handleOpenModalDelete}>
+          <FiTrash className={css.edit} />
+        </button>
+      </div>
+      {isModalDeleteOpen && (
+        <Modal handleCloseModal={handleCloseModalDelete}>
+          <ModalDelete handleCloseModal={handleCloseModalDelete} />
+        </Modal>
+      )}
+      {isModalEditWaterOpen && (
+        <Modal handleCloseModal={handleCloseModalEditWater}>
+          <WaterModal onCloseModal={handleCloseModalEditWater} />
+        </Modal>
+      )}
+    </div>
   );
 };
 
