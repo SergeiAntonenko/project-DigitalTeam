@@ -1,44 +1,59 @@
 .general {
-  display: inline-block;
   background-color: rgb(255, 255, 255);
   padding: 18px 14px;
   border-radius: 15px;
+  list-style: none;
+  flex-shrink: 0;
 }
+
+.noWater {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.29;
+  color: rgb(155, 225, 160);
+}
+
 .waterListWrap {
   display: flex;
   flex-wrap: nowrap;
+  overflow-x: auto;
   gap: 8px;
   padding-bottom: 24px;
-  overflow-x: auto;
 }
 
+.waterListWrap::-webkit-scrollbar {
+  height: 8px;
+  background-color: rgba(26, 24, 47, 0.15);
+  border-radius: 5px;
+  width: 235px;
+}
+
+.waterListWrap::-webkit-scrollbar-thumb {
+  background: rgb(50, 63, 71);
+  border-radius: 4px;
+}
 @media screen and (min-width: 768px) {
   .general {
     padding: 20px;
+    min-width: 192px;
+    height: 86px;
   }
   .waterListWrap {
-    gap: 32px;
+    gap: 31.5px;
+    /* margin-bottom: 32px; */
   }
-  @media screen and (min-width: 1440px) {
-    .general {
-      margin-left: 16px;
-    }
-    .waterListWrap {
-      gap: 16px;
-    }
-    .waterListWrap::-webkit-scrollbar {
-      width: 150px;
-      height: 8px;
-    }
-
-    .waterListWrap::-webkit-scrollbar-track {
-      border-radius: 10px;
-      background: var(--white);
-    }
-
-    .waterListWrap::-webkit-scrollbar-thumb {
-      border-radius: 10px;
-      background: var(--dark-blue);
-    }
+  .noWater {
+    font-size: 18px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .waterListWrap {
+    gap: 15.5px;
+  }
+  .noWater {
+    font-size: 20px;
+  }
+  .water {
+    margin-bottom: 85px;
   }
 }

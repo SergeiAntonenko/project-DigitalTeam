@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoading, selectIsRefreshing } from './redux/auth/selectors.js';
 import { refreshUser } from './redux/auth/operations.js';
 import { WaterLoader } from './loader/loader.jsx';
+import GoogleOAuthCallback from './components/GoogleAuth/GoogleOAuthCallback.jsx';
 const HomePage = lazy(() => import('./pages/HomePage/HomePage.jsx'));
 const SignInPage = lazy(() => import('./pages/SignInPage/SignInPage.jsx'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage/SignUpPage.jsx'));
@@ -48,6 +49,7 @@ export const App = () => {
             path="/signin"
             element={<RestrictedRoute redirectTo="/tracker" component={<SignInPage />} />}
           />
+          <Route path="/confirm-google-auth" element={<GoogleOAuthCallback />} />
           <Route
             path="/tracker"
             element={<PrivateRoute redirectTo="/signin" component={<TrackerPage />} />}

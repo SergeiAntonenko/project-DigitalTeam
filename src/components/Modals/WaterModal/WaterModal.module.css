@@ -5,21 +5,12 @@ h3 {
   padding: 0;
 }
 
-.modalwrapper {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 15px;
-  padding: 40px 20px;
-  width: 343px;
-  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
-  background: #fff;
-  z-index: 999;
+svg.pl_min {
+  width: 40px;
+  height: 40px;
 }
 
 .title {
-  font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 20px;
   line-height: 1.2;
@@ -29,7 +20,6 @@ h3 {
 }
 
 .subtitle {
-  font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 16px;
   line-height: 1.25;
@@ -39,9 +29,9 @@ h3 {
 }
 
 .amount_water {
-display:flex;
-align-items: center;
-white-space: nowrap;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.28571;
@@ -70,30 +60,20 @@ white-space: nowrap;
   display: flex;
 }
 
-.pl_min {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 .button_water {
+  font-size: inherit;
   display: inline-block;
   margin: 0;
   vertical-align: top;
-  width: 40px;
-  height: 40px;
-  border-radius: 30px;
-  border: 1.5px solid #323f47;
   background: #fff;
   color: #323f47;
-  font-size: 24px;
+
 }
 
+
 .button_ml {
-  font-family: 'Poppins', sans-serif;
   display: inline-block;
-  margin-left: 8px;
-  margin-right: 8px;
   font-weight: 700;
   font-size: 14px;
   color: #fff;
@@ -101,6 +81,9 @@ white-space: nowrap;
   width: 81px;
   height: 40px;
   background: #323f47;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 input {
@@ -123,17 +106,6 @@ button {
   border: 2px solid #fff;
   cursor: pointer;
   background: #fff;
-}
-
-.close_button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-
-svg {
-  width: 24px;
-  height: 24px;
 }
 
 .button_wrapper {
@@ -161,21 +133,8 @@ svg {
   background-color: #87d28d;
 }
 
-.closebutton {
-  stroke-width: 3px;
-  stroke: #2f2f2f;
-  background: #fff;
-  border-color: #fff;
-  cursor: pointer;
-}
 
 @media screen and (min-width: 768px) {
-  .modalwrapper {
-    border-radius: 15px;
-    padding: 40px;
-    width: 518px;
-  }
-
   .title {
     font-size: 28px;
     line-height: 1.4;
@@ -201,12 +160,8 @@ svg {
     padding-bottom: 16px;
   }
 
-  .button_water {
-    width: 43px;
-    height: 43px;
-  }
 
-  .pl_min {
+  .icon_round {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -229,10 +184,6 @@ svg {
     color: #2f2f2f;
   }
 
-  svg {
-    width: 28px;
-    height: 28px;
-  }
 
   .button_wrapper {
     display: flex;

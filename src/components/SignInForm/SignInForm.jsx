@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import css from './SignInForm.module.css';
+// import { Formik, Form, Field, ErrorMessage, getIn } from 'formik';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
@@ -8,6 +10,7 @@ import Logo from '../Logo/Logo.jsx';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/auth/operations';
 import { useTranslation } from 'react-i18next';
+import GoogleAuthButton from '../GoogleAuth/GoogleAuthButton.jsx';
 
 const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -86,6 +89,8 @@ const SignInForm = () => {
             <button className={css.button} type="submit">
               {t('signup-signin-sections.signin')}
             </button>
+
+            <GoogleAuthButton />
 
             <div className={css.reminder}>
               {t('signup-signin-sections.dont-have-account')}{' '}

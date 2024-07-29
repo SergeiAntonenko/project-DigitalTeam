@@ -1,14 +1,34 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, login, logout, refreshUser } from './operations';
+import {
+  register,
+  login,
+  logout,
+  refreshUser,
+  getGoogleUrl,
+  verifyGoogleOAuth,
+} from './operations';
+
+const INITIAL_STATE = {
+  user: {
+    name: null,
+    email: null,
+    gender: null,
+    weight: null,
+    activeTime: null,
+    dailyWaterGoal: null,
+    avatar: null,
+  },
+  token: null,
+  isLoggedIn: false,
+  isRefreshing: false,
+  isLoading: false,
+  error: null,
+  url: '',
+};
 
 const authSlice = createSlice({
   name: 'auth',
-  initialState: {
-    token: null,
-    isLoggedIn: false,
-    isRefreshing: false,
-    isLoading: false,
-  },
+  initialState: INITIAL_STATE,
   extraReducers: builder => {
     builder
       .addCase(register.pending, (state, action) => {
@@ -40,6 +60,12 @@ const authSlice = createSlice({
         state.token = null;
         state.isLoggedIn = false;
         state.isLoading = false;
+      })
+      .addCase(getGoogleUrl.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+      })
+      .addCase(getGoogleUrl.rejected, (state, action) => {
+        state.error = action.payload;
       })
       .addCase(logout.pending, state => {
         state.token = null;

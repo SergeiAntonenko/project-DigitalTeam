@@ -1,112 +1,95 @@
 .center {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .buttonContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  
-  .button1 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-  }
-  .button2 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-  }
-  .text_time {
-    color: rgba(47, 47, 47, 0.6);
-    font-family: Poppins;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 12px;
-    letter-spacing: 0%;
-    text-align: left;
-    min-width: 46px;
-  }
-  .text_value {
-    color: rgb(50, 63, 71);
-    font-family: Poppins;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 14px;
-    letter-spacing: 0%;
-    text-align: left;
-    min-width: 49px;
+  display: flex;
+  width: 121px;
+  justify-content: space-between;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.button1,
+.button2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.time {
+  color: rgba(47, 47, 47, 0.6);
+  font-family: Poppins;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
+  letter-spacing: 0%;
+  text-align: left;
+}
+
+.value {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(50, 63, 71);
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0%;
+}
+
+.div1 {
+  width: 38px;
+  height: 38px;
+}
+
+.div2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 9px;
+}
+
+.edit {
+  width: 14px;
+  height: 14px;
+}
+
+@media screen and (min-width: 768px) {
+  .center {
+    width: 152px;
   }
   .div1 {
-    width: 38px;
-    height: 38px;
-  }
-  
-  .div2 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
+    width: 44px;
+    height: 45px;
   }
   .edit {
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
   }
-  @media screen and (min-width: 768px) {
-    .center {
-      gap: 20px;
-    }
-    .div1 {
-      width: 44px;
-      height: 45px;
-    }
-    .edit {
-      width: 16px;
-      height: 16px;
-    }
-    .text_value {
-      color: rgb(50, 63, 71);
-      font-family: Poppins;
-      font-size: 15px;
-      font-weight: 700;
-      line-height: 22.4px;
-      letter-spacing: 0%;
-      text-align: left;
-      width: 52px;
-    }
-    .text_time {
-      color: rgba(47, 47, 47, 0.6);
-      font-family: Poppins;
-      font-size: 13px;
-      font-weight: 400;
-      line-height: 22.4px;
-      letter-spacing: 0%;
-      text-align: left;
-      min-width: 52px;
-    }
-    .buttonContainer {
-      gap: 13px;
-    }
+  .value {
+    font-size: 15px;
+    line-height: 22.4px;
   }
-  @media screen and (min-width: 1440px) {
-    .div2 {
-      height: 45px;
-    }
-    .buttonContainer {
-      gap: 10px;
-    }
+  .time {
+    font-size: 13px;
+    line-height: 22.4px;
   }
-  
+  .buttonContainer {
+    gap: 13px;
+  }
+  .div2 {
+    height: 45px;
+    gap: 4px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .buttonContainer {
+    gap: 10px;
+  }
+}

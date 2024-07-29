@@ -7,21 +7,20 @@ import ModalDelete from '../Modals/DeleteWaterModal/DeleteWaterModal';
 import WaterModal from '../Modals/WaterModal/WaterModal';
 import Modal from '../../shared/components/Modal/Modal';
 import { useSelector } from 'react-redux';
-import { selectDate } from '../../redux/date/dateSlice';
+import { selectWaterLoading } from '../../redux/water/selectors';
 
-const WaterItem = ({ item: { _id: id, amount, time } }) => {
-  const [isModaDeleteOpen, setIsModaDeleteOpen] = useState(false);
+const WaterItem = ({ item }) => {
+  const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
   const [isModalEditWaterOpen, setIsModalEditWaterOpen] = useState(false);
 
-  const date = useSelector(selectDate);
-
   const handleCloseModalDelete = () => {
-    setIsModaDeleteOpen(false);
+    setIsModalDeleteOpen(false);
   };
 
   const handleOpenModalDelete = () => {
-    setIsModaDeleteOpen(true);
+    setIsModalDeleteOpen(true);
   };
+
   const handleCloseModalEditWater = () => {
     setIsModalEditWaterOpen(false);
   };
@@ -31,7 +30,24 @@ const WaterItem = ({ item: { _id: id, amount, time } }) => {
   };
 
   const formattedAmount =
-    amount >= 1000 ? `${(amount / 1000).toFixed(1).replace('.0', '')}${'L'}` : `${amount}${'Ml'}`;
+    item.waterValue >= 1000
+      ? `${(item.waterValue / 1000).toFixed(1).replace('.0', '')}${' L'}`
+      : `${item.waterValue}${' ml'}`;
+
+  const formatTime = timeString => {
+    // Разделяем строку времени на часы и минуты
+    const [hours, minutes] = timeString.split(':').map(Number);
+
+    // Определяем, является ли время AM или PM
+    const period = hours >= 12 ? 'PM' : 'AM';
+
+    // Преобразуем часы в формат 12-часов
+    const formattedHours = hours % 12 === 0 ? 12 : hours % 12;
+
+    // Возвращаем форматированное время
+    return `${formattedHours}:${minutes < 10 ? '0' : ''}${minutes} ${period}`;
+  };
+
   return (
     <>
       <li>
@@ -69,6 +85,7 @@ const WaterItem = ({ item: { _id: id, amount, time } }) => {
         </div>
       </li>
     </>
+
   );
 };
 

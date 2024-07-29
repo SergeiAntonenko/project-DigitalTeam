@@ -109,9 +109,16 @@ const WaterForm = ({ operationType, initialData, waterId, initialWaterAmount = 0
       }
       
 
-      dispatch(fetchWaterDaily(selectedDate));
+      dispatch(fetchWaterDaily(selectedDate))
+      .then(() => {
+        console.log('success');
+      })
+      .catch(err => {
+        console.error(err.message);
+      });
 
-      if (Number(selectedDate.split('-')[0]) === currentMonth.year && Number(selectedDate.split('-')[1]) === currentMonth.month) {
+      if (Number(selectedDate.split('-')[0]) === currentMonth.year && 
+         Number(selectedDate.split('-')[1]) === currentMonth.month) {
         dispatch(fetchWaterMonthly(currentMonth));
       }
     } catch (error) {

@@ -1,0 +1,13 @@
+.customTooltip {
+  width: 100px; /* Задайте нужные размеры */
+  height: 50px;
+}
+
+.label {
+  fill: #323f47;
+  font-family: Poppins;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 10px;
+  text-align: left;
+}
