@@ -2,18 +2,15 @@
   background-color: rgb(255, 255, 255);
   padding: 18px 14px;
   border-radius: 15px;
-  width: 149px;
   list-style: none;
-  flex-shrink: 0; /* предотвращает уменьшение ширины */
+  flex-shrink: 0;
 }
 
 .noWater {
-  padding-top: 30px;
   font-weight: 700;
   font-size: 16px;
   line-height: 1.29;
-  min-height: 142px;
-  color: rgb(218, 19, 48);
+  color: rgb(155, 225, 160);
 }
 
 .waterListWrap {
@@ -22,51 +19,40 @@
   overflow-x: auto;
   gap: 8px;
   padding-bottom: 24px;
-  scrollbar-width: thin;
-  scrollbar-color: #888 #f1f1f1;
 }
 
 .waterListWrap::-webkit-scrollbar {
   height: 8px;
-}
-
-.waterListWrap::-webkit-scrollbar-track {
-  border-radius: 10px;
-  background: #f1f1f1;
+  background-color: rgba(26, 24, 47, 0.15);
+  border-radius: 5px;
+  width: 235px;
 }
 
 .waterListWrap::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background: #888;
+  background: rgb(50, 63, 71);
+  border-radius: 4px;
 }
-
-.waterListWrap::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
 @media screen and (min-width: 768px) {
   .general {
     padding: 20px;
-    width: 192px;
+    min-width: 192px;
+    height: 86px;
   }
   .waterListWrap {
-    gap: 16px;
+    gap: 31.5px;
   }
   .noWater {
     font-size: 18px;
   }
 }
 @media screen and (min-width: 1440px) {
-  .general {
-    /* margin-left: 16px; */
-    width: 192px;
-  }
   .waterListWrap {
-    gap: 16px;
-    margin-left: 16px;
+    gap: 15.5px;
   }
   .noWater {
-    padding-top: 30px;
     font-size: 20px;
+  }
+  .water {
+    margin-bottom: 85px;
   }
 }

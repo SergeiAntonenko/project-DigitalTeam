@@ -1,6 +1,7 @@
 .center {
   display: flex;
-  gap: 10px;
+  width: 121px;
+  justify-content: space-between;
 }
 
 .buttonContainer {
@@ -28,10 +29,12 @@
   line-height: 12px;
   letter-spacing: 0%;
   text-align: left;
-  /* overflow-x: auto; */
 }
 
 .value {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: rgb(50, 63, 71);
   font-family: Poppins;
   font-size: 14px;
@@ -49,7 +52,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 6px;
+  gap: 9px;
 }
 
 .edit {
@@ -59,7 +62,7 @@
 
 @media screen and (min-width: 768px) {
   .center {
-    gap: 20px;
+    width: 152px;
   }
   .div1 {
     width: 44px;
@@ -80,11 +83,12 @@
   .buttonContainer {
     gap: 13px;
   }
-}
-@media screen and (min-width: 1440px) {
   .div2 {
     height: 45px;
+    gap: 4px;
   }
+}
+@media screen and (min-width: 1440px) {
   .buttonContainer {
     gap: 10px;
   }
