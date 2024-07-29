@@ -1,49 +1,3 @@
-.modalwrapper {
-  border-radius: 15px;
-  padding: 40px 14px;
-  background: transparent;
-  text-align: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-.modal_background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.modal_content {
-  position: relative;
-  padding: 40px 14px;
-  border-radius: 15px;
-  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
-  width: 344px;
-  text-align: center;
-  background-color: #fff;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.close_button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-  font-size: 24px;
-}
-
 .delete_entry {
   font-weight: 700;
   font-size: 20px;
@@ -64,18 +18,21 @@
   padding-top: 16px;
 }
 
+.button_container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .delete_button {
+  min-width: 173px;
   font-weight: 700;
   font-size: 14px;
-  line-height: 1.2;
   letter-spacing: -0.01em;
-  text-align: center;
   color: #323f47;
-  width: 304px;
-  height: 46px;
   background: #9be1a0;
   border-radius: 30px;
-  margin-bottom: 9px;
+  padding: 18px 36px;
 }
 
 .delete_button:hover,
@@ -84,21 +41,21 @@
 }
 
 .cancel_button {
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: -0.01em;
   border-radius: 30px;
-  padding: 14px 126px;
-  width: 304px;
-  height: 46px;
+  padding: 18px 36px;
+  min-width: 173px;
   background: #f0eff4;
+  color: rgba(50, 63, 71, 0.3);
+}
+
+.cancel_button:hover {
+  color: #323F47;
 }
 
 @media screen and (min-width: 768px) {
-  .modal_content {
-    border-radius: 15px;
-    padding: 40px;
-    width: 516px;
-    height: 244px;
-  }
-
   .delete_entry {
     font-weight: 700;
     font-size: 28px;
@@ -110,44 +67,21 @@
 
 
   .text {
-    font-weight: 400;
     font-size: 18px;
     line-height: 1.33333;
-    letter-spacing: -0.01em;
-    text-align: center;
-    color: #323f47;
   }
 
   .button_container {
-    width: 359px;
-    height: 60px;
-    display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
   }
 
   .delete_button {
-    border-radius: 30px;
-    width: 173px;
-    height: 60px;
-    font-weight: 700;
     font-size: 16px;
-    line-height: 1.5;
-    letter-spacing: -0.01em;
-    text-align: center;
-    color: #323f47;
-    margin: 0;
   }
 
   .cancel_button {
-    border-radius: 30px;
-    padding: 18px 59px;
-    width: 176px;
-    height: 60px;
-    font-weight: 700;
     font-size: 16px;
-    line-height: 1.5;
-    letter-spacing: -0.01em;
   }
 }

@@ -5,30 +5,10 @@ h3 {
   padding: 0;
 }
 
-.modalwrapper {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 15px;
-  padding: 40px 20px;
-  width: 343px;
-  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
-  background: #fff;
-  z-index: 999;
-}
-
-svg.pl_min{
+svg.pl_min {
   width: 40px;
   height: 40px;
 }
-
-
-.close{
-  width: 24px;
-  height: 24px;
-}
-
 
 .title {
   font-weight: 700;
@@ -49,7 +29,7 @@ svg.pl_min{
 }
 
 .amount_water {
-  display:flex;
+  display: flex;
   align-items: center;
   white-space: nowrap;
   font-weight: 400;
@@ -92,20 +72,20 @@ svg.pl_min{
 }
 
 
-  .button_ml {
-    display: inline-block;
-    font-weight: 700;
-    font-size: 14px;
-    color: #fff;
-    border-radius: 30px;
-    width: 81px;
-    height: 40px;
-    background: #323f47;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
- 
+.button_ml {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+  border-radius: 30px;
+  width: 81px;
+  height: 40px;
+  background: #323f47;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 input {
   padding-right: 15px;
   padding-left: 16px;
@@ -127,15 +107,6 @@ button {
   cursor: pointer;
   background: #fff;
 }
-
-.close_button {
-  width: 24px;
-  height: 24px;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-
 
 .button_wrapper {
   display: flex;
@@ -164,21 +135,10 @@ button {
 
 
 @media screen and (min-width: 768px) {
-  .modalwrapper {
-    border-radius: 15px;
-    padding: 40px;
-    width: 518px;
-  }
-
   .title {
     font-size: 28px;
     line-height: 1.4;
     letter-spacing: -0.01em;
-  }
-
-  .close{
-    width: 28px;
-    height: 28px;
   }
 
   .subtitle {
@@ -201,7 +161,7 @@ button {
   }
 
 
-  .icon_round{ 
+  .icon_round {
     display: flex;
     align-items: center;
     justify-content: center;

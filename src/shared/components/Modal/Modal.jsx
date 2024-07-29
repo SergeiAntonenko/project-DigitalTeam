@@ -7,7 +7,7 @@ const Modal = ({ children, handleCloseModal }) => {
     if (e.key === 'Escape') {
       handleCloseModal();
     }
-  }; 
+  };
 
   useEffect(() => {
     document.addEventListener('keydown', handleEscapeKey);
@@ -20,7 +20,7 @@ const Modal = ({ children, handleCloseModal }) => {
     <section onClick={handleCloseModal} className={s.backdrop}>
       <div className={s.container} onClick={e => e.stopPropagation()}>
         <button className={s.closeButton} onClick={handleCloseModal}>
-          <Iconsvg width="28px" height="28px" iconName="modal-close" />
+          <Iconsvg className={s.closeIcon} iconName="icon-close" />
         </button>
         {children}
       </div>
