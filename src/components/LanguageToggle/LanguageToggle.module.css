@@ -9,9 +9,20 @@
     transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
+.contrast {
+    background-color: #323f47;
+    color: #fff;
+}
+
+
 @media (min-width: 1440px) {
     .lng:hover {
         border-color: #87d28d;
+        color: #87d28d;
+    }
+
+    .contrast:hover {
+        border-color: #323f47;
         color: #87d28d;
     }
 }
