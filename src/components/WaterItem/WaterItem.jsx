@@ -53,7 +53,10 @@ const WaterItem = ({ item: { _id: id, amount, time } }) => {
           </div>
           {isModaDeleteOpen && (
             <Modal handleCloseModal={handleCloseModalDelete}>
-              <ModalDelete handleCloseModal={handleCloseModalDelete} entry={{ id, date }} />
+              <ModalDelete
+                handleCloseModal={handleCloseModalDelete}
+                water={{ id, amount, date, time }}
+              />
             </Modal>
           )}
           {isModalEditWaterOpen && (

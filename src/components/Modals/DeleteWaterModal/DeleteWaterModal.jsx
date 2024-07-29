@@ -4,6 +4,7 @@ import css from './DeleteWaterModal.module.css';
 import Iconsvg from '../MyIcons/MyIcons.jsx';
 import { deleteWater } from '../../../redux/water/operations.js';
 import { useTranslation } from 'react-i18next';
+import toast from 'react-hot-toast';
 
 const DeleteModal = ({ handleCloseModal, water }) => {
   const { t } = useTranslation();
@@ -11,10 +12,11 @@ const DeleteModal = ({ handleCloseModal, water }) => {
 
   const handleDeleteConfirm = () => {
     try {
-      dispatch(deleteWater(water._id));
-      alert('The amount of water consumed has been successfully deleted.');
+      dispatch(deleteWater(water));
+      toast.success('The amount of water consumed has been successfully deleted.');
+      handleCloseModal();
     } catch (error) {
-      alert('Something went wrong. Please try again.');
+      toast.error('Something went wrong. Please try again.');
     }
   };
 

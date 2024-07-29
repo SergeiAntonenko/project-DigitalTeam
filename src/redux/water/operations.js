@@ -29,9 +29,17 @@ export const updateWater = createAsyncThunk(
   }
 );
 
-export const deleteWater = createAsyncThunk('water/deleteWater', async (recordId, thunkAPI) => {
+export const deleteWater = createAsyncThunk('water/:id', async (water, thunkAPI) => {
   try {
-    const response = await api.instance.delete(`water/${recordId}`);
+    const state = thunkAPI.getState();
+    const token = state.auth.token;
+    const { id } = water;
+
+    const response = await api.instance.delete(`/water/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
