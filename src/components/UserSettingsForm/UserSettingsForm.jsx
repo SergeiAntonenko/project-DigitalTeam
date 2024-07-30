@@ -1,12 +1,12 @@
 import { useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
-// import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import css from './UserSettingsForm.module.css';
 import { FormValidateError } from '../FormValidateError/FormValidateError';
 import { calcRequiredWater } from '../../calculation/calcRequiredWater';
 import { selectUser } from '../../redux/users/selectors';
+import { updateUser } from '../../redux/users/operations.js';
 
 const schema = yup.object().shape({
   avatar: yup.mixed(),
@@ -61,10 +61,10 @@ const schema = yup.object().shape({
     }),
 });
 
-export const UserSettingsForm = () => {
+export const UserSettingsForm = (handleCloseModal) => {
   const user = useSelector(selectUser);
 
-  //   const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
   const {
     register,
@@ -106,8 +106,8 @@ export const UserSettingsForm = () => {
       formData.append(key, data[key]);
     }
 
-    // const response = await dispatch(updateUser(formData));
-    // response.meta.requestStatus === 'fulfilled' && handleCloseModal();
+    const response = await dispatch(updateUser(formData));
+    response.meta.requestStatus === 'fulfilled' && handleCloseModal();
   };
 
   const { avatar, gender, name, email, weight, activityTime, desiredVolume } = watch();
