@@ -7,63 +7,65 @@ import css from './UserSettingsForm.module.css';
 import { FormValidateError } from '../FormValidateError/FormValidateError';
 import { calcRequiredWater } from '../../calculation/calcRequiredWater';
 import { selectUser } from '../../redux/users/selectors';
+import { useTranslation } from 'react-i18next';
 
-const schema = yup.object().shape({
-  avatar: yup.mixed(),
+const UserSettingsForm = () => {
+  const { t } = useTranslation();
 
-  gender: yup.string().nullable().oneOf(['Woman', 'Man'], 'Please select your gender'),
+  const schema = yup.object().shape({
+    avatar: yup.mixed(),
 
-  name: yup
-    .string()
-    .min(2, 'Name must be greater than or equal to 2 characters long')
-    .max(40, 'Name must be less than or equal to 40 characters long'),
+    gender: yup.string().nullable().oneOf(['Woman', 'Man'], t('settings.please-select-gender')),
 
-  email: yup.string().email('Please enter a valid email address'),
+    name: yup
+      .string()
+      .min(2, t('settings.name-min-length'))
+      .max(40, t('settings.name-max-length')),
 
-  weight: yup
-    .number()
-    .nullable()
-    .min(20, 'Weight must be greater than or equal to 20')
-    .max(600, 'Weight must be less than or equal to 600')
-    .transform((value, originalValue) => {
-      if (originalValue === '') return null;
-      return value;
-    }),
+    email: yup.string().email(t('settings.enter-valid-email')),
 
-  activityTime: yup
-    .number()
-    .nullable()
-    .min(0)
-    .max(12, 'Time must be less than or equal to 12')
-    .transform((value, originalValue) => {
-      if (originalValue === '') return null;
-      return value;
-    }),
+    weight: yup
+      .number()
+      .nullable()
+      .min(20, t('settings.weight-min'))
+      .max(600, t('settings.weight-max'))
+      .transform((value, originalValue) => {
+        if (originalValue === '') return null;
+        return value;
+      }),
 
-  desiredVolume: yup
-    .string()
-    .nullable()
-    .transform((value, originalValue) => {
-      if (originalValue === '') return null;
-      return value;
-    })
-    .test('is-decimal', 'Please enter a valid number', value => {
-      if (value === undefined || value === null || value === '') return true;
-      return !isNaN(parseFloat(value)) && isFinite(value);
-    })
-    .test('min-value', 'Value must be greater than or equal to 0.1', value => {
-      if (value === undefined || value === null || value === '') return true;
-      return parseFloat(value) >= 0.1;
-    })
-    .test('max-value', 'Value must be less than or equal to 31.2', value => {
-      if (value === undefined || value === null || value === '') return true;
-      return parseFloat(value) <= 31.2;
-    }),
-});
+    activityTime: yup
+      .number()
+      .nullable()
+      .min(0)
+      .max(12, t('settings.time-max'))
+      .transform((value, originalValue) => {
+        if (originalValue === '') return null;
+        return value;
+      }),
 
-export const UserSettingsForm = () => {
+    desiredVolume: yup
+      .string()
+      .nullable()
+      .transform((value, originalValue) => {
+        if (originalValue === '') return null;
+        return value;
+      })
+      .test('is-decimal', t('settings.enter-valid-number'), value => {
+        if (value === undefined || value === null || value === '') return true;
+        return !isNaN(parseFloat(value)) && isFinite(value);
+      })
+      .test('min-value', t('settings.value-min'), value => {
+        if (value === undefined || value === null || value === '') return true;
+        return parseFloat(value) >= 0.1;
+      })
+      .test('max-value', t('settings.value-max'), value => {
+        if (value === undefined || value === null || value === '') return true;
+        return parseFloat(value) <= 31.2;
+      }),
+  });
+
   const user = useSelector(selectUser);
-
   //   const dispatch = useDispatch();
 
   const {
@@ -131,10 +133,10 @@ export const UserSettingsForm = () => {
                 type="file"
                 name="avatar"
                 id="avatar"
-                placeholder={'Upload a photo'}
+                placeholder={t('settings.upload-photo')}
               />
               <label htmlFor="avatar" className={css.fileLabel}>
-                Upload a photo
+                {t('settings.upload-photo')}
               </label>
             </>
           ) : (
@@ -146,7 +148,7 @@ export const UserSettingsForm = () => {
         <div className={css.settingsWrapper}>
           <div className={css.leftDesktopWrapper}>
             <div className={css.genderWrapper}>
-              <p className={css.subtitle}>Your gender identity</p>
+              <p className={css.subtitle}>{t('settings.gender-identity')}</p>
               <input
                 {...register('gender')}
                 className={css.hiddenRadioInput}
@@ -156,7 +158,7 @@ export const UserSettingsForm = () => {
                 value="Woman" defaultChecked              
               />
               <label className={`${css.text} ${css.genderLabel}`} htmlFor="woman">
-                Woman
+                {t('settings.woman')}
               </label>
 
               <input
@@ -168,7 +170,7 @@ export const UserSettingsForm = () => {
                 value="Man"
               />
               <label className={`${css.text} ${css.genderLabel}`} htmlFor="man">
-                Man
+                {t('settings.man')}
               </label>
 
               {errors.gender && <FormValidateError message={errors.gender.message} />}
@@ -176,7 +178,7 @@ export const UserSettingsForm = () => {
 
             <div className={css.infoWrapper}>
               <label className={css.subtitle} htmlFor="name">
-                Your name
+                {t('settings.your-name')}
               </label>
               <input
                 {...register('name')}
@@ -188,7 +190,7 @@ export const UserSettingsForm = () => {
               {errors.name && <FormValidateError message={errors.name.message} />}
 
               <label className={css.subtitle} htmlFor="email">
-                Email
+                {t('settings.email')}
               </label>
               <input
                 {...register('email')}
@@ -201,35 +203,32 @@ export const UserSettingsForm = () => {
             </div>
 
             <div className={css.normaWrapper}>
-              <p className={css.subtitle}>My daily norma</p>
+              <p className={css.subtitle}>{t('settings.daily-norma')}</p>
 
               <div className={css.formulaWrapper}>
                 <div className={css.formulaSubwrapper}>
-                  <p className={css.text}>For woman:</p>
+                  <p className={css.text}>{t('settings.for-woman')}</p>
                   <span className={`${css.text} ${css.normaFormula}`}>V=(M*0,03) + (T*0,4)</span>
                 </div>
 
                 <div className={css.formulaSubwrapper}>
-                  <p className={css.text}>For man:</p>
+                  <p className={css.text}>{t('settings.for-man')}</p>
                   <span className={`${css.text} ${css.normaFormula}`}>V=(M*0,04) + (T*0,6)</span>
                 </div>
               </div>
 
               <p className={css.normaTextArea}>
-                <span className={css.normaAsterisk}>*</span> V is the volume of the water norm in
-                liters per day, M is your body weight, T is the time of active sports, or another
-                type of activity commensurate in terms of loads (in the absence of these, you must
-                set 0)
+                <span className={css.normaAsterisk}>*</span> {t('settings.water-norm-formula')}
               </p>
 
-                <span className={`${css.text} ${css.footnote}`}>Active time in hours</span>
+                <span className={`${css.text} ${css.footnote}`}>{t('settings.active-time-hours')}</span>
             </div>
           </div>
 
           <div className={css.rightDesktopWrapper}>
             <div className={css.metricsWrapper}>
               <label className={css.text} htmlFor="weight">
-                Your weight in kilograms:
+                {t('settings.weight-kg')}
               </label>
               <input
                 {...register('weight')}
@@ -241,7 +240,7 @@ export const UserSettingsForm = () => {
               {errors.weight && <FormValidateError message={errors.weight.message} />}
 
               <label className={css.text} htmlFor="activityTime">
-                The time of active participation in sports:
+                {t('settings.active-sports-time')}
               </label>
               <input
                 {...register('activityTime')}
@@ -255,15 +254,15 @@ export const UserSettingsForm = () => {
 
             <div className={css.waterAmountWrapper}>
               <div className={css.amountField}>
-                <p className={css.text}>The required amount of water in liters per day:</p>
+                <p className={css.text}>{t('settings.required-water-amount')}</p>
 
                 <span className={css.amount}>
-                  {!gender || !weight ? 'Waiting for your metrics' : requiredWater + ' L'}
+                  {!gender || !weight ? t('settings.waiting-for-metrics') : requiredWater + ' L'}
                 </span>
               </div>
 
               <label className={css.subtitle} htmlFor="desiredVolume">
-                Write down how much water you will drink:
+                {t('settings.record-water-intake')}
               </label>
               <input
                 {...register('desiredVolume')}
@@ -278,9 +277,11 @@ export const UserSettingsForm = () => {
         </div>
 
         <button className={css.submitButton} type="submit" disabled={!isAnyFieldFilled}>
-          Save
+          {t('settings.save')}
         </button>
       </form>
     </>
   );
 };
+
+export { UserSettingsForm };
