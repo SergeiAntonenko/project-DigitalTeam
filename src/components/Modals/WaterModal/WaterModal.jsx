@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 
 
 
-const WaterModal = ({ onCloseModal, operationType }) => {
+const WaterModal = ({ onCloseModal, operationType, onWaterUpdate }) => {
   const { t } = useTranslation();
   const { waterAmount, increaseWaterAmount, decreaseWaterAmount, setWaterAmount } = useWaterState();
   const [recordingTime, setRecordingTime] = useState(
@@ -52,7 +52,7 @@ const WaterModal = ({ onCloseModal, operationType }) => {
 
   const handleSaveAndUpdate = () => {
     if (isUpdating) {
-      dispatch(updateWater({ recordId: id, water: updatedWaterData }))
+      dispatch(updateWater({ recordId: id, water: updatedWaterData })) 
         .then(() => {
           toast.success('Water updated successfully');
         })
@@ -67,6 +67,7 @@ const WaterModal = ({ onCloseModal, operationType }) => {
         })
         .then(() => {
           toast.success('Water added successfully');
+           onWaterUpdate(waterAmount);
         })
         .catch(err => {
           toast.error('Something wrong');
@@ -117,4 +118,5 @@ const WaterModal = ({ onCloseModal, operationType }) => {
 };
 
 export default WaterModal;
+
 
