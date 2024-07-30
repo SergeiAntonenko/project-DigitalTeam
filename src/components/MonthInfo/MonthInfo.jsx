@@ -26,14 +26,14 @@ const MonthInfo = () => {
   const icon = view === 'calendar' ? pieChart : pieChartActive;
 
   const dispatch = useDispatch();
-  const currentMonth = useSelector(selectMonth);
+  const month = useSelector(selectMonth);
 
   useEffect(() => {
-    if (currentMonth) {
-      const formattedMonth = currentMonth.split('-').join('.');
+    if (month) {
+      const formattedMonth = month.split('-').join('.');
       dispatch(fetchWaterMonthly(formattedMonth));
     }
-  }, [dispatch, currentMonth]);
+  }, [dispatch, month]);
 
   return (
     <div className={styles.monthInfoContainer}>
