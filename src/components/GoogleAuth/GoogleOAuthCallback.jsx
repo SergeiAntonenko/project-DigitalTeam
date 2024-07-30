@@ -1,13 +1,15 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { verifyGoogleOAuth } from '../../redux/auth/operations.js';
-// import { WaterLoader } from '../../loader/loader.jsx';
+import { WaterLoader } from '../../loader/loader.jsx';
+import { selectIsLoggedIn } from '../../redux/auth/selectors.js';
 
 const GoogleOAuthCallback = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
+  const { isLoggeIn } = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
     const handleGoogleOAuth = async () => {
@@ -16,24 +18,33 @@ const GoogleOAuthCallback = () => {
 
       if (code) {
         try {
-          const resultAction = await dispatch(verifyGoogleOAuth({ code }));
+          const resultAction = await dispatch(verifyGoogleOAuth(code));
           console.log(resultAction);
           if (verifyGoogleOAuth.fulfilled.match(resultAction)) {
-            navigate('/');
+            // isLoggeIn = true;
+            //https://project-digital-team.vercel.app/
+            navigate('/tracker');
           }
         } catch (err) {
-          console.log(err);
+          console.error(err);
         }
+      } else {
+        console.error('No code found in URL');
       }
     };
 
     handleGoogleOAuth();
-  }, [dispatch, location.search, navigate]);
+  }, [dispatch, location.search, navigate, isLoggeIn]);
+
+  // useEffect(() => {
+  //   if (isLoggeIn) {
+  //     navigate('/tracker');
+  //   }
+  // }, [isLoggeIn, navigate]);
 
   return (
     <>
-      <p>Hello!</p>
-      {/* <WaterLoader /> */}
+      <WaterLoader />
     </>
   );
 };
