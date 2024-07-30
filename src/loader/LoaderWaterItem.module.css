@@ -1,0 +1,69 @@
+.centerDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: inherit;
+  margin-top: 53.5px;
+}
+
+.ul {
+  display: flex;
+}
+
+.li {
+  list-style: none;
+  height: 20px;
+  width: 20px;
+  background-color: red;
+  margin: 0 4px;
+  border-radius: 50%;
+  animation: bounce 1s linear infinite;
+}
+
+.li1 {
+  animation-delay: 0.2s;
+  background-color: #961419;
+}
+
+.li2 {
+  animation-delay: 0.6s;
+  background-color: #d11c23;
+}
+
+.li3 {
+  animation-delay: 0.1s;
+  background-color: #e21e25;
+}
+
+.li4 {
+  animation-delay: 0.8s;
+  background-color: #ff8152;
+}
+
+.li5 {
+  animation-delay: 0.5s;
+  background-color: #ffc246;
+}
+
+.li6 {
+  animation-delay: 0.1s;
+  background-color: #f9f871;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-40px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .centerDiv {
+    margin-top: 65.8px;
+  }
+}

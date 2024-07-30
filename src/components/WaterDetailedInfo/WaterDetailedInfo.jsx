@@ -7,7 +7,7 @@ const WaterDetailedInfo = () => {
   return (
     <div className={s.waterDetailedInfo}>
       <UserPanel />
-      <DailyInfo />
+      <DailyInfo className={s.main} />
       <MonthInfo />
     </div>
   );

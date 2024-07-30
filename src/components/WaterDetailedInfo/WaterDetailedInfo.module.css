@@ -6,13 +6,16 @@
   width: 343px;
   margin-left: auto;
   margin-right: auto;
+  display: flex;
+  flex-direction: column;
+}
+.main {
+  flex-grow: 1;
 }
 
 @media screen and (min-width: 768px) {
   .waterDetailedInfo {
     padding: 32px;
-    /* padding-top: 41px; */
-    /* padding-right: 16px; */
     padding-bottom: 0;
     width: 704px;
   }

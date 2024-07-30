@@ -5,12 +5,12 @@
   list-style: none;
   flex-shrink: 0;
 }
-
 .noWater {
   font-weight: 700;
   font-size: 16px;
   line-height: 1.29;
   color: rgb(155, 225, 160);
+  height: 98px;
 }
 
 .waterListWrap {
@@ -32,6 +32,7 @@
   background: rgb(50, 63, 71);
   border-radius: 4px;
 }
+
 @media screen and (min-width: 768px) {
   .general {
     padding: 20px;
@@ -40,7 +41,6 @@
   }
   .waterListWrap {
     gap: 31.5px;
-    /* margin-bottom: 32px; */
   }
   .noWater {
     font-size: 18px;
@@ -52,6 +52,7 @@
   }
   .noWater {
     font-size: 20px;
+    height: 110px;
   }
   .water {
     margin-bottom: 85px;
