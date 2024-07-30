@@ -49,7 +49,9 @@ const WaterModal = ({ id, onCloseModal, operationType, onWaterUpdate }) => {
 
   const handleSaveAndUpdate = () => {
     if (operationType === 'edit') {
-      dispatch(updateWater({ recordId: id, water: { waterValue: waterAmount, localTime } }))
+      dispatch(
+        updateWater({ recordId: id, water: { waterValue: waterAmount, localTime, localDate } })
+      )
         .then(() => {
           toast.success('Water updated successfully');
         })
