@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { verifyGoogleOAuth } from '../../redux/auth/operations.js';
-import { WaterLoader } from '../../loader/loader.jsx';
+// import { WaterLoader } from '../../loader/loader.jsx';
 
 const GoogleOAuthCallback = () => {
   const dispatch = useDispatch();
@@ -32,7 +32,8 @@ const GoogleOAuthCallback = () => {
 
   return (
     <>
-      <WaterLoader />
+      <p>Hello!</p>
+      {/* <WaterLoader /> */}
     </>
   );
 };
