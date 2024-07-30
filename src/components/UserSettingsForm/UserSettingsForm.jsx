@@ -1,6 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
-// import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import css from './UserSettingsForm.module.css';
@@ -8,8 +7,9 @@ import { FormValidateError } from '../FormValidateError/FormValidateError';
 import { calcRequiredWater } from '../../calculation/calcRequiredWater';
 import { selectUser } from '../../redux/users/selectors';
 import { useTranslation } from 'react-i18next';
+import { updateUser } from '../../redux/users/operations';
 
-const UserSettingsForm = () => {
+const UserSettingsForm = (handleCloseModal) => {
   const { t } = useTranslation();
 
   const schema = yup.object().shape({
@@ -66,7 +66,7 @@ const UserSettingsForm = () => {
   });
 
   const user = useSelector(selectUser);
-  //   const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
   const {
     register,
@@ -108,8 +108,8 @@ const UserSettingsForm = () => {
       formData.append(key, data[key]);
     }
 
-    // const response = await dispatch(updateUser(formData));
-    // response.meta.requestStatus === 'fulfilled' && handleCloseModal();
+    const response = await dispatch(updateUser(formData));
+    response.meta.requestStatus === 'fulfilled' && handleCloseModal();
   };
 
   const { avatar, gender, name, email, weight, activityTime, desiredVolume } = watch();
