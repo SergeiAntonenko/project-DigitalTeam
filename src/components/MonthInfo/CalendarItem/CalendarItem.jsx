@@ -50,23 +50,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectMonth, setDate } from '../../../redux/date/dateSlice';
 import { selectTotalForAllDays } from '../../../redux/water/selectors';
 
-const CalendarItem = ({ day, waterData, isCurrentDate, isSelected, onClick }) => {
-  const percentage = waterData ? waterData.percentage : 0;
-  const isBelow100 = percentage < 100;
-
+const CalendarItem = ({ day, isCurrentDate, isSelected, onClick }) => {
   const allDaysData = useSelector(selectTotalForAllDays);
 
   const dispatch = useDispatch();
 
   const month = useSelector(selectMonth);
 
-  // Получаем текущую дату
   const today = new Date();
-  const todayMonth = today.getMonth() + 1; // Месяцы в JavaScript считаются с 0
+  const todayMonth = today.getMonth() + 1;
   const todayDate = today.getDate();
   const todayYear = today.getFullYear();
 
-  // Проверяем, является ли текущий месяц будущим относительно месяца элемента
   const isFutureMonth = parseInt(month, 10) > todayMonth;
   const isCurrentMonth = parseInt(month, 10) === todayMonth;
   const isFutureDate = isFutureMonth || (isCurrentMonth && day > todayDate);
@@ -77,10 +72,11 @@ const CalendarItem = ({ day, waterData, isCurrentDate, isSelected, onClick }) =>
 
   const searchDay = allDaysData[formattedDate] || 0;
   const percent = Math.round((searchDay / 1500) * 100);
+  const isBelow100 = percent < 100;
 
   const handleClick = () => {
     dispatch(setDate(date));
-    onClick(); // Уведомить родительский компонент о выборе даты
+    onClick();
   };
 
   const date = day < 10 ? `0${day}-${month}` : `${day}-${month}`;
