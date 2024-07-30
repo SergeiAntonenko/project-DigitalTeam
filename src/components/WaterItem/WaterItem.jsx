@@ -72,7 +72,12 @@ const WaterItem = ({ item }) => {
       )}
       {isModalEditWaterOpen && (
         <Modal handleCloseModal={handleCloseModalEditWater}>
-          <WaterModal onCloseModal={handleCloseModalEditWater} />
+          <WaterModal
+            onCloseModal={handleCloseModalEditWater}
+            open={isModalEditWaterOpen}
+            id={item._id}
+            operationType={'edit'}
+          />
         </Modal>
       )}
     </div>
