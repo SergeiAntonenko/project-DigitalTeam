@@ -23,7 +23,7 @@ const AddWaterBtn = () => {
         <span className={css.iconCircle}>
           <FiPlus className={css.addWaterIcon} />
         </span>
-        {t('shared.add-water-btn')}
+        <span className={css.btnLabel}> {t('shared.add-water-btn')} </span>
       </button>
       {isModalOpen && (
         <Modal handleCloseModal={handleCloseModal}>
