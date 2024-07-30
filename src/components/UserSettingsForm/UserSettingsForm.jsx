@@ -222,7 +222,7 @@ export const UserSettingsForm = () => {
                 set 0)
               </p>
 
-              <span className={`${css.text} ${css.footnote}`}>Active time in hours</span>
+                <span className={`${css.text} ${css.footnote}`}>Active time in hours</span>
             </div>
           </div>
 

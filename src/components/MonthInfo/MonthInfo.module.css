@@ -26,6 +26,10 @@ h3 {
 
 .icon {
   width: 16px;
+  transition: filter 0.5s; /* Плавный переход как для наведения, так и для снятия курсора */
+}
+.icon:hover {
+  filter: saturate(20);
 }
 
 /* Tablet */

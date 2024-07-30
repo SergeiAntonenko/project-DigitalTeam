@@ -1,11 +1,10 @@
 import sprite from './icons.svg';
 import React from 'react';
 
-
-const Iconsvg = ({ width, height, iconName, styles }) => {
+const Iconsvg = ({ iconName, className }) => {
   return (
-    <svg width={width} height={height} className={styles}>
-      <use href={`${sprite}#${iconName}`}></use>
+    <svg className={className}>
+      <use href={`${sprite}#${iconName}`} />
     </svg>
   );
 };

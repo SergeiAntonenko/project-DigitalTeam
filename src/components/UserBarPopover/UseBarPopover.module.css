@@ -9,12 +9,14 @@
   padding-bottom: 14px;
   padding-left: 20px;
 }
+
 .div {
   display: flex;
   flex-direction: column;
   gap: 8px;
   align-items: flex-start;
 }
+
 .button {
   display: flex;
   gap: 8px;
@@ -22,6 +24,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .icon {
   width: 16px;
   height: 16px;
@@ -36,8 +39,13 @@
   letter-spacing: 0%;
   text-align: left;
 }
+
 .logOut {
   color: rgba(50, 63, 71, 0.4);
+}
+
+.button:hover .logOut {
+  color: rgba(50, 63, 71, 1);
 }
 
 @media screen and (min-width: 768px) {
@@ -46,6 +54,7 @@
     height: 82px;
     margin-top: 8px;
   }
+
   .settings {
     color: rgb(50, 63, 71);
     font-family: Poppins;
@@ -55,6 +64,7 @@
     letter-spacing: 0%;
     text-align: left;
   }
+
   .logOut {
     color: rgba(50, 63, 71, 0.4);
   }

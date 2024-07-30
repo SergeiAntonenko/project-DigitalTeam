@@ -24,7 +24,9 @@ const WaterList = () => {
   ) : (
     <>
       {!waterItems?.length ? (
-        <div className={css.noWater}>You have not added the water yet.</div>
+        <div className={css.noWater}>
+          <p className={css.water}>You have not added the water yet.</p>
+        </div>
       ) : (
         <ul className={css.waterListWrap}>
           {waterItems.map(item => (

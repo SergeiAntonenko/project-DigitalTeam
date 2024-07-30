@@ -30,12 +30,6 @@
   padding-left: 14px;
 }
 
-.happydescr {
-  max-width: 67px;
-  font-weight: 700;
-  line-height: 117%;
-}
-
 .happySpan {
   height: 10px;
   width: 10px;
@@ -144,10 +138,17 @@
   }
 
   .happydescr {
-    max-width: 90px;
+    align-items: left;
     font-size: 15px;
+    width: 100px;
+    font-weight: 700;
+    line-height: 117%;
   }
 
+  .nowrap {
+    white-space: nowrap;
+  }
+  
   .benefits {
     position: absolute;
     top: 336px;
@@ -212,10 +213,6 @@
     padding: 10px 20px;
     width: 237px;
     height: 67px;
-  }
-
-  .happydescr {
-    max-width: 90px;
   }
 
   @media screen and (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {

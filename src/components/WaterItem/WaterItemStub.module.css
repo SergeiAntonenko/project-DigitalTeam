@@ -35,7 +35,7 @@
   font-size: 12px;
   font-weight: 400;
   line-height: 12px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
   text-align: left;
   min-width: 46px;
 }
@@ -83,7 +83,7 @@
     font-size: 15px;
     font-weight: 700;
     line-height: 22.4px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
     text-align: left;
     width: 52px;
   }
@@ -93,7 +93,7 @@
     font-size: 13px;
     font-weight: 400;
     line-height: 22.4px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
     text-align: left;
     min-width: 52px;
   }

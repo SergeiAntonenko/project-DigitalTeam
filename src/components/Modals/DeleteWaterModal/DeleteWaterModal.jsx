@@ -10,7 +10,7 @@ const DeleteModal = ({ handleCloseModal, water }) => {
 
   const handleDeleteConfirm = () => {
     try {
-      dispatch(deleteWater(water._id));
+      dispatch(deleteWater(water));
       toast.success('The amount of water consumed has been successfully deleted.');
     } catch (error) {
       toast.error('Something went wrong. Please try again.');

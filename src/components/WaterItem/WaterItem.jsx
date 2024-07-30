@@ -31,8 +31,22 @@ const WaterItem = ({ item }) => {
 
   const formattedAmount =
     item.waterValue >= 1000
-      ? `${(item.waterValue / 1000).toFixed(1).replace('.0', '')}${' l'}`
+      ? `${(item.waterValue / 1000).toFixed(1).replace('.0', '')}${' L'}`
       : `${item.waterValue}${' ml'}`;
+
+  const formatTime = timeString => {
+    // Разделяем строку времени на часы и минуты
+    const [hours, minutes] = timeString.split(':').map(Number);
+
+    // Определяем, является ли время AM или PM
+    const period = hours >= 12 ? 'PM' : 'AM';
+
+    // Преобразуем часы в формат 12-часов
+    const formattedHours = hours % 12 === 0 ? 12 : hours % 12;
+
+    // Возвращаем форматированное время
+    return `${formattedHours}:${minutes < 10 ? '0' : ''}${minutes} ${period}`;
+  };
 
   return (
     <div className={css.center}>
@@ -41,7 +55,7 @@ const WaterItem = ({ item }) => {
       </div>
       <div className={css.div2}>
         <span className={css.value}>{formattedAmount}</span>
-        <span className={css.time}>{item.localTime}</span>
+        <span className={css.time}>{formatTime(item.localTime)}</span>
       </div>
       <div className={css.buttonContainer}>
         <button type="button" className={css.button1} onClick={handleOpenModalEditWater}>
@@ -53,7 +67,7 @@ const WaterItem = ({ item }) => {
       </div>
       {isModalDeleteOpen && (
         <Modal handleCloseModal={handleCloseModalDelete}>
-          <ModalDelete handleCloseModal={handleCloseModalDelete} />
+          <ModalDelete handleCloseModal={handleCloseModalDelete} water={item._id} />
         </Modal>
       )}
       {isModalEditWaterOpen && (

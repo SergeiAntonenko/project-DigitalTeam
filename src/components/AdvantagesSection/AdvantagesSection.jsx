@@ -1,17 +1,35 @@
+// AdvantagesSection.jsx
+import { useEffect } from 'react';
 import css from './AdvantagesSection.module.css';
 import CustomersPhoto from '../CustomersPhoto/CustomersPhoto.jsx';
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUsersCount } from '../../redux/users/operations.js';
+import { selectUsersCount, selectIsLoading } from '../../redux/users/selectors.js';
 
 const AdvantagesSection = () => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const usersCount = useSelector(selectUsersCount);
+  const isLoading = useSelector(selectIsLoading);
+
+  useEffect(() => {
+    dispatch(fetchUsersCount());
+  }, [dispatch]);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <div className={css.advantages}>
       <div className={css.Customers}>
         <CustomersPhoto />
         <p className={css.happydescr}>
-          <Trans i18nKey="advantages-section.our-happy-customers">
-            Our<span className={css.colorHappy}> happy </span>customers
-          </Trans>
+           <div className={css.nowrap}>{usersCount} {' '}
+              <span className={css.colorHappy}>{t('advantages-section.happy')}</span>
+            </div>
+            {t('advantages-section.customers')}
         </p>
       </div>
       <div className={css.benefits}>

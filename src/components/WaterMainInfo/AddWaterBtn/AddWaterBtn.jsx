@@ -20,10 +20,8 @@ const AddWaterBtn = ({ onWaterUpdate }) => {
   return (
     <>
       <button className={css.addWaterBtn} onClick={handleOpenModal}>
-        <span className={css.iconCircle}>
-          <FiPlus className={css.addWaterIcon} />
-        </span>
-        {t('shared.add-water-btn')}
+        <FiPlus className={css.addWaterIcon} />
+        <span className={css.btnLabel}>{t('shared.add-water-btn')}</span>
       </button>
 
       {isModalOpen && (

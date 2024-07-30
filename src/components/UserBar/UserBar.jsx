@@ -6,7 +6,6 @@ import { UserSettingsModal } from '../UserSettingsModal/UserSettingsModal';
 import { IoChevronDown, IoChevronUp } from 'react-icons/io5';
 import css from './UserBar.module.css';
 import Modal from '../../shared/components/Modal/Modal';
-import Modal2 from './Modal2/Modal2';
 
 export const UserBar = ({ userName }) => {
   const [isOpenPopover, setIsOpenPopover] = useState(false);
@@ -88,9 +87,9 @@ export const UserBar = ({ userName }) => {
         </Modal>
       )}
       {isModalOpen2 && (
-        <Modal2 handleCloseModal={handleCloseModal2}>
+        <Modal handleCloseModal={handleCloseModal2}>
           <UserSettingsModal handleCloseModal={handleCloseModal2} />
-        </Modal2>
+        </Modal>
       )}
     </div>
   );

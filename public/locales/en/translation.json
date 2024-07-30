@@ -5,7 +5,8 @@
   "welcome-section.title": "Water consumption tracker",
   "welcome-section.try-tracker": "Try tracker",
   "welcome-section.sign-in": "Sign In",
-  "advantages-section.our-happy-customers": "Our<1> happy </1>customers",
+  "advantages-section.happy": "happy",
+  "advantages-section.customers": "customers",
   "advantages-section.habit-drive": "Habit drive",
   "advantages-section.view-statistics": "View statistics",
   "advantages-section.personal-rate-setting": "Personal rate setting",
@@ -50,5 +51,17 @@
   "delete-water-modal.delete": "Delete",
   "water-progress-bar.today": "Today",
   "water-daily-norma.my-daily-norma": "My daily norma",
-  "water-daily-norma.liter": "L"
+  "water-daily-norma.liter": "L",
+  "modal-water.add": "add",
+  "modal-water.add-water": "Add water",
+  "modal-water.edit-water": "Edit the entered amount of water",
+  "modal-water.choose-value": "Choose a value",
+  "modal-water.amount-water": "Amount of water",
+  "modal-water.rec-time": "Recording time",
+  "modal-water.enter-value": "Enter the value of the water used",
+  "modal-water.save": "Save",
+  "modal-water.delete-entry": "Delete Entry",
+  "modal-water.are-you-sure": "Are you sure you want to delete the entry?",
+  "modal-water.delete": "Delete",
+  "modal-water.cancel": "Cancel"
 }
