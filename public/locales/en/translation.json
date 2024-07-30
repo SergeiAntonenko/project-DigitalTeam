@@ -1,5 +1,6 @@
 {
   "shared.add-water-btn": "Add water",
+  "shared.ml": "ml",
   "home-page.title": "Home Page",
   "welcome-section.description": "Record daily water intake and track",
   "welcome-section.title": "Water consumption tracker",
@@ -91,5 +92,6 @@
   "settings.required-water-amount": "The required amount of water in liters per day",
   "settings.waiting-for-metrics": "Waiting for your metrics",
   "settings.record-water-intake": "Write down how much water you will drink",
-  "settings.save": "Save"
+  "settings.save": "Save",
+  "water-list.empty": "You have not added the water yet"
 }
