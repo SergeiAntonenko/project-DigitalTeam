@@ -10,6 +10,7 @@ import css from './WaterModal.module.css';
 import Iconsvg from '../../../images/Icons/Icons.jsx';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
+import { selectDate } from '../../../redux/date/dateSlice';
 
 const WaterModal = ({ id, onCloseModal, operationType, onWaterUpdate }) => {
   const { t } = useTranslation();
@@ -43,8 +44,7 @@ const WaterModal = ({ id, onCloseModal, operationType, onWaterUpdate }) => {
   // const id = user ? user.id : null;
   // const updatedWaterData = user ? user.updatedWaterData : null;
 
-  const currentDate = new Date();
-  const localDate = currentDate.toLocaleDateString('en-GB');
+  const localDate = useSelector(selectDate);
   const localTime = recordingTime;
 
   const handleSaveAndUpdate = () => {
