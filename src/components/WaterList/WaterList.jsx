@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchWaterDaily } from '../../redux/water/operations';
 import { selectDate } from '../../redux/date/dateSlice.js';
-// import WaterItemStub from '../WaterItem/WaterItemStub';
+import LoaderWaterItem from '../../loader/LoaderWaterItem.jsx';
 
 const WaterList = () => {
   const date = useSelector(selectDate);
@@ -19,11 +19,10 @@ const WaterList = () => {
     }
   }, [dispatch, date]);
 
-  return isWaterLoading ? (
-    <>loading...</>
-  ) : (
+  return (
     <>
-      {!waterItems?.length ? (
+      {isWaterLoading && !waterItems?.length && <LoaderWaterItem />}
+      {!isWaterLoading && !waterItems?.length ? (
         <div className={css.noWater}>
           <p className={css.water}>You have not added the water yet.</p>
         </div>
