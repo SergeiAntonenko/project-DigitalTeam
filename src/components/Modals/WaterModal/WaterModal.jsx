@@ -11,8 +11,6 @@ import Iconsvg from '../../../images/Icons/Icons.jsx';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 
-
-
 const WaterModal = ({ onCloseModal, operationType, onWaterUpdate }) => {
   const { t } = useTranslation();
   const { waterAmount, increaseWaterAmount, decreaseWaterAmount, setWaterAmount } = useWaterState();
@@ -38,7 +36,6 @@ const WaterModal = ({ onCloseModal, operationType, onWaterUpdate }) => {
   // const title = operationType === 'add' ? 'Add water' : 'Edit the entered amount of water';
   const title = operationType === 'add' ? t('modal-water.add-water') : t('modal-water.edit-water');
 
-
   const dispatch = useDispatch();
   const [isUpdating] = useState(false);
   const user = useSelector(selectUser);
@@ -52,7 +49,7 @@ const WaterModal = ({ onCloseModal, operationType, onWaterUpdate }) => {
 
   const handleSaveAndUpdate = () => {
     if (isUpdating) {
-      dispatch(updateWater({ recordId: id, water: updatedWaterData })) 
+      dispatch(updateWater({ recordId: id, water: updatedWaterData }))
         .then(() => {
           toast.success('Water updated successfully');
         })
@@ -67,7 +64,7 @@ const WaterModal = ({ onCloseModal, operationType, onWaterUpdate }) => {
         })
         .then(() => {
           toast.success('Water added successfully');
-           onWaterUpdate(waterAmount);
+          //  onWaterUpdate(waterAmount);
         })
         .catch(err => {
           toast.error('Something wrong');
@@ -84,7 +81,9 @@ const WaterModal = ({ onCloseModal, operationType, onWaterUpdate }) => {
       <h2 className={css.subtitle}>{t('modal-water.choose-value')}:</h2>
 
       <div className={css.waterwrapper}>
-        <h3 className={css.amount_water}>{t('modal-water.amount-water')}: {waterAmount} ml</h3>
+        <h3 className={css.amount_water}>
+          {t('modal-water.amount-water')}: {waterAmount} ml
+        </h3>
         <div className={css.minplus_wrapper}>
           <button
             className={css.button_water}
@@ -100,7 +99,9 @@ const WaterModal = ({ onCloseModal, operationType, onWaterUpdate }) => {
         </div>
       </div>
       <div className={css.button_wrapper}>
-        <h3 className={css.time_water}>{t('modal-water.rec-time')}: {recordingTime}</h3>
+        <h3 className={css.time_water}>
+          {t('modal-water.rec-time')}: {recordingTime}
+        </h3>
         <input
           type="text"
           value={recordingTime}
@@ -118,5 +119,3 @@ const WaterModal = ({ onCloseModal, operationType, onWaterUpdate }) => {
 };
 
 export default WaterModal;
-
-
