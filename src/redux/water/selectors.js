@@ -9,6 +9,10 @@ export const selectWaterError = state => state.water.error;
 
 export const selectWaterLoading = state => state.water.loading;
 
+export const selectTotalDay = state => state.water.totalDay;
+
+export const selectTotalForAllDays = state => state.water.totalForAllDays;
+
 // export const selectFilteredContacts = createSelector(
 //   [selectContacts, selectNameFilter],
 //   (contacts, filter) =>
