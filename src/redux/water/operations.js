@@ -27,12 +27,18 @@ export const addWater = createAsyncThunk(
     }
   }
 );
-
 export const updateWater = createAsyncThunk(
   'water/updateWater',
-  async (recordId, water, thunkAPI) => {
+  async ({ recordId, water }, thunkAPI) => {
     try {
-      const response = await api.instance.patch(`water/${recordId}`, water);
+      const state = thunkAPI.getState();
+      const token = state.auth.token;
+
+      const response = await api.instance.patch(`water/${recordId}`, water, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

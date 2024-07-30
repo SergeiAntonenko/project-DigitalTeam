@@ -55,7 +55,7 @@ const waterSlice = createSlice({
       .addCase(updateWater.fulfilled, (state, action) => {
         if (state.dailyWater) {
           state.dailyWater = state.dailyWater.map(water => {
-            return water._id === action.payload._id ? action.payload : water;
+            return water._id === action.payload.waterCount._id ? action.payload.waterCount : water;
           });
         }
 
