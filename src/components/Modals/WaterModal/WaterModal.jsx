@@ -11,7 +11,7 @@ import Iconsvg from '../../../images/Icons/Icons.jsx';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 
-const WaterModal = ({ onCloseModal, operationType, onWaterUpdate }) => {
+const WaterModal = ({ id, onCloseModal, operationType, onWaterUpdate }) => {
   const { t } = useTranslation();
   const { waterAmount, increaseWaterAmount, decreaseWaterAmount, setWaterAmount } = useWaterState();
   const [recordingTime, setRecordingTime] = useState(
@@ -37,44 +37,39 @@ const WaterModal = ({ onCloseModal, operationType, onWaterUpdate }) => {
   const title = operationType === 'add' ? t('modal-water.add-water') : t('modal-water.edit-water');
 
   const dispatch = useDispatch();
-  const [isUpdating] = useState(false);
+  // const [isUpdating] = useState(false);
   const user = useSelector(selectUser);
 
-  const id = user ? user.id : null;
-  const updatedWaterData = user ? user.updatedWaterData : null;
+  // const id = user ? user.id : null;
+  // const updatedWaterData = user ? user.updatedWaterData : null;
 
   const currentDate = new Date();
   const localDate = currentDate.toLocaleDateString('en-GB');
   const localTime = recordingTime;
 
   const handleSaveAndUpdate = () => {
-    if (isUpdating) {
-      dispatch(updateWater({ recordId: id, water: updatedWaterData }))
+    if (operationType === 'edit') {
+      dispatch(updateWater({ recordId: id, water: { waterValue: waterAmount, localTime } }))
         .then(() => {
           toast.success('Water updated successfully');
         })
         .finally(() => onCloseModal())
         .catch(err => {
-          toast.error('Something wrong');
+          toast.error('Something went wrong');
         });
     } else {
       dispatch(addWater({ waterValue: waterAmount, localDate, localTime }))
+        .then(() => {
+          toast.success('Water added successfully');
+        })
         .finally(() => {
           onCloseModal();
         })
-        .then(() => {
-          toast.success('Water added successfully');
-          //  onWaterUpdate(waterAmount);
-        })
         .catch(err => {
-          toast.error('Something wrong');
+          toast.error('Something went wrong');
         });
-      // .catch(err => {
-      //   console.error(err.message);
-      // });
     }
   };
-
   return (
     <>
       <h1 className={css.title}>{title}</h1>
@@ -119,3 +114,4 @@ const WaterModal = ({ onCloseModal, operationType, onWaterUpdate }) => {
 };
 
 export default WaterModal;
+// ========================================================
