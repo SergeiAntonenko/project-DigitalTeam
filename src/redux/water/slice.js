@@ -10,8 +10,9 @@ import { logout } from '../auth/operations';
 
 const initialState = {
   dailyWater: [],
-  monthlyWater: [],
+  monthlyWater: null,
   totalDay: null,
+  totalForAllDays: {},
   loading: false,
   error: null,
 };
@@ -26,9 +27,17 @@ const waterSlice = createSlice({
         state.error = null;
       })
       .addCase(addWater.fulfilled, (state, action) => {
-        console.log(action);
         state.totalDay = state.totalDay + action.payload.waterCount.waterValue;
+        state.monthlyWater = state.monthlyWater + action.payload.waterCount.waterValue;
         state.loading = false;
+
+        const { waterCount } = action.payload;
+        const waterDate = waterCount.localDate;
+
+        if (state.totalForAllDays[waterDate] !== undefined) {
+          state.totalForAllDays[waterDate] += waterCount.waterValue;
+        }
+
         if (!state.dailyWater) {
           state.dailyWater = [];
         }
@@ -62,12 +71,24 @@ const waterSlice = createSlice({
         state.error = null;
       })
       .addCase(deleteWater.fulfilled, (state, action) => {
+        const { waterCount } = action.payload;
+        const waterDate = waterCount.localDate;
+
+        if (state.totalForAllDays[waterDate] !== undefined) {
+          state.totalForAllDays[waterDate] -= waterCount.waterValue;
+
+          if (state.totalForAllDays[waterDate] <= 0) {
+            delete state.totalForAllDays[waterDate];
+          }
+        }
+
         if (state.dailyWater) {
           state.dailyWater = state.dailyWater.filter(
             water => water._id !== action.payload.waterCount._id
           );
         }
         state.totalDay = state.totalDay - action.payload.waterCount.waterValue;
+        state.monthlyWater = state.monthlyWater - action.payload.waterCount.waterValue;
 
         state.loading = false;
         state.error = null;
@@ -96,7 +117,8 @@ const waterSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchWaterMonthly.fulfilled, (state, action) => {
-        state.monthlyWater = action.payload;
+        state.monthlyWater = action.payload.totalMonth;
+        state.totalForAllDays = action.payload.dailyTotals;
         state.loading = false;
         state.error = null;
       })

@@ -2,10 +2,6 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  width: 124px;
-  height: 30px;
-  padding-right: 0;
-  height: 30px;
   background-color: inherit;
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
@@ -29,6 +25,11 @@
   background-color: #81de89;
   border-radius: 50%;
   flex-shrink: 0;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btnLabel {
+  white-space: nowrap;
 }
 
 .iconCircle:hover {
@@ -36,10 +37,14 @@
 }
 
 .addWaterIcon {
-  stroke: white;
+  stroke: black;
   width: 16px;
   height: 16px;
   transition: stroke 0.3s ease-in-out;
+}
+
+.addWaterIcon:hover {
+  stroke: white;
 }
 
 @media screen and (min-width: 768px) {

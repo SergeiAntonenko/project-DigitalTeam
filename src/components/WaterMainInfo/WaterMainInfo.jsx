@@ -9,7 +9,7 @@ import { useState } from 'react';
 const WaterMainInfo = () => {
   const [totalWater, setTotalWater] = useState(0);
 
-  const handleWaterUpdate = (amount) => {
+  const handleWaterUpdate = amount => {
     setTotalWater(prev => prev + amount);
   };
 
@@ -20,7 +20,7 @@ const WaterMainInfo = () => {
     <div className={css.waterMainInfo}>
       <div className={css.logo}>
         <Logo />
-        <LanguageToggle />
+        <LanguageToggle contrast={true} />
       </div>
 
       <WaterDailyNorma />
