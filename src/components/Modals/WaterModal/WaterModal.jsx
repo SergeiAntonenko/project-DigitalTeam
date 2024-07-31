@@ -48,6 +48,11 @@ const WaterModal = ({ id, onCloseModal, operationType, onWaterUpdate }) => {
   const localTime = recordingTime;
 
   const handleSaveAndUpdate = () => {
+    if (waterAmount <= 0) {
+      toast.error('Enter a value greater than zero');
+      return;
+    }
+
     if (operationType === 'edit') {
       dispatch(
         updateWater({ recordId: id, water: { waterValue: waterAmount, localTime, localDate } })
@@ -55,23 +60,22 @@ const WaterModal = ({ id, onCloseModal, operationType, onWaterUpdate }) => {
         .then(() => {
           toast.success('Water updated successfully');
         })
-        .finally(() => onCloseModal())
         .catch(err => {
           toast.error('Something went wrong');
-        });
+        })
+        .finally(() => onCloseModal());
     } else {
       dispatch(addWater({ waterValue: waterAmount, localDate, localTime }))
         .then(() => {
           toast.success('Water added successfully');
         })
-        .finally(() => {
-          onCloseModal();
-        })
         .catch(err => {
           toast.error('Something went wrong');
-        });
+        })
+        .finally(() => onCloseModal());
     }
   };
+
   return (
     <>
       <h1 className={css.title}>{title}</h1>
@@ -118,4 +122,3 @@ const WaterModal = ({ id, onCloseModal, operationType, onWaterUpdate }) => {
 };
 
 export default WaterModal;
-// ========================================================
