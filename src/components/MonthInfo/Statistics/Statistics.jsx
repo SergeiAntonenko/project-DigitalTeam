@@ -32,6 +32,7 @@ const getData = allDaysData => {
   while (date >= startOfMonth) {
     const formattedDate = date.format('DD.MM.YYYY');
     const water = allDaysData[formattedDate] || 0;
+
     data.push({
       date: date.format('DD'),
       water,
@@ -70,7 +71,7 @@ const Statistics = () => {
           height={215}
           data={data}
           margin={{
-            top: 47,
+            top: 45,
             right: 0,
             left: -15,
             bottom: 0,
@@ -94,7 +95,7 @@ const Statistics = () => {
           height={215}
           data={data}
           margin={{
-            top: 47,
+            top: 50,
             right: 0,
             left: 0,
             bottom: 0,

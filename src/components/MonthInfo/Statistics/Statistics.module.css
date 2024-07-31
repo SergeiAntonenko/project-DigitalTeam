@@ -10,7 +10,7 @@
 }
 
 .scrollContainer {
-  overflow-x: auto; /* Обеспечивает горизонтальную прокрутку */
+  overflow-x: auto;
   overflow-y: hidden;
   width: 100%;
 }
@@ -22,17 +22,17 @@
 .dot {
   stroke: #87d28d;
   stroke-width: 3;
-  fill: #ffffff; /* Белый цвет заполнения меток */
-  r: 6; /* Радиус меток */
+  fill: #ffffff;
+  r: 6; /* radius of dot */
 }
 
 .gradientStopTop {
-  stop-color: #9be1a0; /* Верхний цвет градиента */
+  stop-color: #9be1a0; /* High gradient`s color */
   stop-opacity: 1;
 }
 
 .gradientStopBottom {
-  stop-color: #9be1a0; /* Нижний цвет градиента */
+  stop-color: #9be1a0; /* low gradient`s color */
   stop-opacity: 0;
 }
 
@@ -50,9 +50,6 @@
   text-align: left;
 }
 
-.ySymbol {
-}
-
 /* Tablet adaptive */
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .scrollContainer {
@@ -66,6 +63,10 @@
 /* Desktop adaptive */
 @media screen and (min-width: 1440px) {
   .scrollContainer {
+    /* margin-top: 40px; */
     width: 100%;
+  }
+  .container {
+    padding-right: 0;
   }
 }
