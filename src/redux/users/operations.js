@@ -27,9 +27,17 @@ export const fetchUsersCount = createAsyncThunk('users/fetchUsersCount', async (
   }
 });
 
-export const updateUser = createAsyncThunk('users/updateUser', async (_, thunkAPI) => {
+export const updateUser = createAsyncThunk('users/updateUser', async (data, thunkAPI) => {
   try {
-    const response = await api.instance.patch('users/update');
+    const state = thunkAPI.getState();
+    const token = state.auth.token;
+
+    const response = await api.instance.patch('users/update', {
+      data,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
