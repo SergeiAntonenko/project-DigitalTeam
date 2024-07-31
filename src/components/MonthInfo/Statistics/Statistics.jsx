@@ -59,9 +59,23 @@ const Statistics = () => {
 
   useEffect(() => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollLeft = scrollContainerRef.current.scrollWidth;
+      const container = scrollContainerRef.current;
+      const scrollToEnd = () => {
+        container.scrollTo({
+          left: container.scrollWidth,
+          behavior: 'smooth', // smooth scroll
+        });
+      };
+
+      // Check, if wight > 767px, else scrolling to end
+      if (window.innerWidth > 767) {
+        scrollToEnd();
+      } else {
+        // For mobile simple scroll to end
+        container.scrollLeft = container.scrollWidth;
+      }
     }
-  }, []);
+  }, [data]);
 
   return (
     <div className={styles.container}>
