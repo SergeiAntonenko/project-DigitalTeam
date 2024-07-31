@@ -8,7 +8,7 @@ const WaterDailyNorma = () => {
   const user = useSelector(selectUser);
 
   let dailyNorma = 1.5;
-  if (user.dailyWaterGoal !== null) {
+  if (user.dailyWaterGoal !== 'null') {
     dailyNorma = user.dailyWaterGoal;
   }
 
