@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import { AreaChart, Area, XAxis, Tooltip, YAxis } from 'recharts';
 import { curveCardinal } from 'd3-shape';
 import moment from 'moment';
 import styles from './Statistics.module.css';
 import CustomTooltip from '../CustomTooltip/CustomTooltip';
+import { selectTotalForAllDays } from '../../../redux/water/selectors';
 
 const useMediaQuery = query => {
   const [matches, setMatches] = useState(false);
@@ -13,27 +15,30 @@ const useMediaQuery = query => {
     const documentChangeHandler = () => setMatches(mediaQueryList.matches);
 
     mediaQueryList.addEventListener('change', documentChangeHandler);
-    documentChangeHandler(); // Инициализируем значение
+    documentChangeHandler(); // Initialization value
 
     return () => mediaQueryList.removeEventListener('change', documentChangeHandler);
   }, [query]);
 
   return matches;
 };
-const getData = () => {
+
+const getData = allDaysData => {
   const data = [];
   const today = moment();
   const startOfMonth = today.clone().startOf('month');
 
   let date = today;
   while (date >= startOfMonth) {
+    const formattedDate = date.format('DD.MM.YYYY');
+    const water = allDaysData[formattedDate] || 0;
     data.push({
       date: date.format('DD'),
-      water: Math.random() * 2.5,
+      water,
     });
     date = date.clone().subtract(1, 'day');
   }
-  // Добавляем начальную точку с 0%
+  // Add start`s point at 0%
   data.push({
     date: startOfMonth.subtract(1, 'day').format('DD'),
     water: 0,
@@ -42,18 +47,16 @@ const getData = () => {
   return data.reverse();
 };
 
-const data = getData();
-const cardinal = curveCardinal.tension(0.2);
 const Statistics = () => {
-  // Ссылка на контейнер прокрутки
+  const allDaysData = useSelector(selectTotalForAllDays);
+  const data = getData(allDaysData);
+  const cardinal = curveCardinal.tension(0.2);
   const scrollContainerRef = useRef(null);
 
-  // Проверка медиа-запросов
   const isMobile = useMediaQuery('(max-width: 767px)');
   const chartWidth = isMobile ? data.length * 35 : data.length * 84;
 
   useEffect(() => {
-    // Прокручиваем к текущей дате или крайней правой точке данных
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollLeft = scrollContainerRef.current.scrollWidth;
     }
@@ -63,7 +66,7 @@ const Statistics = () => {
     <div className={styles.container}>
       <div className={styles.yAxisContainer}>
         <AreaChart
-          width={60} // Минимальная ширина для отображения Y оси
+          width={60}
           height={215}
           data={data}
           margin={{
@@ -76,25 +79,18 @@ const Statistics = () => {
         >
           <YAxis
             type="number"
-            // tickCount={6}
-            // domain={[0, 2.5]}
             ticks={[0, 0.5, 1, 1.5, 2, 2.5]}
-            tickFormatter={value => {
-              console.log(value); // Для отладки
-              return value === 0 ? '0%' : `${value}L`;
-            }}
+            tickFormatter={value => (value === 0 ? '0%' : `${value}L`)}
             axisLine={false}
             tickLine={false}
             className={styles.ySymbol}
-            padding={{ bottom: 30 }} // Увеличение отступа снизу
-
-            // allowDataOverflow={true} // Добавьте это свойство
+            padding={{ bottom: 30 }}
           />
         </AreaChart>
       </div>
       <div className={styles.scrollContainer} ref={scrollContainerRef}>
         <AreaChart
-          width={chartWidth} // Динамическая ширина диаграммы
+          width={chartWidth}
           height={215}
           data={data}
           margin={{
@@ -117,7 +113,7 @@ const Statistics = () => {
             axisLine={false}
             tickLine={false}
             className={styles.xSymbol}
-            padding={{ bottom: 30 }} // Увеличение отступа снизу
+            padding={{ bottom: 30 }}
           />
           <Tooltip content={<CustomTooltip />} />
           <Area
@@ -135,123 +131,3 @@ const Statistics = () => {
 };
 
 export default Statistics;
-
-// import React, { useEffect, useRef } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { AreaChart, Area, XAxis, Tooltip, YAxis } from 'recharts';
-// import { curveCardinal } from 'd3-shape';
-// import moment from 'moment';
-// import styles from './Statistics.module.css';
-// import CustomTooltip from '../CustomTooltip/CustomTooltip';
-// import { fetchWaterDaily } from '../../../redux/water/operations';
-
-// const useMediaQuery = query => {
-//   const [matches, setMatches] = React.useState(false);
-
-//   useEffect(() => {
-//     const mediaQueryList = window.matchMedia(query);
-//     const documentChangeHandler = () => setMatches(mediaQueryList.matches);
-
-//     mediaQueryList.addEventListener('change', documentChangeHandler);
-//     documentChangeHandler();
-
-//     return () => mediaQueryList.removeEventListener('change', documentChangeHandler);
-//   }, [query]);
-
-//   return matches;
-// };
-
-// const Statistics = () => {
-//   const dispatch = useDispatch();
-//   // const loading = useSelector(state => state.water.loading);
-
-//   useEffect(() => {
-//     dispatch(fetchWaterDaily());
-//   }, [dispatch]);
-
-//   const oops = useSelector(state => state.water.dailyWater || []);
-//   const formattedData = oops.map(entry => ({
-//     date: moment(entry.date).format('DD'),
-//     water: entry.water,
-//   }));
-
-//   const cardinal = curveCardinal.tension(0.2);
-//   const scrollContainerRef = useRef(null);
-//   const isMobile = useMediaQuery('(max-width: 767px)');
-//   const chartWidth = isMobile ? formattedData.length * 35 : formattedData.length * 84;
-
-//   useEffect(() => {
-//     if (scrollContainerRef.current) {
-//       scrollContainerRef.current.scrollLeft = scrollContainerRef.current.scrollWidth;
-//     }
-//   }, [formattedData]);
-
-//   return (
-//     <div className={styles.container}>
-//       <div className={styles.yAxisContainer}>
-//         <AreaChart
-//           width={60}
-//           height={215}
-//           data={formattedData}
-//           margin={{
-//             top: 47,
-//             right: 0,
-//             left: -15,
-//             bottom: 0,
-//           }}
-//           className={styles.chartWrapper}
-//         >
-//           <YAxis
-//             type="number"
-//             ticks={[0, 0.5, 1, 1.5, 2, 2.5]}
-//             tickFormatter={value => (value === 0 ? '0%' : `${value}L`)}
-//             axisLine={false}
-//             tickLine={false}
-//             className={styles.ySymbol}
-//             padding={{ bottom: 30 }}
-//           />
-//         </AreaChart>
-//       </div>
-//       <div className={styles.scrollContainer} ref={scrollContainerRef}>
-//         <AreaChart
-//           width={chartWidth}
-//           height={215}
-//           data={formattedData}
-//           margin={{
-//             top: 47,
-//             right: 0,
-//             left: 0,
-//             bottom: 0,
-//           }}
-//           className={styles.chartWrapper}
-//         >
-//           <defs>
-//             <linearGradient id="colorWater" x1="0" y1="0" x2="0" y2="1">
-//               <stop offset="1.54%" className={styles.gradientStopTop} />
-//               <stop offset="93.64%" className={styles.gradientStopBottom} />
-//             </linearGradient>
-//           </defs>
-
-//           <XAxis
-//             dataKey="date"
-//             axisLine={false}
-//             tickLine={false}
-//             className={styles.xSymbol}
-//             padding={{ bottom: 30 }}
-//           />
-//           <Tooltip content={<CustomTooltip />} />
-//           <Area
-//             className={styles.area}
-//             type={cardinal}
-//             stroke="#87d28d"
-//             dataKey="water"
-//             fill="url(#colorWater)"
-//             dot={{ className: styles.dot }}
-//           />
-//         </AreaChart>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Statistics;
