@@ -1,6 +1,8 @@
 .customTooltip {
   width: 100px; /* Задайте нужные размеры */
   height: 50px;
+
+  box-shadow: 0px 5px 10px 0px #cbd1df80;
 }
 
 .label {
