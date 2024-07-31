@@ -68,7 +68,7 @@ export const UserSettingsForm = ({ handleCloseModal2 }) => {
     if (user) {
       setValue('name', user.name || '');
       setValue('email', user.email || '');
-      setValue('weight', user.weight || 0);
+      setValue('weight', user.weight || 1);
       setValue('activeTime', user.activeTime || 0);
       setValue('dailyWaterGoal', user.dailyWaterGoal || 0);
       setValue('gender', user.gender || '');
@@ -96,11 +96,6 @@ export const UserSettingsForm = ({ handleCloseModal2 }) => {
 
       formData.append(key, data[key]);
     }
-
-    // const response = dispatch(updateUser(data));
-    const handleCloseModal = () => {
-      setIsModalOpen2(false);
-    };
 
     const res = dispatch(updateUser(data));
 
