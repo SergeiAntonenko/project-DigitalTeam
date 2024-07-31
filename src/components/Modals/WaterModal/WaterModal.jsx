@@ -48,6 +48,11 @@ const WaterModal = ({ id, onCloseModal, operationType, onWaterUpdate }) => {
   const localTime = recordingTime;
 
   const handleSaveAndUpdate = () => {
+    if (waterAmount <= 0) {
+      toast.error('Enter a value greater than zero');
+      return;
+    }
+
     if (operationType === 'edit') {
       dispatch(
         updateWater({ recordId: id, water: { waterValue: waterAmount, localTime, localDate } })
@@ -55,23 +60,22 @@ const WaterModal = ({ id, onCloseModal, operationType, onWaterUpdate }) => {
         .then(() => {
           toast.success('Water updated successfully');
         })
-        .finally(() => onCloseModal())
         .catch(err => {
           toast.error('Something went wrong');
-        });
+        })
+        .finally(() => onCloseModal());
     } else {
       dispatch(addWater({ waterValue: waterAmount, localDate, localTime }))
         .then(() => {
           toast.success('Water added successfully');
         })
-        .finally(() => {
-          onCloseModal();
-        })
         .catch(err => {
           toast.error('Something went wrong');
-        });
+        })
+        .finally(() => onCloseModal());
     }
   };
+
   return (
     <>
       <h1 className={css.title}>{title}</h1>
@@ -79,7 +83,7 @@ const WaterModal = ({ id, onCloseModal, operationType, onWaterUpdate }) => {
 
       <div className={css.waterwrapper}>
         <h3 className={css.amount_water}>
-          {t('modal-water.amount-water')}: {waterAmount} ml
+          {t('modal-water.amount-water')}: {waterAmount} {t('shared.ml')}
         </h3>
         <div className={css.minplus_wrapper}>
           <button
@@ -89,7 +93,9 @@ const WaterModal = ({ id, onCloseModal, operationType, onWaterUpdate }) => {
           >
             <Iconsvg className={css.pl_min} iconName="icon-minus-round" />
           </button>
-          <span className={css.button_ml}>{waterAmount} ml</span>
+          <span className={css.button_ml}>
+            {waterAmount} {t('shared.ml')}
+          </span>
           <button className={css.button_water} onClick={increaseWaterAmount}>
             <Iconsvg className={css.pl_min} iconName="icon-plus-round" />
           </button>
@@ -116,4 +122,3 @@ const WaterModal = ({ id, onCloseModal, operationType, onWaterUpdate }) => {
 };
 
 export default WaterModal;
-// ========================================================
