@@ -27,34 +27,26 @@ export const fetchUsersCount = createAsyncThunk('users/fetchUsersCount', async (
   }
 });
 
-// export const updateUser = createAsyncThunk('users/updateUser', async (_, thunkAPI) => {
-//   try {
-//     const response = await api.instance.patch('users/update');
-//     return response.data;
-//   } catch (error) {
-//     return thunkAPI.rejectWithValue(error.message);
-//   }
-// });
-
-export const updateAvatar = createAsyncThunk('users/updateAvatar', async (_, thunkAPI) => {
+export const updateUser = createAsyncThunk('users/updateUser', async (data, thunkAPI) => {
   try {
-    const response = await api.instance.patch('users/avatar');
+    const state = thunkAPI.getState();
+    const token = state.auth.token;
+
+    const response = await api.instance.patch('users/update', {
+      data,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
 
-export const updateUser = createAsyncThunk('users/updateUser', async (formData, thunkAPI) => {
+export const updateAvatar = createAsyncThunk('users/updateAvatar', async (_, thunkAPI) => {
   try {
-    const state = thunkAPI.getState();
-    const token = state.auth.token;
-
-    const response = await api.instance.patch('users/update', formData, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await api.instance.patch('users/avatar');
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
