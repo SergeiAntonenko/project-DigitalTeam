@@ -1,5 +1,6 @@
 {
   "shared.add-water-btn": "Add water",
+  "shared.ml": "ml",
   "home-page.title": "Home Page",
   "welcome-section.description": "Record daily water intake and track",
   "welcome-section.title": "Water consumption tracker",
@@ -64,7 +65,7 @@
   "modal-water.are-you-sure": "Are you sure you want to delete the entry?",
   "modal-water.delete": "Delete",
   "modal-water.cancel": "Cancel",
-  "settings.setting": "Settings",
+  "settings.setting": "Setting",
   "settings.please-select-gender": "Please select your gender",
   "settings.name-min-length": "Name must be greater than or equal to 2 characters long",
   "settings.name-max-length": "Name must be less than or equal to 40 characters long",
@@ -91,5 +92,6 @@
   "settings.required-water-amount": "The required amount of water in liters per day",
   "settings.waiting-for-metrics": "Waiting for your metrics",
   "settings.record-water-intake": "Write down how much water you will drink",
-  "settings.save": "Save"
+  "settings.save": "Save",
+  "water-list.empty": "You have not added the water yet"
 }

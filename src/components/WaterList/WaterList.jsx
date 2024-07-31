@@ -6,8 +6,10 @@ import { useEffect } from 'react';
 import { fetchWaterDaily } from '../../redux/water/operations';
 import { selectDate } from '../../redux/date/dateSlice.js';
 import LoaderWaterItem from '../../loader/LoaderWaterItem.jsx';
+import { useTranslation } from 'react-i18next';
 
 const WaterList = () => {
+  const { t } = useTranslation();
   const date = useSelector(selectDate);
   const waterItems = useSelector(selectDailyWater);
   const isWaterLoading = useSelector(selectWaterLoading);
@@ -24,7 +26,7 @@ const WaterList = () => {
       {isWaterLoading && !waterItems?.length && <LoaderWaterItem />}
       {!isWaterLoading && !waterItems?.length ? (
         <div className={css.noWater}>
-          <p className={css.water}>You have not added the water yet.</p>
+          <p className={css.water}>{t('water-list.empty')}</p>
         </div>
       ) : (
         <ul className={css.waterListWrap}>
