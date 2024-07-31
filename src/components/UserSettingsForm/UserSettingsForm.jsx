@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import { useDispatch } from 'react-redux';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -8,6 +8,7 @@ import { FormValidateError } from '../FormValidateError/FormValidateError';
 import { calcRequiredWater } from '../../calculation/calcRequiredWater';
 import { selectUser } from '../../redux/users/selectors';
 import Iconsvg from '../../images/Icons/Icons.jsx';
+import { updateUser } from '../../redux/users/operations';
 
 const schema = yup.object().shape({
   avatar: yup.mixed(),
@@ -31,7 +32,7 @@ const schema = yup.object().shape({
       return value;
     }),
 
-  activityTime: yup
+  activeTime: yup
     .number()
     .nullable()
     .min(0)
@@ -41,7 +42,7 @@ const schema = yup.object().shape({
       return value;
     }),
 
-  desiredVolume: yup
+  dailyWaterGoal: yup
     .string()
     .nullable()
     .transform((value, originalValue) => {
@@ -64,8 +65,7 @@ const schema = yup.object().shape({
 
 export const UserSettingsForm = () => {
   const user = useSelector(selectUser);
-
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -79,23 +79,21 @@ export const UserSettingsForm = () => {
       name: user.name,
       email: user.email,
       weight: user.weight,
-      activityTime: user.activityTime,
-      desiredVolume: user.desiredVolume / 1000,
+      activeTime: user.activeTime,
+      dailyWaterGoal: user.dailyWaterGoal,
     },
   });
 
-  const onSubmit = async data => {
+  const onSubmit = data => {
     if (Object.keys(errors).length > 0) {
       return;
     }
-
-    data.desiredVolume = data.desiredVolume * 1000;
 
     const formData = new FormData();
 
     for (const key in data) {
       if (key === 'avatar') {
-        if (data[key][0] !== undefined) {
+        if (data[key].length > 0 && data[key][0] !== undefined) {
           formData.append(key, data[key][0]);
         }
         continue;
@@ -104,31 +102,40 @@ export const UserSettingsForm = () => {
       if (data[key] === '' || data[key] === undefined || data[key] === null) {
         continue;
       }
+
       formData.append(key, data[key]);
     }
 
-    // const response = await dispatch(updateUser(formData));
-    // response.meta.requestStatus === 'fulfilled' && handleCloseModal();
+    // for (let pair of formData.entries()) {
+    //   console.log(`${pair[0]}: ${pair[1]}`); // Логирование данных в FormData
+    // }
+
+    const response = dispatch(updateUser(formData));
+    // if (response.meta.requestStatus === 'fulfilled') {
+    //   handleCloseModal();
+    // } else {
+    //   console.error('Error updating user:', response.error);
+    // }
   };
 
-  const { avatar, gender, name, email, weight, activityTime, desiredVolume } = watch();
+  const { avatar, gender, name, email, weight, activeTime, dailyWaterGoal } = watch();
 
   const isAnyFieldFilled =
-    avatar || gender || name || email || weight || activityTime || desiredVolume;
+    avatar || gender || name || email || weight || activeTime || dailyWaterGoal;
 
-  const requiredWater = calcRequiredWater(gender, weight, activityTime);
+  const requiredWater = calcRequiredWater(gender, weight, activeTime);
 
   return (
     <>
       <form className={css.wrapper} onSubmit={handleSubmit(onSubmit)}>
         <div className={css.avatarWrapper}>
           {/* <img className={css.avatar} src={user.avatarURL} alt="Avatar" /> */}
-          
+
           {user.avatarURL ? (
-          <img className={css.avatar} src={user.avatarURL} alt="Avatar" />
-        ) : (
-          <Iconsvg className={css.avatar} iconName="avatar" />
-        )}
+            <img className={css.avatar} src={user.avatarURL} alt="Avatar" />
+          ) : (
+            <Iconsvg className={css.avatar} iconName="avatar" />
+          )}
 
           {!avatar || avatar.length === 0 ? (
             <>
@@ -160,7 +167,8 @@ export const UserSettingsForm = () => {
                 type="radio"
                 name="gender"
                 id="woman"
-                value="Woman" defaultChecked              
+                value="Woman"
+                defaultChecked
               />
               <label className={`${css.text} ${css.genderLabel}`} htmlFor="woman">
                 Woman
@@ -229,7 +237,7 @@ export const UserSettingsForm = () => {
                 set 0)
               </p>
 
-                <span className={`${css.text} ${css.footnote}`}>Active time in hours</span>
+              <span className={`${css.text} ${css.footnote}`}>Active time in hours</span>
             </div>
           </div>
 
@@ -247,17 +255,17 @@ export const UserSettingsForm = () => {
               />
               {errors.weight && <FormValidateError message={errors.weight.message} />}
 
-              <label className={css.text} htmlFor="activityTime">
+              <label className={css.text} htmlFor="activeTime">
                 The time of active participation in sports:
               </label>
               <input
-                {...register('activityTime')}
+                {...register('activeTime')}
                 className={css.input}
                 type="number"
-                name="activityTime"
-                id="activityTime"
+                name="activeTime"
+                id="activeTime"
               />
-              {errors.activityTime && <FormValidateError message={errors.activityTime.message} />}
+              {errors.activeTime && <FormValidateError message={errors.activeTime.message} />}
             </div>
 
             <div className={css.waterAmountWrapper}>
@@ -269,17 +277,19 @@ export const UserSettingsForm = () => {
                 </span>
               </div>
 
-              <label className={css.subtitle} htmlFor="desiredVolume">
+              <label className={css.subtitle} htmlFor="dailyWaterGoal">
                 Write down how much water you will drink:
               </label>
               <input
-                {...register('desiredVolume')}
+                {...register('dailyWaterGoal')}
                 className={css.input}
                 type="text"
-                name="desiredVolume"
-                id="desiredVolume"
+                name="dailyWaterGoal"
+                id="dailyWaterGoal"
               />
-              {errors.desiredVolume && <FormValidateError message={errors.desiredVolume.message} />}
+              {errors.dailyWaterGoal && (
+                <FormValidateError message={errors.dailyWaterGoal.message} />
+              )}
             </div>
           </div>
         </div>
