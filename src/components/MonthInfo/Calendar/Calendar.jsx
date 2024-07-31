@@ -5,7 +5,7 @@ import CalendarItem from '../CalendarItem/CalendarItem';
 const Calendar = ({ currentDate }) => {
   const [days, setDays] = useState([]);
   const [waterData, setWaterData] = useState({});
-  const [selectedDate, setSelectedDate] = useState(null); // Состояние для хранения выбранной даты
+  const [selectedDate, setSelectedDate] = useState(null);
 
   useEffect(() => {
     const year = currentDate.getFullYear();
