@@ -61,4 +61,7 @@ h3 {
     line-height: 32px;
     letter-spacing: -0.01em;
   }
+  .topContainer {
+    padding-bottom: 50px;
+  }
 }

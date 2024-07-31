@@ -50,9 +50,6 @@
   text-align: left;
 }
 
-.ySymbol {
-}
-
 /* Tablet adaptive */
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .scrollContainer {
@@ -66,6 +63,10 @@
 /* Desktop adaptive */
 @media screen and (min-width: 1440px) {
   .scrollContainer {
+    /* margin-top: 40px; */
     width: 100%;
+  }
+  .container {
+    padding-right: 0;
   }
 }
