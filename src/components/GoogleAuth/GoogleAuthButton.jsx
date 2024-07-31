@@ -12,7 +12,6 @@ const GoogleAuthButton = () => {
       const resultAction = await dispatch(getGoogleUrl());
       if (getGoogleUrl.fulfilled.match(resultAction)) {
         const url = resultAction.payload;
-        console.log(url);
         if (url) {
           setAuthUrl(url);
         }
