@@ -83,7 +83,7 @@ const WaterModal = ({ id, onCloseModal, operationType, onWaterUpdate }) => {
 
       <div className={css.waterwrapper}>
         <h3 className={css.amount_water}>
-          {t('modal-water.amount-water')}: {waterAmount} ml
+          {t('modal-water.amount-water')}: {waterAmount} {t('shared.ml')}
         </h3>
         <div className={css.minplus_wrapper}>
           <button
@@ -93,7 +93,9 @@ const WaterModal = ({ id, onCloseModal, operationType, onWaterUpdate }) => {
           >
             <Iconsvg className={css.pl_min} iconName="icon-minus-round" />
           </button>
-          <span className={css.button_ml}>{waterAmount} ml</span>
+          <span className={css.button_ml}>
+            {waterAmount} {t('shared.ml')}
+          </span>
           <button className={css.button_water} onClick={increaseWaterAmount}>
             <Iconsvg className={css.pl_min} iconName="icon-plus-round" />
           </button>

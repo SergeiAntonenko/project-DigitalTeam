@@ -6,10 +6,12 @@ import { useState } from 'react';
 import ModalDelete from '../Modals/DeleteWaterModal/DeleteWaterModal';
 import WaterModal from '../Modals/WaterModal/WaterModal';
 import Modal from '../../shared/components/Modal/Modal';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { selectWaterLoading } from '../../redux/water/selectors';
 
 const WaterItem = ({ item }) => {
+  const { t } = useTranslation();
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
   const [isModalEditWaterOpen, setIsModalEditWaterOpen] = useState(false);
 
@@ -32,7 +34,7 @@ const WaterItem = ({ item }) => {
   const formattedAmount =
     item.waterValue >= 1000
       ? `${(item.waterValue / 1000).toFixed(1).replace('.0', '')}${' L'}`
-      : `${item.waterValue}${' ml'}`;
+      : `${item.waterValue} ${t('shared.ml')}`;
 
   const formatTime = timeString => {
     // Разделяем строку времени на часы и минуты
