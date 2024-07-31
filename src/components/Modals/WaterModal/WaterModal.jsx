@@ -11,6 +11,7 @@ import Iconsvg from '../../../images/Icons/Icons.jsx';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import { selectDate } from '../../../redux/date/dateSlice';
+import { selectDailyWater } from '../../../redux/water/selectors.js';
 
 const WaterModal = ({ id, onCloseModal, operationType, onWaterUpdate }) => {
   const { t } = useTranslation();
@@ -18,6 +19,11 @@ const WaterModal = ({ id, onCloseModal, operationType, onWaterUpdate }) => {
   const [recordingTime, setRecordingTime] = useState(
     new Date().toLocaleString([], { hour: '2-digit', minute: '2-digit' })
   );
+
+  const waterItem = useSelector(selectDailyWater);
+  const record = waterItem.find(item => item._id === id);
+  const waterValue = record ? record.waterValue : null;
+  const [item, setItem] = useState(waterValue);
 
   const handleChangeRecordingTime = e => {
     const inputValue = e.target.value;
@@ -31,6 +37,12 @@ const WaterModal = ({ id, onCloseModal, operationType, onWaterUpdate }) => {
     const newValue = parseInt(e.target.value) || 0;
     if (newValue >= 0) {
       setWaterAmount(newValue);
+    }
+  };
+  const handleWaterAmountChangeEdit = e => {
+    const newValue = parseInt(e.target.value) || 0;
+    if (newValue >= 0) {
+      setItem(newValue);
     }
   };
 
@@ -47,16 +59,31 @@ const WaterModal = ({ id, onCloseModal, operationType, onWaterUpdate }) => {
   const localDate = useSelector(selectDate);
   const localTime = recordingTime;
 
+  const increaseWaterAmountEdit = () => {
+    setItem(prevAmount => {
+      const newAmount = prevAmount + 50;
+      return newAmount > 5000 ? 5000 : newAmount;
+    });
+  };
+
+  const decreaseWaterAmountEdit = () => {
+    if (item >= 50) {
+      setItem(prevAmount => prevAmount - 50);
+    }
+  };
+
   const handleSaveAndUpdate = () => {
-    if (waterAmount <= 0) {
+    if (operationType === 'add' && waterAmount <= 0) {
+      toast.error('Enter a value greater than zero');
+      return;
+    }
+    if (operationType === 'edit' && item <= 0) {
       toast.error('Enter a value greater than zero');
       return;
     }
 
     if (operationType === 'edit') {
-      dispatch(
-        updateWater({ recordId: id, water: { waterValue: waterAmount, localTime, localDate } })
-      )
+      dispatch(updateWater({ recordId: id, water: { waterValue: item, localTime, localDate } }))
         .then(() => {
           toast.success('Water updated successfully');
         })
@@ -83,36 +110,92 @@ const WaterModal = ({ id, onCloseModal, operationType, onWaterUpdate }) => {
 
       <div className={css.waterwrapper}>
         <h3 className={css.amount_water}>
-          {t('modal-water.amount-water')}: {waterAmount} {t('shared.ml')}
+          {operationType === 'edit' ? (
+            <>
+              {t('modal-water.amount-water')}: {item} {t('shared.ml')}
+            </>
+          ) : (
+            <>
+              {t('modal-water.amount-water')}: {waterAmount} {t('shared.ml')}
+            </>
+          )}
         </h3>
+
         <div className={css.minplus_wrapper}>
-          <button
-            className={css.button_water}
-            onClick={decreaseWaterAmount}
-            disabled={waterAmount === 0}
-          >
-            <Iconsvg className={css.pl_min} iconName="icon-minus-round" />
-          </button>
+          {operationType === 'edit' ? (
+            <>
+              <button
+                className={css.button_water}
+                onClick={decreaseWaterAmountEdit}
+                disabled={item === 0}
+              >
+                <Iconsvg className={css.pl_min} iconName="icon-minus-round" />
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                className={css.button_water}
+                onClick={decreaseWaterAmount}
+                disabled={waterAmount === 0}
+              >
+                <Iconsvg className={css.pl_min} iconName="icon-minus-round" />
+              </button>
+            </>
+          )}
           <span className={css.button_ml}>
-            {waterAmount} {t('shared.ml')}
+            {operationType === 'edit' ? (
+              <>
+                {item} {t('shared.ml')}
+              </>
+            ) : (
+              <>
+                {waterAmount} {t('shared.ml')}
+              </>
+            )}
           </span>
-          <button className={css.button_water} onClick={increaseWaterAmount}>
-            <Iconsvg className={css.pl_min} iconName="icon-plus-round" />
-          </button>
+          {operationType === 'edit' ? (
+            <>
+              <button className={css.button_water} onClick={increaseWaterAmountEdit}>
+                <Iconsvg className={css.pl_min} iconName="icon-plus-round" />
+              </button>
+            </>
+          ) : (
+            <>
+              <button className={css.button_water} onClick={increaseWaterAmount}>
+                <Iconsvg className={css.pl_min} iconName="icon-plus-round" />
+              </button>
+            </>
+          )}
         </div>
       </div>
       <div className={css.button_wrapper}>
         <h3 className={css.time_water}>
           {t('modal-water.rec-time')}: {recordingTime}
         </h3>
-        <input
-          type="text"
-          value={recordingTime}
-          onChange={handleChangeRecordingTime}
-          placeholder="first (:) after (numbers)"
-        />
-        <h2 className={css.subtitle}>{t('modal-water.enter-value')}:</h2>
-        <input type="text" value={waterAmount} onChange={handleWaterAmountChange} />
+        {operationType === 'edit' ? (
+          <>
+            <input
+              type="text"
+              value={recordingTime}
+              onChange={handleChangeRecordingTime}
+              placeholder="first (:) after (numbers)"
+            />
+            <h2 className={css.subtitle}>{t('modal-water.enter-value')}:</h2>
+            <input type="text" value={item} onChange={handleWaterAmountChangeEdit} />
+          </>
+        ) : (
+          <>
+            <input
+              type="text"
+              value={recordingTime}
+              onChange={handleChangeRecordingTime}
+              placeholder="first (:) after (numbers)"
+            />
+            <h2 className={css.subtitle}>{t('modal-water.enter-value')}:</h2>
+            <input type="text" value={waterAmount} onChange={handleWaterAmountChange} />
+          </>
+        )}
       </div>
       <button className={css.button_save} onClick={handleSaveAndUpdate}>
         {t('modal-water.save')}

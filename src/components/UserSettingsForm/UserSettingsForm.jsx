@@ -9,9 +9,11 @@ import { calcRequiredWater } from '../../calculation/calcRequiredWater';
 import { selectUser } from '../../redux/users/selectors';
 import Iconsvg from '../../images/Icons/Icons.jsx';
 import { updateUser } from '../../redux/users/operations';
+import { useEffect } from 'react';
+import { toast } from 'react-hot-toast';
 
 const schema = yup.object().shape({
-  avatar: yup.mixed(),
+  avatar: yup.string(),
 
   gender: yup.string().nullable().oneOf(['Woman', 'Man'], 'Please select your gender'),
 
@@ -24,46 +26,23 @@ const schema = yup.object().shape({
 
   weight: yup
     .number()
-    .nullable()
-    .min(20, 'Weight must be greater than or equal to 20')
-    .max(600, 'Weight must be less than or equal to 600')
-    .transform((value, originalValue) => {
-      if (originalValue === '') return null;
-      return value;
-    }),
+    .typeError(' must be a number')
+    .min(1, 'Weight must be greater than or equal to 1')
+    .max(600, 'Weight must be less than or equal to 600'),
 
   activeTime: yup
     .number()
-    .nullable()
+    .typeError('Must be a number')
     .min(0)
-    .max(12, 'Time must be less than or equal to 12')
-    .transform((value, originalValue) => {
-      if (originalValue === '') return null;
-      return value;
-    }),
-
+    .max(12, 'Time must be less than or equal to 12'),
   dailyWaterGoal: yup
-    .string()
-    .nullable()
-    .transform((value, originalValue) => {
-      if (originalValue === '') return null;
-      return value;
-    })
-    .test('is-decimal', 'Please enter a valid number', value => {
-      if (value === undefined || value === null || value === '') return true;
-      return !isNaN(parseFloat(value)) && isFinite(value);
-    })
-    .test('min-value', 'Value must be greater than or equal to 0.1', value => {
-      if (value === undefined || value === null || value === '') return true;
-      return parseFloat(value) >= 0.1;
-    })
-    .test('max-value', 'Value must be less than or equal to 31.2', value => {
-      if (value === undefined || value === null || value === '') return true;
-      return parseFloat(value) <= 31.2;
-    }),
+    .number()
+    .typeError(' must be a number')
+    .min(0, 'Time active sport must be positive number')
+    .max(1000, 'Time must be less than or equal to 1000'),
 });
 
-export const UserSettingsForm = () => {
+export const UserSettingsForm = ({ handleCloseModal2 }) => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
@@ -71,18 +50,30 @@ export const UserSettingsForm = () => {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      gender: user.gender,
-      name: user.name,
-      email: user.email,
-      weight: user.weight,
+      gender: user?.gender || '',
+      name: user?.name || '',
+      email: user?.email || '',
+      weight: user.weight || 1,
       activeTime: user.activeTime,
       dailyWaterGoal: user.dailyWaterGoal,
     },
   });
+
+  useEffect(() => {
+    if (user) {
+      setValue('name', user.name || '');
+      setValue('email', user.email || '');
+      setValue('weight', user.weight || 1);
+      setValue('activeTime', user.activeTime || 0);
+      setValue('dailyWaterGoal', user.dailyWaterGoal || 0);
+      setValue('gender', user.gender || '');
+    }
+  }, [user, setValue]);
 
   const onSubmit = data => {
     if (Object.keys(errors).length > 0) {
@@ -106,16 +97,19 @@ export const UserSettingsForm = () => {
       formData.append(key, data[key]);
     }
 
-    // for (let pair of formData.entries()) {
-    //   console.log(`${pair[0]}: ${pair[1]}`); // Логирование данных в FormData
-    // }
+    const res = dispatch(updateUser(data));
 
-    const response = dispatch(updateUser(formData));
-    // if (response.meta.requestStatus === 'fulfilled') {
-    //   handleCloseModal();
-    // } else {
-    //   console.error('Error updating user:', response.error);
-    // }
+    res.then(
+      value => {
+        if (value.meta.requestStatus === 'fulfilled') {
+          handleCloseModal2();
+          toast.success('User information has been successfully updated');
+        } else {
+          toast.error('Error updating user');
+        }
+      },
+      reason => toast.error('Error updating user')
+    );
   };
 
   const { avatar, gender, name, email, weight, activeTime, dailyWaterGoal } = watch();
