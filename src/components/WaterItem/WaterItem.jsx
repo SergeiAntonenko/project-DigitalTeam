@@ -49,43 +49,33 @@ const WaterItem = ({ item }) => {
   };
 
   return (
-    <>
-      <li>
-        <div className={css.center}>
-          <div className={css.div1}>
-            <IconGlass className={css.div1} />
-          </div>
-          <div className={css.div2}>
-            <p className={css.text_value}>{formattedAmount}</p>
-            <p className={css.text_time}>{time}</p>
-          </div>
-          <div className={css.buttonContainer}>
-            <button type="button" className={css.button1} onClick={handleOpenModalEditWater}>
-              <FiEdit2 className={css.edit} />
-            </button>
-            <button type="button" className={css.button2} onClick={handleOpenModalDelete}>
-              <FiTrash className={css.edit} />
-            </button>
-          </div>
-          {isModaDeleteOpen && (
-            <Modal handleCloseModal={handleCloseModalDelete}>
-              <ModalDelete
-                handleCloseModal={handleCloseModalDelete}
-                water={{ id, amount, date, time }}
-              />
-            </Modal>
-          )}
-          {isModalEditWaterOpen && (
-            <WaterModal
-              isModalOpen={isModalEditWaterOpen}
-              onCloseModal={handleCloseModalEditWater}
-              // operationType={'add'}
-            />
-          )}
-        </div>
-      </li>
-    </>
-
+    <div className={css.center}>
+      <div className={css.div1}>
+        <IconGlass className={css.div1} />
+      </div>
+      <div className={css.div2}>
+        <span className={css.value}>{formattedAmount}</span>
+        <span className={css.time}>{formatTime(item.localTime)}</span>
+      </div>
+      <div className={css.buttonContainer}>
+        <button type="button" className={css.button1} onClick={handleOpenModalEditWater}>
+          <FiEdit2 className={css.edit} />
+        </button>
+        <button type="button" className={css.button2} onClick={handleOpenModalDelete}>
+          <FiTrash className={css.edit} />
+        </button>
+      </div>
+      {isModalDeleteOpen && (
+        <Modal handleCloseModal={handleCloseModalDelete}>
+          <ModalDelete handleCloseModal={handleCloseModalDelete} water={item._id} />
+        </Modal>
+      )}
+      {isModalEditWaterOpen && (
+        <Modal handleCloseModal={handleCloseModalEditWater}>
+          <WaterModal onCloseModal={handleCloseModalEditWater} />
+        </Modal>
+      )}
+    </div>
   );
 };
 
