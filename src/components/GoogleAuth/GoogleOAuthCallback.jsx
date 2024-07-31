@@ -9,7 +9,7 @@ const GoogleOAuthCallback = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
-  const { isLoggeIn } = useSelector(selectIsLoggedIn);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
     const handleGoogleOAuth = async () => {
@@ -19,10 +19,7 @@ const GoogleOAuthCallback = () => {
       if (code) {
         try {
           const resultAction = await dispatch(verifyGoogleOAuth(code));
-          console.log(resultAction);
           if (verifyGoogleOAuth.fulfilled.match(resultAction)) {
-            // isLoggeIn = true;
-            //https://project-digital-team.vercel.app/
             navigate('/tracker');
           }
         } catch (err) {
@@ -36,11 +33,11 @@ const GoogleOAuthCallback = () => {
     handleGoogleOAuth();
   }, [dispatch, location.search, navigate]);
 
-  // useEffect(() => {
-  //   if (isLoggeIn) {
-  //     navigate('/tracker');
-  //   }
-  // }, [isLoggeIn, navigate]);
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/tracker');
+    }
+  }, [isLoggedIn, navigate]);
 
   return (
     <>
