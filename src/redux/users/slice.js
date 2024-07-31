@@ -55,7 +55,7 @@ const usersSlice = createSlice({
         state.error = false;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload.data;
         state.userLoading = false;
         state.error = false;
       })

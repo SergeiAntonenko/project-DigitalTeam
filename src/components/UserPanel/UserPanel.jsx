@@ -9,7 +9,9 @@ export const UserPanel = () => {
   const { t } = useTranslation();
   let userName = 'User';
   const userState = useSelector(selectUser);
-  userName = userState.name;
+  if (userState && userState.name) {
+    userName = userState.name;
+  }
 
   return (
     <div className={css.userPanel}>

@@ -88,7 +88,7 @@ export const UserBar = ({ userName }) => {
       )}
       {isModalOpen2 && (
         <Modal handleCloseModal={handleCloseModal2}>
-          <UserSettingsModal handleCloseModal={handleCloseModal2} />
+          <UserSettingsModal handleCloseModal2={handleCloseModal2} />
         </Modal>
       )}
     </div>

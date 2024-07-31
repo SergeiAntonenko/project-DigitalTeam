@@ -1,6 +1,4 @@
 .monthInfoContainer {
-  /* display: flex; */
-  /* flex-direction: column; */
   padding-top: 40px;
 }
 
@@ -26,7 +24,7 @@ h3 {
 
 .icon {
   width: 16px;
-  transition: filter 0.5s; /* Плавный переход как для наведения, так и для снятия курсора */
+  transition: filter 0.5s;
 }
 .icon:hover {
   filter: saturate(20);
@@ -60,5 +58,8 @@ h3 {
     font-size: 28px;
     line-height: 32px;
     letter-spacing: -0.01em;
+  }
+  .topContainer {
+    transition: margin-bottom 0.8s ease;
   }
 }

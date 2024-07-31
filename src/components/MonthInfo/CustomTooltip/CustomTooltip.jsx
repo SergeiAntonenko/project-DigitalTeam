@@ -19,7 +19,7 @@ const CustomTooltip = ({ active, payload }) => {
           textAnchor="middle"
           className={styles.label}
         >
-          {`${Math.round(water * 1000)} ml`}
+          {`${Math.round(water)} ml`}
         </text>
       </svg>
     );

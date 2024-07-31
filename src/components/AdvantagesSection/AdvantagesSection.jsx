@@ -26,10 +26,10 @@ const AdvantagesSection = () => {
       <div className={css.Customers}>
         <CustomersPhoto />
         <p className={css.happydescr}>
-           <div className={css.nowrap}>{usersCount} {' '}
-              <span className={css.colorHappy}>{t('advantages-section.happy')}</span>
-            </div>
-            {t('advantages-section.customers')}
+          <div className={css.nowrap}>
+            {usersCount} <span className={css.colorHappy}>{t('advantages-section.happy')}</span>
+          </div>
+          {t('advantages-section.customers')}
         </p>
       </div>
       <div className={css.benefits}>
