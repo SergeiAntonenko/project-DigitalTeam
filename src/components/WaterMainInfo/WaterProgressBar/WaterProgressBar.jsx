@@ -5,36 +5,24 @@ import { useTranslation } from 'react-i18next';
 const WaterProgressBar = ({ progress }) => {
   const { t } = useTranslation();
   const waterRef = useRef(null);
-  const [lapPosition, setLapPosition] = useState(10);
+  const [lapPosition, setLapPosition] = useState(0);
+
+  const calculateLapPosition = (containerWidth, correctProgress, circleWidth) => {
+    let newPosition = (correctProgress * (containerWidth - circleWidth)) / 100 + circleWidth / 2;
+
+    if (window.innerWidth > 768) {
+      newPosition = (correctProgress * (containerWidth - circleWidth + 20)) / 100 + circleWidth / 2;
+    }
+
+    return newPosition;
+  };
 
   const updLapPosition = () => {
     if (waterRef.current) {
       const containerWidth = waterRef.current.offsetWidth;
-      const circleWidth = 15;
-
+      const circleWidth = 12;
       let correctProgress = Math.min(100, Math.max(0, progress));
-
-      let newPosition = (correctProgress * containerWidth) / 100;
-
-      if (correctProgress >= 0 && correctProgress <= 5) {
-        newPosition = 10;
-      } else if (correctProgress === 100) {
-        newPosition = containerWidth - circleWidth / 2;
-      } else {
-        newPosition = (correctProgress * (containerWidth - circleWidth)) / 100 + circleWidth / 2;
-      }
-
-      if (window.innerWidth > 768) {
-        if (correctProgress >= 0 && correctProgress <= 5) {
-          newPosition = 15;
-        } else if (correctProgress === 100) {
-          newPosition = containerWidth + 10 - circleWidth / 2;
-        } else {
-          newPosition =
-            (correctProgress * (containerWidth + 20 - circleWidth)) / 100 + circleWidth / 2;
-        }
-      }
-
+      let newPosition = calculateLapPosition(containerWidth, correctProgress, circleWidth);
       setLapPosition(newPosition);
     }
   };
@@ -44,12 +32,21 @@ const WaterProgressBar = ({ progress }) => {
   }, [progress]);
 
   useEffect(() => {
-    window.addEventListener('resize', updLapPosition);
-
-    return () => {
-      window.removeEventListener('resize', updLapPosition);
+    const handleResize = () => {
+      updLapPosition();
     };
-  }, []);
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [progress]);
+
+  useEffect(() => {
+    if (waterRef.current) {
+      updLapPosition();
+    }
+  }, [waterRef.current?.offsetWidth]);
 
   const roundedProgress = Math.round(progress);
   const shouldShowPercentage =
