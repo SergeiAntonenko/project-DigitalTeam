@@ -38,9 +38,7 @@ const Calendar = ({ currentDate }) => {
         } else {
           throw new Error('Unexpected content type: ' + contentType);
         }
-      } catch (error) {
-        console.error('Error fetching water data:', error);
-      }
+      } catch (error) {}
     };
 
     days.forEach(day => fetchWaterData(day));
