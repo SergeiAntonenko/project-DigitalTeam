@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectMonth } from '../../redux/date/dateSlice';
 
 const MonthInfo = () => {
-  const { t } = useTranslation(); // Добавлено из HEAD
+  const { t } = useTranslation(); // Add from HEAD
   const [currentDate, setCurrentDate] = useState(new Date());
   const [view, setView] = useState('calendar');
 
@@ -37,7 +37,10 @@ const MonthInfo = () => {
 
   return (
     <div className={styles.monthInfoContainer}>
-      <div className={styles.topContainer}>
+      <div
+        className={styles.topContainer}
+        style={{ marginBottom: view === 'statistics' ? '50px' : '0px' }}
+      >
         <h3>{view === 'calendar' ? t('mouth-info.month') : 'Statistics'}</h3>{' '}
         <div className={styles.rightContainer}>
           <CalendarPagination currentDate={currentDate} onDateChange={handleDateChange} />
