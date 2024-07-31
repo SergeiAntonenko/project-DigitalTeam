@@ -34,7 +34,7 @@ const GoogleOAuthCallback = () => {
     };
 
     handleGoogleOAuth();
-  }, [dispatch, location.search, navigate, isLoggeIn]);
+  }, [dispatch, location.search, navigate]);
 
   // useEffect(() => {
   //   if (isLoggeIn) {
