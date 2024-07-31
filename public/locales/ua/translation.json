@@ -1,5 +1,6 @@
 {
   "shared.add-water-btn": "Додати воду",
+  "shared.ml": "мл",
   "home-page.title": "Головна сторінка",
   "welcome-section.description": "Записуйте щоденне споживання води та відстежуйте",
   "welcome-section.title": "Трекер споживання води",
@@ -91,5 +92,6 @@
   "settings.required-water-amount": "Необхідна кількість води в літрах на день",
   "settings.waiting-for-metrics": "Очікуємо ваші дані",
   "settings.record-water-intake": "Скільки води ви вирішили пити",
-  "settings.save": "Зберегти"
+  "settings.save": "Зберегти",
+  "water-list.empty": "Ви ще не додали воду"
 }
