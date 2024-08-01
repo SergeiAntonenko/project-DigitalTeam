@@ -23,13 +23,13 @@ const useMediaQuery = query => {
   return matches;
 };
 
-const getData = allDaysData => {
+const getData = (allDaysData, selectedDate) => {
   const data = [];
-  const today = moment();
-  const startOfMonth = today.clone().startOf('month');
+  const selected = moment(selectedDate, 'YYYY-MM-DD');
+  const endDate = selected.clone().subtract(8, 'days');
 
-  let date = today;
-  while (date >= startOfMonth) {
+  let date = selected;
+  while (date.isAfter(endDate)) {
     const formattedDate = date.format('DD.MM.YYYY');
     const water = allDaysData[formattedDate] || 0;
 
@@ -39,18 +39,13 @@ const getData = allDaysData => {
     });
     date = date.clone().subtract(1, 'day');
   }
-  // Add start`s point at 0%
-  data.push({
-    date: startOfMonth.subtract(1, 'day').format('DD'),
-    water: 0,
-  });
 
   return data.reverse();
 };
 
-const Statistics = () => {
+const Statistics = ({ selectedDate }) => {
   const allDaysData = useSelector(selectTotalForAllDays);
-  const data = getData(allDaysData);
+  const data = getData(allDaysData, selectedDate);
   const cardinal = curveCardinal.tension(0.2);
   const scrollContainerRef = useRef(null);
 
@@ -111,7 +106,7 @@ const Statistics = () => {
           margin={{
             top: 50,
             right: 0,
-            left: 0,
+            left: 40,
             bottom: 0,
           }}
           className={styles.chartWrapper}
