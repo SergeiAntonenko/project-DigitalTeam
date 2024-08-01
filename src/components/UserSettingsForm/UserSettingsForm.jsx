@@ -8,13 +8,11 @@ import { FormValidateError } from '../FormValidateError/FormValidateError';
 import { calcRequiredWater } from '../../calculation/calcRequiredWater';
 import { selectUser } from '../../redux/users/selectors';
 import Iconsvg from '../../images/Icons/Icons.jsx';
-import { updateUser } from '../../redux/users/operations';
-import { useEffect } from 'react';
+import { updateAvatar, updateUser } from '../../redux/users/operations';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 
 const schema = yup.object().shape({
-  avatar: yup.string(),
-
   gender: yup.string().nullable().oneOf(['Woman', 'Man'], 'Please select your gender'),
 
   name: yup
@@ -45,6 +43,9 @@ const schema = yup.object().shape({
 export const UserSettingsForm = ({ handleCloseModal2 }) => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
+  const userId = user._id;
+  const avatarURL = user.avatar;
+  const [preview, setPreview] = useState(avatarURL || '');
 
   const {
     register,
@@ -72,8 +73,22 @@ export const UserSettingsForm = ({ handleCloseModal2 }) => {
       setValue('activeTime', user.activeTime || 0);
       setValue('dailyWaterGoal', user.dailyWaterGoal || 0);
       setValue('gender', user.gender || '');
+      setPreview(user.avatar || '');
     }
   }, [user, setValue]);
+
+  const onFileChange = e => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      const objectUrl = URL.createObjectURL(selectedFile);
+      setPreview(objectUrl);
+      dispatch(updateAvatar({ file: selectedFile, userId }))
+        .unwrap()
+        .then(res => {
+          setPreview(res.avatar);
+        });
+    }
+  };
 
   const onSubmit = data => {
     if (Object.keys(errors).length > 0) {
@@ -118,36 +133,32 @@ export const UserSettingsForm = ({ handleCloseModal2 }) => {
     avatar || gender || name || email || weight || activeTime || dailyWaterGoal;
 
   const requiredWater = calcRequiredWater(gender, weight, activeTime);
-
   return (
     <>
       <form className={css.wrapper} onSubmit={handleSubmit(onSubmit)}>
         <div className={css.avatarWrapper}>
           {/* <img className={css.avatar} src={user.avatarURL} alt="Avatar" /> */}
 
-          {user.avatarURL ? (
-            <img className={css.avatar} src={user.avatarURL} alt="Avatar" />
+          {preview ? (
+            <img className={css.avatar} src={preview} alt="Avatar" />
           ) : (
             <Iconsvg className={css.avatar} iconName="avatar" />
           )}
 
-          {!avatar || avatar.length === 0 ? (
-            <>
-              <input
-                {...register('avatar')}
-                className={css.hiddenFileInput}
-                type="file"
-                name="avatar"
-                id="avatar"
-                placeholder={'Upload a photo'}
-              />
-              <label htmlFor="avatar" className={css.fileLabel}>
-                Upload a photo
-              </label>
-            </>
-          ) : (
-            <strong className={css.avatarName}>{avatar[0].name}</strong>
-          )}
+          <input
+            {...register('avatar')}
+            className={css.hiddenFileInput}
+            accept="image/*"
+            type="file"
+            name="avatar"
+            id="avatar"
+            onChange={onFileChange}
+            placeholder={'Upload a photo'}
+          />
+          <label htmlFor="avatar" className={css.fileLabel}>
+            Upload a photo
+          </label>
+
           {errors.avatar && <FormValidateError message={errors.avatar.message} />}
         </div>
 
