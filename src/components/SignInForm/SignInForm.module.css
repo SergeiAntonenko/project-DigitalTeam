@@ -234,3 +234,9 @@
   line-height: 18px;
   letter-spacing: -0.14px;
 }
+
+.disabledLink {
+  pointer-events: none;
+  color: grey;
+  text-decoration: none;
+}
