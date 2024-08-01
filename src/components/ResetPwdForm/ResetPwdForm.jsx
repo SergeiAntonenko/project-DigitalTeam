@@ -24,18 +24,26 @@ const ResetPwdForm = () => {
       .required(),
   });
 
-  const handleSubmit = data => {
+  const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      const userData = { ...data };
-      delete userData.repeatPassword;
+      const userData = { ...values };
+      //   delete userData.passwordRepeat;
 
       const queryParams = new URLSearchParams(location.search);
       const resetToken = queryParams.get('resetToken');
 
-      dispatch(resetPassword({ ...userData, resetToken }));
-      setIsSuccess(true);
+      const response = await dispatch(
+        resetPassword({ password: userData.password, token: resetToken })
+      );
+      if (response.meta.requestStatus === 'fulfilled') {
+        setIsSuccess(true);
+      } else {
+        console.error('Password reset failed:', response.error.message);
+      }
     } catch (error) {
-      console.error(error);
+      console.error('Error during password reset:', error);
+    } finally {
+      setSubmitting(false);
     }
   };
 

@@ -64,7 +64,7 @@ export const resetPassword = createAsyncThunk(
   'auth/reset-password',
   async ({ password, token }, thunkAPI) => {
     try {
-      const res = await api.post('/users/reset-password', { password, token });
+      const res = await api.instance.post('/users/reset-password', { password, token });
 
       api.setAuthHeader(res.data.accessToken);
 
