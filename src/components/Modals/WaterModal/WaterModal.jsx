@@ -27,7 +27,6 @@ const WaterModal = ({ id, onCloseModal, operationType, onWaterUpdate }) => {
   const waterTime = record ? record.localTime : null;
   const waterDate = record ? record.localDate : null;
 
-  console.log(record);
   const [item, setItem] = useState(waterValue);
   const [itemTime, setItemTime] = useState(waterTime);
   // const [itemDate, setItemDate] = useState(waterDate);

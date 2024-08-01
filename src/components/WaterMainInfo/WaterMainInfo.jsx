@@ -6,7 +6,7 @@ import Logo from '../Logo/Logo.jsx';
 import LanguageToggle from '../LanguageToggle/LanguageToggle.jsx';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectTotalDay, selectTotalForAllDays } from '../../redux/water/selectors';
+import { selectTotalForAllDays } from '../../redux/water/selectors';
 
 const WaterMainInfo = () => {
   const dailyWater = useSelector(selectTotalForAllDays);
