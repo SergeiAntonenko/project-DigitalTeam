@@ -12,7 +12,8 @@ const initialState = {
   dailyWater: [],
   monthlyWater: null,
   totalDay: null,
-  totalForAllDays: {},
+  // totalForAllDays: {},
+  totalForAllDays: [],
   loading: false,
   error: null,
 };
@@ -26,6 +27,24 @@ const waterSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
+      // .addCase(addWater.fulfilled, (state, action) => {
+      //   state.totalDay = state.totalDay + action.payload.waterCount.waterValue;
+      //   state.monthlyWater = state.monthlyWater + action.payload.waterCount.waterValue;
+      //   state.loading = false;
+
+      //   const { waterCount } = action.payload;
+      //   const waterDate = waterCount.localDate;
+
+      //   if (state.totalForAllDays[waterDate] !== undefined) {
+      //     state.totalForAllDays[waterDate] += waterCount.waterValue;
+      //   }
+
+      //   if (!state.dailyWater) {
+      //     state.dailyWater = [];
+      //   }
+      //   state.dailyWater.push(action.payload.waterCount);
+      //   state.error = null;
+      // })
       .addCase(addWater.fulfilled, (state, action) => {
         state.totalDay = state.totalDay + action.payload.waterCount.waterValue;
         state.monthlyWater = state.monthlyWater + action.payload.waterCount.waterValue;
@@ -34,8 +53,17 @@ const waterSlice = createSlice({
         const { waterCount } = action.payload;
         const waterDate = waterCount.localDate;
 
-        if (state.totalForAllDays[waterDate] !== undefined) {
-          state.totalForAllDays[waterDate] += waterCount.waterValue;
+        // Если totalForAllDays пуст, инициализируем его объектом с waterDate и waterValue
+        if (Object.keys(state.totalForAllDays).length === 0) {
+          state.totalForAllDays = { [waterDate]: waterCount.waterValue };
+        } else {
+          // Если дата уже существует, добавляем значение
+          if (state.totalForAllDays[waterDate] !== undefined) {
+            state.totalForAllDays[waterDate] += waterCount.waterValue;
+          } else {
+            // Если дата не существует, создаем новую запись
+            state.totalForAllDays[waterDate] = waterCount.waterValue;
+          }
         }
 
         if (!state.dailyWater) {
@@ -44,6 +72,7 @@ const waterSlice = createSlice({
         state.dailyWater.push(action.payload.waterCount);
         state.error = null;
       })
+
       .addCase(addWater.rejected, state => {
         state.loading = false;
         state.error = true;

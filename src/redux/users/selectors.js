@@ -9,3 +9,5 @@ export const selectIsLoading = state => state.users.userLoading;
 export const selectUsersError = state => state.users.error;
 
 export const selectUserLoading = state => state.users.userLoading;
+
+export const selectDailyWaterGoal = state => state.users.user.dailyWaterGoal;
