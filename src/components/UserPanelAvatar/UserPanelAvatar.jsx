@@ -9,7 +9,7 @@ const UserPanelAvatar = () => {
   if (user) {
     const avatarURL = user.avatar;
   } else {
-    avatarURL = '';
+    const avatarURL = '';
   }
   const [preview, setPreview] = useState(avatarURL || defaultAvatar);
 
