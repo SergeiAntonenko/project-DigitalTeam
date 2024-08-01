@@ -12,6 +12,7 @@ import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import { selectDate } from '../../../redux/date/dateSlice';
 import { selectDailyWater } from '../../../redux/water/selectors.js';
+import { format, parse } from 'date-fns';
 
 const WaterModal = ({ id, onCloseModal, operationType, onWaterUpdate }) => {
   const { t } = useTranslation();
@@ -23,7 +24,13 @@ const WaterModal = ({ id, onCloseModal, operationType, onWaterUpdate }) => {
   const waterItem = useSelector(selectDailyWater);
   const record = waterItem.find(item => item._id === id);
   const waterValue = record ? record.waterValue : null;
+  const waterTime = record ? record.localTime : null;
+  const waterDate = record ? record.localDate : null;
+
+  console.log(record);
   const [item, setItem] = useState(waterValue);
+  const [itemTime, setItemTime] = useState(waterTime);
+  // const [itemDate, setItemDate] = useState(waterDate);
 
   const handleChangeRecordingTime = e => {
     const inputValue = e.target.value;
@@ -31,6 +38,11 @@ const WaterModal = ({ id, onCloseModal, operationType, onWaterUpdate }) => {
     if (/^[0-9]{0,2}:[0-9]{0,2}$/.test(inputValue) || inputValue === '') {
       setRecordingTime(inputValue);
     }
+  };
+
+  const handleChangeRecordingTimeEdit = e => {
+    const inputValue = e.target.value;
+    setItemTime(inputValue);
   };
 
   const handleWaterAmountChange = e => {
@@ -56,8 +68,21 @@ const WaterModal = ({ id, onCloseModal, operationType, onWaterUpdate }) => {
   // const id = user ? user.id : null;
   // const updatedWaterData = user ? user.updatedWaterData : null;
 
-  const localDate = useSelector(selectDate);
-  const localTime = recordingTime;
+  const localDateAdd = useSelector(selectDate);
+  // const localTime = recordingTime;
+  let localTime;
+  if (operationType === 'edit') {
+    localTime = itemTime;
+  } else {
+    localTime = recordingTime;
+  }
+
+  let localDate;
+  if (operationType === 'edit') {
+    localDate = waterDate;
+  } else {
+    localDate = localDateAdd;
+  }
 
   const increaseWaterAmountEdit = () => {
     setItem(prevAmount => {
@@ -83,7 +108,7 @@ const WaterModal = ({ id, onCloseModal, operationType, onWaterUpdate }) => {
     }
 
     if (operationType === 'edit') {
-      dispatch(updateWater({ recordId: id, water: { waterValue: item, localTime, localDate } }))
+      dispatch(updateWater({ recordId: id, water: { waterValue: item, localDate, localTime } }))
         .then(() => {
           toast.success('Water updated successfully');
         })
@@ -171,14 +196,23 @@ const WaterModal = ({ id, onCloseModal, operationType, onWaterUpdate }) => {
       </div>
       <div className={css.button_wrapper}>
         <h3 className={css.time_water}>
-          {t('modal-water.rec-time')}: {recordingTime}
+          {/* {t('modal-water.rec-time')}: {recordingTime} */}
+          {operationType === 'edit' ? (
+            <>
+              {t('modal-water.rec-time')}: {itemTime}
+            </>
+          ) : (
+            <>
+              {t('modal-water.rec-time')}: {recordingTime}
+            </>
+          )}
         </h3>
         {operationType === 'edit' ? (
           <>
             <input
               type="text"
-              value={recordingTime}
-              onChange={handleChangeRecordingTime}
+              value={itemTime}
+              onChange={handleChangeRecordingTimeEdit}
               placeholder="first (:) after (numbers)"
             />
             <h2 className={css.subtitle}>{t('modal-water.enter-value')}:</h2>
