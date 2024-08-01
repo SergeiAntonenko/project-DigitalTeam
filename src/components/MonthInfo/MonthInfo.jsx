@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react';
 import Calendar from './Calendar/Calendar';
 import CalendarPagination from './CalendarPagination/CalendarPagination';
-import Statistics from './Statistics/Statistics'; // Добавлено из ветки featcher/schedule
+import Statistics from './Statistics/Statistics';
 import styles from './MonthInfo.module.css';
 import pieChart from '../../images/AdvantagesSection/pie-chart-02.svg';
-import { useTranslation } from 'react-i18next'; // Добавлено из HEAD
+import { useTranslation } from 'react-i18next';
 import pieChartActive from '../../images/AdvantagesSection/pie-chart-02-active.svg';
 import { fetchWaterMonthly } from '../../redux/water/operations';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectMonth } from '../../redux/date/dateSlice';
 
 const MonthInfo = () => {
-  const { t } = useTranslation(); // Add from HEAD
+  const { t } = useTranslation();
   const [currentDate, setCurrentDate] = useState(new Date());
   const [view, setView] = useState('calendar');
+  const [selectedDate, setSelectedDate] = useState(null); // Добавлено
 
   const handleDateChange = newDate => {
     setCurrentDate(newDate);
@@ -49,7 +50,15 @@ const MonthInfo = () => {
           </button>
         </div>
       </div>
-      {view === 'calendar' ? <Calendar currentDate={currentDate} /> : <Statistics />}
+      {view === 'calendar' ? (
+        <Calendar
+          currentDate={currentDate}
+          selectedDate={selectedDate}
+          setSelectedDate={setSelectedDate}
+        />
+      ) : (
+        <Statistics selectedDate={selectedDate} />
+      )}
     </div>
   );
 };
