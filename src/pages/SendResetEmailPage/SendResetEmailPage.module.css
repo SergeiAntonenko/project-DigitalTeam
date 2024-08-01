@@ -1,0 +1,28 @@
+.container {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 768px) and (max-width: 1439px) {
+  .container {
+    padding: 32px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding: 32px;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 1439px) {
+  .advantagesSection {
+    display: none;
+  }
+}

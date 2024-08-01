@@ -6,6 +6,7 @@ import {
   refreshUser,
   getGoogleUrl,
   verifyGoogleOAuth,
+  sendResetEmail,
 } from './operations';
 
 const INITIAL_STATE = {
@@ -22,6 +23,7 @@ const INITIAL_STATE = {
   isLoggedIn: false,
   isRefreshing: false,
   isLoading: false,
+  isSend: false,
   error: null,
   url: '',
 };
@@ -67,6 +69,40 @@ const authSlice = createSlice({
       .addCase(getGoogleUrl.rejected, (state, action) => {
         state.error = action.payload;
       })
+      .addCase(verifyGoogleOAuth.pending, (state, action) => {
+        state.token = null;
+        state.isLoggedIn = false;
+        state.isLoading = true;
+      })
+      .addCase(verifyGoogleOAuth.fulfilled, (state, action) => {
+        state.token = action.payload.data.accessToken;
+        state.isLoggedIn = true;
+        state.isLoading = false;
+      })
+      .addCase(verifyGoogleOAuth.rejected, (state, action) => {
+        state.token = null;
+        state.isLoggedIn = false;
+        state.isLoading = false;
+      })
+
+      .addCase(sendResetEmail.pending, state => {
+        state.isLoading = true;
+        state.isSend = false;
+        state.error = null;
+        state.successMessage = '';
+      })
+      .addCase(sendResetEmail.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSend = true;
+        state.data = action.payload;
+        state.successMessage = 'Email sent successfully!';
+      })
+      .addCase(sendResetEmail.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isSend = false;
+        state.error = action.error.message;
+      })
+
       .addCase(logout.pending, state => {
         state.token = null;
         state.isLoggedIn = false;

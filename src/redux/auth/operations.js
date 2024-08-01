@@ -50,6 +50,16 @@ export const refreshUser = createAsyncThunk('auth/refresh-token', async (_, thun
   }
 });
 
+export const sendResetEmail = createAsyncThunk('auth/send-reset-email', async (email, thunkAPI) => {
+  try {
+    const res = await api.instance.post('/users/send-reset-email', { email });
+
+    return res.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
 export const getGoogleUrl = createAsyncThunk('auth/get-oauth-url', async (_, thunkAPI) => {
   try {
     const { data } = await api.instance.get('/users/get-oauth-url');
