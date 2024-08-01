@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from '../../api/api.js';
+import { toast } from 'react-hot-toast';
 
 export const getCurrentUser = createAsyncThunk('users/current', async (_, thunkAPI) => {
   const state = thunkAPI.getState();
@@ -44,11 +45,24 @@ export const updateUser = createAsyncThunk('users/updateUser', async (data, thun
   }
 });
 
-export const updateAvatar = createAsyncThunk('users/updateAvatar', async (_, thunkAPI) => {
+export const updateAvatar = createAsyncThunk('users/avatar', async ({ file, userId }, thunkAPI) => {
   try {
-    const response = await api.instance.patch('users/avatar');
-    return response.data;
+    const state = thunkAPI.getState();
+    const token = state.auth.token;
+
+    const formData = new FormData();
+    formData.append('avatar', file);
+    formData.append('id', userId);
+    const res = await api.instance.patch('/users/avatar', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    toast.success('Avatar updated successfully');
+    return res.data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    const errorMessage = error;
+    return thunkAPI.rejectWithValue(errorMessage);
   }
 });
