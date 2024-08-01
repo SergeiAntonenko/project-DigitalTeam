@@ -153,3 +153,28 @@
   margin-bottom: 10px;
   width: 100%;
 }
+
+.reminderPwd {
+  margin: 0 auto;
+  padding-top: 10px;
+  color: #2f2f2f;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.2px;
+}
+.linkPwd {
+  color: #2f2f2f;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: -0.14px;
+}
+
+.return {
+  margin: 0 auto;
+  padding-top: 10px;
+  padding-left: 40px;
+}

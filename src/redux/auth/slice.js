@@ -7,6 +7,7 @@ import {
   getGoogleUrl,
   verifyGoogleOAuth,
   sendResetEmail,
+  resetPassword,
 } from './operations';
 
 const INITIAL_STATE = {
@@ -84,25 +85,33 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
         state.isLoading = false;
       })
-
       .addCase(sendResetEmail.pending, state => {
-        state.isLoading = true;
         state.isSend = false;
         state.error = null;
         state.successMessage = '';
       })
       .addCase(sendResetEmail.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.isSend = true;
         state.data = action.payload;
         state.successMessage = 'Email sent successfully!';
       })
       .addCase(sendResetEmail.rejected, (state, action) => {
-        state.isLoading = false;
         state.isSend = false;
         state.error = action.error.message;
       })
-
+      .addCase(resetPassword.pending, state => {
+        state.isRefreshing = true;
+        state.error = null;
+      })
+      .addCase(resetPassword.fulfilled, (state, action) => {
+        state.isRefreshing = false;
+        state.user = action.payload;
+        state.error = null;
+      })
+      .addCase(resetPassword.rejected, (state, action) => {
+        state.isRefreshing = false;
+        state.error = action.error.message;
+      })
       .addCase(logout.pending, state => {
         state.token = null;
         state.isLoggedIn = false;

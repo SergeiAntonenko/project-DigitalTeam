@@ -60,6 +60,21 @@ export const sendResetEmail = createAsyncThunk('auth/send-reset-email', async (e
   }
 });
 
+export const resetPassword = createAsyncThunk(
+  'auth/reset-password',
+  async ({ password, token }, thunkAPI) => {
+    try {
+      const res = await api.post('/users/reset-password', { password, token });
+
+      api.setAuthHeader(res.data.accessToken);
+
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const getGoogleUrl = createAsyncThunk('auth/get-oauth-url', async (_, thunkAPI) => {
   try {
     const { data } = await api.instance.get('/users/get-oauth-url');

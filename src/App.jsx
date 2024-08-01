@@ -56,7 +56,7 @@ export const App = () => {
             element={<RestrictedRoute component={<SendResetEmailPage />} />}
           />
           <Route
-            path="/reset-password"
+            path="/users/reset-password"
             element={<RestrictedRoute component={<ResetPwdPage />} />}
           />
           <Route path="/confirm-google-auth" element={<GoogleOAuthCallback />} />

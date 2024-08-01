@@ -84,13 +84,6 @@ const SignInForm = () => {
             </div>
             <ErrorMessage name="password" className={css.error} component="span" />
 
-            <div className={css.reminderPwd}>
-              Forgot your password?
-              <Link className={css.linkPwd} to="/sendEmail">
-                Click here!
-              </Link>
-            </div>
-
             <button className={css.button} type="submit">
               {t('signup-signin-sections.signin')}
             </button>
@@ -101,6 +94,12 @@ const SignInForm = () => {
               {t('signup-signin-sections.dont-have-account')}{' '}
               <Link className={css.link} to="/signup">
                 {t('signup-signin-sections.signup')}
+              </Link>
+            </div>
+            <div className={css.reminderPwd}>
+              Forgot your password?
+              <Link className={css.linkPwd} to="/sendEmail">
+                Click here!
               </Link>
             </div>
           </Form>
