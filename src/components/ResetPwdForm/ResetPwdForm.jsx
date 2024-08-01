@@ -27,7 +27,7 @@ const ResetPwdForm = () => {
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       const userData = { ...values };
-      //   delete userData.passwordRepeat;
+      delete userData.passwordRepeat;
 
       const queryParams = new URLSearchParams(location.search);
       const resetToken = queryParams.get('resetToken');
