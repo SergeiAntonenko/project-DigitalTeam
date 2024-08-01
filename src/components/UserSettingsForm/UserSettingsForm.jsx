@@ -1,6 +1,5 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-// import { useDispatch } from 'react-redux';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import css from './UserSettingsForm.module.css';
@@ -11,36 +10,39 @@ import Iconsvg from '../../images/Icons/Icons.jsx';
 import { updateAvatar, updateUser } from '../../redux/users/operations';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
+import { useTranslation } from 'react-i18next'; // Импортируем useTranslation
 
 const schema = yup.object().shape({
-  gender: yup.string().nullable().oneOf(['Woman', 'Man'], 'Please select your gender'),
+  gender: yup.string().nullable().oneOf(['Woman', 'Man'], 'settings.please-select-gender'),
 
   name: yup
     .string()
-    .min(2, 'Name must be greater than or equal to 2 characters long')
-    .max(40, 'Name must be less than or equal to 40 characters long'),
+    .min(2, 'settings.name-min-length')
+    .max(40, 'settings.name-max-length'),
 
-  email: yup.string().email('Please enter a valid email address'),
+  email: yup.string().email('settings.enter-valid-email'),
 
   weight: yup
     .number()
-    .typeError(' must be a number')
-    .min(1, 'Weight must be greater than or equal to 1')
-    .max(600, 'Weight must be less than or equal to 600'),
+    .typeError('settings.weight-type-error')
+    .min(1, 'settings.weight-min')
+    .max(600, 'settings.weight-max'),
 
   activeTime: yup
     .number()
-    .typeError('Must be a number')
+    .typeError('settings.time-type-error')
     .min(0)
-    .max(12, 'Time must be less than or equal to 12'),
+    .max(12, 'settings.time-max'),
+
   dailyWaterGoal: yup
     .number()
-    .typeError(' must be a number')
-    .min(0, 'Time active sport must be positive number')
-    .max(1000, 'Time must be less than or equal to 1000'),
+    .typeError('settings.daily-water-type-error')
+    .min(0, 'settings.daily-water-min')
+    .max(1000, 'settings.daily-water-max'),
 });
 
 export const UserSettingsForm = ({ handleCloseModal2 }) => {
+  const { t } = useTranslation(); // Используем useTranslation
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const userId = user._id;
@@ -118,12 +120,12 @@ export const UserSettingsForm = ({ handleCloseModal2 }) => {
       value => {
         if (value.meta.requestStatus === 'fulfilled') {
           handleCloseModal2();
-          toast.success('User information has been successfully updated');
+          toast.success(t('settings.update-success'));
         } else {
-          toast.error('Error updating user');
+          toast.error(t('settings.update-error'));
         }
       },
-      reason => toast.error('Error updating user')
+      reason => toast.error(t('settings.update-error'))
     );
   };
 
@@ -137,10 +139,8 @@ export const UserSettingsForm = ({ handleCloseModal2 }) => {
     <>
       <form className={css.wrapper} onSubmit={handleSubmit(onSubmit)}>
         <div className={css.avatarWrapper}>
-          {/* <img className={css.avatar} src={user.avatarURL} alt="Avatar" /> */}
-
           {preview ? (
-            <img className={css.avatar} src={preview} alt="Avatar" />
+            <img className={css.avatar} src={preview} alt={t('settings.avatar-alt')} />
           ) : (
             <Iconsvg className={css.avatar} iconName="avatar" />
           )}
@@ -153,10 +153,10 @@ export const UserSettingsForm = ({ handleCloseModal2 }) => {
             name="avatar"
             id="avatar"
             onChange={onFileChange}
-            placeholder={'Upload a photo'}
+            placeholder={t('settings.upload-photo')}
           />
           <label htmlFor="avatar" className={css.fileLabel}>
-            Upload a photo
+            {t('settings.upload-photo')}
           </label>
 
           {errors.avatar && <FormValidateError message={errors.avatar.message} />}
@@ -165,7 +165,7 @@ export const UserSettingsForm = ({ handleCloseModal2 }) => {
         <div className={css.settingsWrapper}>
           <div className={css.leftDesktopWrapper}>
             <div className={css.genderWrapper}>
-              <p className={css.subtitle}>Your gender identity</p>
+              <p className={css.subtitle}>{t('settings.gender-identity')}</p>
               <input
                 {...register('gender')}
                 className={css.hiddenRadioInput}
@@ -176,7 +176,7 @@ export const UserSettingsForm = ({ handleCloseModal2 }) => {
                 defaultChecked
               />
               <label className={`${css.text} ${css.genderLabel}`} htmlFor="woman">
-                Woman
+                {t('settings.woman')}
               </label>
 
               <input
@@ -188,7 +188,7 @@ export const UserSettingsForm = ({ handleCloseModal2 }) => {
                 value="Man"
               />
               <label className={`${css.text} ${css.genderLabel}`} htmlFor="man">
-                Man
+                {t('settings.man')}
               </label>
 
               {errors.gender && <FormValidateError message={errors.gender.message} />}
@@ -196,7 +196,7 @@ export const UserSettingsForm = ({ handleCloseModal2 }) => {
 
             <div className={css.infoWrapper}>
               <label className={css.subtitle} htmlFor="name">
-                Your name
+                {t('settings.your-name')}
               </label>
               <input
                 {...register('name')}
@@ -208,7 +208,7 @@ export const UserSettingsForm = ({ handleCloseModal2 }) => {
               {errors.name && <FormValidateError message={errors.name.message} />}
 
               <label className={css.subtitle} htmlFor="email">
-                Email
+                {t('settings.email')}
               </label>
               <input
                 {...register('email')}
@@ -221,35 +221,32 @@ export const UserSettingsForm = ({ handleCloseModal2 }) => {
             </div>
 
             <div className={css.normaWrapper}>
-              <p className={css.subtitle}>My daily norma</p>
+              <p className={css.subtitle}>{t('settings.daily-norma')}</p>
 
               <div className={css.formulaWrapper}>
                 <div className={css.formulaSubwrapper}>
-                  <p className={css.text}>For woman:</p>
+                  <p className={css.text}>{t('settings.for-woman')}:</p>
                   <span className={`${css.text} ${css.normaFormula}`}>V=(M*0,03) + (T*0,4)</span>
                 </div>
 
                 <div className={css.formulaSubwrapper}>
-                  <p className={css.text}>For man:</p>
+                  <p className={css.text}>{t('settings.for-man')}:</p>
                   <span className={`${css.text} ${css.normaFormula}`}>V=(M*0,04) + (T*0,6)</span>
                 </div>
               </div>
 
               <p className={css.normaTextArea}>
-                <span className={css.normaAsterisk}>*</span> V is the volume of the water norm in
-                liters per day, M is your body weight, T is the time of active sports, or another
-                type of activity commensurate in terms of loads (in the absence of these, you must
-                set 0)
+                <span className={css.normaAsterisk}>*</span> {t('settings.water-norm-formula')}
               </p>
 
-              <span className={`${css.text} ${css.footnote}`}>Active time in hours</span>
+              <span className={`${css.text} ${css.footnote}`}>{t('settings.active-time-hours')}</span>
             </div>
           </div>
 
           <div className={css.rightDesktopWrapper}>
             <div className={css.metricsWrapper}>
               <label className={css.text} htmlFor="weight">
-                Your weight in kilograms:
+                {t('settings.weight-kg')}:
               </label>
               <input
                 {...register('weight')}
@@ -261,7 +258,7 @@ export const UserSettingsForm = ({ handleCloseModal2 }) => {
               {errors.weight && <FormValidateError message={errors.weight.message} />}
 
               <label className={css.text} htmlFor="activeTime">
-                The time of active participation in sports:
+                {t('settings.active-sports-time')}:
               </label>
               <input
                 {...register('activeTime')}
@@ -275,15 +272,15 @@ export const UserSettingsForm = ({ handleCloseModal2 }) => {
 
             <div className={css.waterAmountWrapper}>
               <div className={css.amountField}>
-                <p className={css.text}>The required amount of water in liters per day:</p>
+                <p className={css.text}>{t('settings.required-water-amount')}</p>
 
                 <span className={css.amount}>
-                  {!gender || !weight ? 'Waiting for your metrics' : requiredWater + ' L'}
+                  {!gender || !weight ? t('settings.waiting-metrics') : requiredWater + ' L'}
                 </span>
               </div>
 
               <label className={css.subtitle} htmlFor="dailyWaterGoal">
-                Write down how much water you will drink:
+                {t('settings.record-water-intake')}:
               </label>
               <input
                 {...register('dailyWaterGoal')}
@@ -300,7 +297,7 @@ export const UserSettingsForm = ({ handleCloseModal2 }) => {
         </div>
 
         <button className={css.submitButton} type="submit" disabled={!isAnyFieldFilled}>
-          Save
+          {t('settings.save')}
         </button>
       </form>
     </>
