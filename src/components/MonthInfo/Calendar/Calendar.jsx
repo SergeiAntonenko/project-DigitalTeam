@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Calendar.module.css';
 import CalendarItem from '../CalendarItem/CalendarItem';
 
-const Calendar = ({ currentDate }) => {
+const Calendar = ({ currentDate, selectedDate, setSelectedDate }) => {
   const [days, setDays] = useState([]);
   const [waterData, setWaterData] = useState({});
-  const [selectedDate, setSelectedDate] = useState(null);
 
   useEffect(() => {
     const year = currentDate.getFullYear();
@@ -45,8 +44,9 @@ const Calendar = ({ currentDate }) => {
   }, [currentDate, days]);
 
   const handleButtonClick = day => {
-    const date =
-      day < 10 ? `0${day}-${currentDate.getMonth() + 1}` : `${day}-${currentDate.getMonth() + 1}`;
+    const date = `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${
+      day < 10 ? `0${day}` : day
+    }`;
     setSelectedDate(date);
   };
 
@@ -70,9 +70,9 @@ const Calendar = ({ currentDate }) => {
           }
           isSelected={
             selectedDate ===
-            (day < 10
-              ? `0${day}-${currentDate.getMonth() + 1}`
-              : `${day}-${currentDate.getMonth() + 1}`)
+            `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${
+              day < 10 ? `0${day}` : day
+            }`
           }
         />
       ))}
