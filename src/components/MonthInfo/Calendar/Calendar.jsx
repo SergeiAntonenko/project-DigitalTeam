@@ -37,7 +37,9 @@ const Calendar = ({ currentDate, selectedDate, setSelectedDate }) => {
         } else {
           throw new Error('Unexpected content type: ' + contentType);
         }
-      } catch (error) {}
+      } catch (error) {
+        console.error('Error fetching water data:', error);
+      }
     };
 
     days.forEach(day => fetchWaterData(day));

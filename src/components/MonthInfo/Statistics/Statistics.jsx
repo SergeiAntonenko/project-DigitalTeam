@@ -6,6 +6,8 @@ import moment from 'moment';
 import styles from './Statistics.module.css';
 import CustomTooltip from '../CustomTooltip/CustomTooltip';
 import { selectTotalForAllDays } from '../../../redux/water/selectors';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const useMediaQuery = query => {
   const [matches, setMatches] = useState(false);
@@ -26,10 +28,10 @@ const useMediaQuery = query => {
 const getData = (allDaysData, selectedDate) => {
   const data = [];
   const selected = moment(selectedDate, 'YYYY-MM-DD');
-  const endDate = selected.clone().subtract(8, 'days');
+  const startDate = selected.clone().startOf('month');
 
   let date = selected;
-  while (date.isAfter(endDate)) {
+  while (date.isSameOrAfter(startDate)) {
     const formattedDate = date.format('DD.MM.YYYY');
     const water = allDaysData[formattedDate] || 0;
 
@@ -43,44 +45,67 @@ const getData = (allDaysData, selectedDate) => {
   return data.reverse();
 };
 
+// Function to format Y-axis values
+const formatYAxisValue = value => {
+  if (value === 0) return '0%';
+  const liters = value / 1000; // Convert ml to L
+  return `${liters.toFixed(1)}L`; // Format to one decimal place
+};
+
 const Statistics = ({ selectedDate }) => {
   const allDaysData = useSelector(selectTotalForAllDays);
-  const data = getData(allDaysData, selectedDate);
-  const cardinal = curveCardinal.tension(0.2);
   const scrollContainerRef = useRef(null);
-
   const isMobile = useMediaQuery('(max-width: 767px)');
+
+  useEffect(() => {
+    if (!selectedDate) {
+      toast.error('Choose any date');
+    }
+  }, [selectedDate]);
+
+  const data = selectedDate ? getData(allDaysData, selectedDate) : [];
+  const cardinal = curveCardinal.tension(0.2);
   const chartWidth = isMobile ? data.length * 35 : data.length * 84;
 
   useEffect(() => {
-    if (scrollContainerRef.current) {
+    if (scrollContainerRef.current && data.length > 0) {
       const container = scrollContainerRef.current;
       const scrollToEnd = () => {
         container.scrollTo({
           left: container.scrollWidth,
-          behavior: 'smooth', // smooth scroll
+          behavior: 'smooth',
         });
       };
 
-      // Check, if wight > 767px, else scrolling to end
       if (window.innerWidth > 767) {
         scrollToEnd();
       } else {
-        // For mobile simple scroll to end
         container.scrollLeft = container.scrollWidth;
       }
     }
   }, [data]);
 
+  if (!selectedDate) {
+    return (
+      <>
+        <ToastContainer />
+      </>
+    );
+  }
+
+  // Calculate max value for Y-axis domain
+  const maxYValue = Math.max(...data.map(item => item.water), 0);
+
   return (
     <div className={styles.container}>
+      <ToastContainer />
       <div className={styles.yAxisContainer}>
         <AreaChart
           width={60}
           height={215}
           data={data}
           margin={{
-            top: 45,
+            top: 50,
             right: 0,
             left: -15,
             bottom: 0,
@@ -89,12 +114,15 @@ const Statistics = ({ selectedDate }) => {
         >
           <YAxis
             type="number"
-            ticks={[0, 0.5, 1, 1.5, 2, 2.5]}
-            tickFormatter={value => (value === 0 ? '0%' : `${value}L`)}
+            domain={[0, maxYValue]} // Automatically adjust the domain based on data
+            ticks={[0, maxYValue / 4, maxYValue / 2, (3 * maxYValue) / 4, maxYValue]}
+            // ticks={[0, 0.5, 1, 1.5, 2, 2.5]}
+            // tickFormatter={value => (value === 0 ? '0%' : `${value / 1000}L`)}
+            tickFormatter={formatYAxisValue} // Correctly apply the custom formatter
             axisLine={false}
             tickLine={false}
             className={styles.ySymbol}
-            padding={{ bottom: 30 }}
+            padding={{ bottom: 13 }}
           />
         </AreaChart>
       </div>
@@ -104,10 +132,10 @@ const Statistics = ({ selectedDate }) => {
           height={215}
           data={data}
           margin={{
-            top: 50,
+            top: 40,
             right: 0,
             left: 40,
-            bottom: 0,
+            bottom: 10,
           }}
           className={styles.chartWrapper}
         >
@@ -118,13 +146,6 @@ const Statistics = ({ selectedDate }) => {
             </linearGradient>
           </defs>
 
-          <XAxis
-            dataKey="date"
-            axisLine={false}
-            tickLine={false}
-            className={styles.xSymbol}
-            padding={{ bottom: 30 }}
-          />
           <Tooltip content={<CustomTooltip />} />
           <Area
             className={styles.area}
@@ -135,6 +156,28 @@ const Statistics = ({ selectedDate }) => {
             dot={{ className: styles.dot }}
           />
         </AreaChart>
+        <div className={styles.xAxisContainer}>
+          <AreaChart
+            width={chartWidth}
+            height={50}
+            data={data}
+            margin={{
+              top: 0,
+              right: 0,
+              left: 40,
+              bottom: 0,
+            }}
+            className={styles.chartWrapper}
+          >
+            <XAxis
+              dataKey="date"
+              axisLine={false}
+              tickLine={false}
+              className={styles.xSymbol}
+              padding={{ bottom: 0 }}
+            />
+          </AreaChart>
+        </div>
       </div>
     </div>
   );

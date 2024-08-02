@@ -8,7 +8,9 @@
   position: sticky;
   left: 0;
 }
-
+.xAxisContainer {
+  margin-bottom: 10px;
+}
 .scrollContainer {
   overflow-x: auto;
   overflow-y: hidden;
