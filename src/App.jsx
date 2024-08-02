@@ -11,6 +11,8 @@ import GoogleOAuthCallback from './components/GoogleAuth/GoogleOAuthCallback.jsx
 const HomePage = lazy(() => import('./pages/HomePage/HomePage.jsx'));
 const SignInPage = lazy(() => import('./pages/SignInPage/SignInPage.jsx'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage/SignUpPage.jsx'));
+const SendResetEmailPage = lazy(() => import('./pages/SendResetEmailPage/SendResetEmailPage.jsx'));
+const ResetPwdPage = lazy(() => import('./pages/ResetPwdPage/ResetPwdPage.jsx'));
 const TrackerPage = lazy(() => import('./pages/TrackerPage/TrackerPage.jsx'));
 // import WaterForm from './components/Modals/WaterForm/WaterForm.jsx';
 
@@ -48,6 +50,14 @@ export const App = () => {
           <Route
             path="/signin"
             element={<RestrictedRoute redirectTo="/tracker" component={<SignInPage />} />}
+          />
+          <Route
+            path="/sendEmail"
+            element={<RestrictedRoute component={<SendResetEmailPage />} />}
+          />
+          <Route
+            path="/users/reset-password"
+            element={<RestrictedRoute component={<ResetPwdPage />} />}
           />
           <Route path="/confirm-google-auth" element={<GoogleOAuthCallback />} />
           <Route

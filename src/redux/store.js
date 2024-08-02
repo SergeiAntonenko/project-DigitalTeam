@@ -50,4 +50,5 @@ export const store = configureStore({
   devTools: true,
 });
 
+// export default store;
 export const persistor = persistStore(store);

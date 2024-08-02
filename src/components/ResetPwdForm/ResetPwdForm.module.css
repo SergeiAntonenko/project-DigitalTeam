@@ -54,8 +54,8 @@
   font-weight: 700;
   line-height: 18px;
   letter-spacing: -0.01em;
-  margin-top: 30px;
   cursor: pointer;
+  margin-top: 16px;
   transition: background-color 0.2s ease-in-out;
 }
 
@@ -93,7 +93,6 @@
   line-height: 18px;
   letter-spacing: -0.01em;
   text-align: left;
-  margin-top: 10px;
 }
 
 .formTitle {
@@ -103,12 +102,12 @@
   line-height: 38px;
   letter-spacing: -0.01em;
   text-align: left;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   color: #323f47;
 }
 
 .field {
-  /* position: relative; */
+  position: relative;
   border-radius: 15px;
   border: 1px solid #2f2f2f;
   outline: none;
@@ -125,6 +124,14 @@
   background-color: transparent;
 }
 
+.field::placeholder {
+  color: 2f2f2f;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: -0.14px;
+}
 @media screen and (min-width: 768px) {
   .field,
   .field::placeholder {
@@ -135,42 +142,9 @@
   }
 }
 
-.field::placeholder {
-  font-family: Poppins;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  letter-spacing: -0.01em;
-  text-align: left;
-  color: #2f2f2f;
-  padding-left: 7px;
-}
-
 .fieldError {
   border-color: #ef5050;
   color: #ef5050;
-}
-
-.reminder {
-  margin-top: 16px;
-  text-align: center;
-  font-family: Poppins;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  letter-spacing: -0.01em;
-  color: #2f2f2f;
-}
-
-.link {
-  font-family: Poppins;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 24px;
-  letter-spacing: -0.01em;
-  text-align: left;
-  text-decoration: underline;
-  color: #2f2f2f;
 }
 
 .logo {
@@ -185,7 +159,7 @@
   }
 }
 
-.signInLabel {
+.passwordRepeat {
   color: #2f2f2f;
   font-size: 14px;
   font-style: normal;
@@ -194,49 +168,19 @@
   letter-spacing: -0.14px;
 }
 @media screen and (min-width: 768px) {
-  .signInLabel {
+  .passwordRepeat {
     font-size: 16px;
     line-height: 24px;
     letter-spacing: -0.16px;
+    font-weight: 700;
   }
 }
 
-.signinFormGroupEmail {
+.passwordResetForm {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  width: 100%;
-}
-.signinFormGroupPassword {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 20px;
+  margin-bottom: 10px;
   width: 100%;
   position: relative;
-}
-
-.reminderPwd {
-  margin: 0 auto;
-  padding-top: 10px;
-  color: #2f2f2f;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 20px;
-  letter-spacing: 0.2px;
-}
-.linkPwd {
-  color: #2f2f2f;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 18px;
-  letter-spacing: -0.14px;
-}
-
-.disabledLink {
-  pointer-events: none;
-  color: grey;
-  text-decoration: none;
 }

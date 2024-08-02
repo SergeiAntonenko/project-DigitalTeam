@@ -96,6 +96,12 @@ const SignInForm = () => {
                 {t('signup-signin-sections.signup')}
               </Link>
             </div>
+            <div className={`${css.reminderPwd} ${css.disabledLink}`}>
+              Forgot your password?
+              <Link className={`${css.linkPwd} ${css.disabledLink}`} to="/sendEmail">
+                Click here!
+              </Link>
+            </div>
           </Form>
         )}
       </Formik>

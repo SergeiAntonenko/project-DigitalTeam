@@ -6,6 +6,8 @@ import {
   refreshUser,
   getGoogleUrl,
   verifyGoogleOAuth,
+  sendResetEmail,
+  resetPassword,
 } from './operations';
 
 const INITIAL_STATE = {
@@ -22,6 +24,7 @@ const INITIAL_STATE = {
   isLoggedIn: false,
   isRefreshing: false,
   isLoading: false,
+  isSend: false,
   error: null,
   url: '',
 };
@@ -29,6 +32,12 @@ const INITIAL_STATE = {
 const authSlice = createSlice({
   name: 'auth',
   initialState: INITIAL_STATE,
+  // reducers: {
+  //   setToken(state, action) {
+  //     state.token = action.payload.token;
+  //     state.refreshToken = action.payload.refreshToken;
+  //   },
+  // },
   extraReducers: builder => {
     builder
       .addCase(register.pending, (state, action) => {
@@ -67,6 +76,48 @@ const authSlice = createSlice({
       .addCase(getGoogleUrl.rejected, (state, action) => {
         state.error = action.payload;
       })
+      .addCase(verifyGoogleOAuth.pending, (state, action) => {
+        state.token = null;
+        state.isLoggedIn = false;
+        state.isLoading = true;
+      })
+      .addCase(verifyGoogleOAuth.fulfilled, (state, action) => {
+        state.token = action.payload.data.accessToken;
+        state.isLoggedIn = true;
+        state.isLoading = false;
+      })
+      .addCase(verifyGoogleOAuth.rejected, (state, action) => {
+        state.token = null;
+        state.isLoggedIn = false;
+        state.isLoading = false;
+      })
+      .addCase(sendResetEmail.pending, state => {
+        state.isSend = false;
+        state.error = null;
+        state.successMessage = '';
+      })
+      .addCase(sendResetEmail.fulfilled, (state, action) => {
+        state.isSend = true;
+        state.data = action.payload;
+        state.successMessage = 'Email sent successfully!';
+      })
+      .addCase(sendResetEmail.rejected, (state, action) => {
+        state.isSend = false;
+        state.error = action.error.message;
+      })
+      .addCase(resetPassword.pending, state => {
+        state.isRefreshing = true;
+        state.error = null;
+      })
+      .addCase(resetPassword.fulfilled, (state, action) => {
+        state.isRefreshing = false;
+        state.user = action.payload;
+        state.error = null;
+      })
+      .addCase(resetPassword.rejected, (state, action) => {
+        state.isRefreshing = false;
+        state.error = action.error.message;
+      })
       .addCase(logout.pending, state => {
         state.token = null;
         state.isLoggedIn = false;
@@ -95,4 +146,5 @@ const authSlice = createSlice({
   },
 });
 
+// export const setToken = authSlice.actions;
 export const authReducer = authSlice.reducer;
