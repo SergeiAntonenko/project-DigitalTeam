@@ -52,6 +52,14 @@
   text-align: left;
 }
 
+.toastContainer {
+  position: fixed;
+  top: 100%;
+  right: 10px; /* Відстань від правого краю екрану */
+  transform: translateY(-50%); /* Центрування по вертикалі */
+  z-index: 1000; /* забезпечте, що контейнер для тостів буде над іншими елементами */
+}
+
 /* Tablet adaptive */
 @media screen and (min-width: 768px) and (max-width: 1439px) {
   .scrollContainer {
