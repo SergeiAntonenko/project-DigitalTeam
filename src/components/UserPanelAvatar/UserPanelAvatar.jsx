@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 
 const UserPanelAvatar = () => {
   const user = useSelector(selectUser);
-  const avatarURL = user.avatar || '';
+  const avatarURL = user ? user.avatar : '';
   const [preview, setPreview] = useState(avatarURL || defaultAvatar);
 
   useEffect(() => {
