@@ -45,6 +45,13 @@ const getData = (allDaysData, selectedDate) => {
   return data.reverse();
 };
 
+// Function to format Y-axis values
+const formatYAxisValue = value => {
+  if (value === 0) return '0%';
+  const liters = value / 1000; // Convert ml to L
+  return `${liters.toFixed(1)}L`; // Format to one decimal place
+};
+
 const Statistics = ({ selectedDate }) => {
   const allDaysData = useSelector(selectTotalForAllDays);
   const scrollContainerRef = useRef(null);
@@ -86,6 +93,9 @@ const Statistics = ({ selectedDate }) => {
     );
   }
 
+  // Calculate max value for Y-axis domain
+  const maxYValue = Math.max(...data.map(item => item.water), 0);
+
   return (
     <div className={styles.container}>
       <ToastContainer className={styles.toastContainer} />
@@ -104,8 +114,11 @@ const Statistics = ({ selectedDate }) => {
         >
           <YAxis
             type="number"
-            ticks={[0, 0.5, 1, 1.5, 2, 2.5]}
-            tickFormatter={value => (value === 0 ? '0%' : `${value}L`)}
+            domain={[0, maxYValue]} // Automatically adjust the domain based on data
+            ticks={[0, maxYValue / 4, maxYValue / 2, (3 * maxYValue) / 4, maxYValue]}
+            // ticks={[0, 0.5, 1, 1.5, 2, 2.5]}
+            // tickFormatter={value => (value === 0 ? '0%' : `${value / 1000}L`)}
+            tickFormatter={formatYAxisValue} // Correctly apply the custom formatter
             axisLine={false}
             tickLine={false}
             className={styles.ySymbol}
