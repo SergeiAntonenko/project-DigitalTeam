@@ -98,7 +98,7 @@ const Statistics = ({ selectedDate }) => {
 
   return (
     <div className={styles.container}>
-      <ToastContainer className={styles.toastContainer} />
+      <ToastContainer />
       <div className={styles.yAxisContainer}>
         <AreaChart
           width={60}
